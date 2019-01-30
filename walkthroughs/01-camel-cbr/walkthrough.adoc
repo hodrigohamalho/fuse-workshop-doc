@@ -1,17 +1,56 @@
-= Template Walkthrough
+= 01 - Content Base Router
 
-// This is a template meant to be used as a starting point for walkthrough development
-Meu template...
+Create a content base router to process payment method in a order
 
 [time=5]
 == Task
 
-=== CBR 
+There is already a get method that receive a query parameter 'paymentMethod', in this lab you will process 
+this parameter and process the payment properly.
 
-Start here...
-// Add your own task here
+=== Content Base Router
 
-=== Step
+Content Base Router (CBR) is a pattern from the Enterprise Integration Pattern. You will use CBR when you need 
+to filter some result, like conditional statements if and switch in languages as Java.
 
-Create a project...
-// Add steps to your task
+=== Code the Content Base Router Logic
+
+The code below is a CBR sample from the Enterprise Integration Pattern website
+
+    from("direct:in")
+      .choice()
+        .when(header("type").isEqualTo("widget"))
+          .to("direct:widget")
+        .when(header("type").isEqualTo("gadget"))
+          .to("direct:gadget")
+        .otherwise()
+          .to("direct:other")
+
+You will use a similar logic to process the paymentMethod logic. 
+
+Process the *paymentMethod* query parameter as a header.
+
+. when it is equal to *credit*.
+.. Print "Processing credit payment..." as a log message in console 
+.. Set Message "[Credit Operation] Thank you for shopping with us" in the body 
+. when it is equal to *cash*.
+.. Print "Processing cash payment..." as a log message in console 
+.. Set Message "[Cash Operation] Thank you for shopping with us" in the body 
+. Otherwise 
+.. Print "Payment error" as a log message in console
+.. Payment error, try again choosing paymentMethod credit or cash
+
+Run your project locally 
+
+    mvn spring-boot:run 
+    
+After your project spin up
+
+Access with your web browser: 
+
+. http://localhost:8080/camel/order?paymentMethod=credit
+. http://localhost:8080/camel/order?paymentMethod=cash
+. http://localhost:8080/camel/order?paymentMethod=other
+
+Look for the messages in the console, you must see the payment processing messages.
+
