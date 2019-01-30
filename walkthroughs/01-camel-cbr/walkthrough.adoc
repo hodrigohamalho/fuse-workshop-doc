@@ -1,0 +1,17 @@
+= Template Walkthrough
+
+// This is a template meant to be used as a starting point for walkthrough development
+Meu template...
+
+[time=5]
+== Task
+
+=== CBR 
+
+Start here...
+// Add your own task here
+
+=== Step
+
+Create a project...
+// Add steps to your task
