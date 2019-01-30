@@ -2,16 +2,19 @@
 
 Create a content base router to process payment method in a order
 
-[time=5]
-== Task
+[time=15]
 
-There is already a get method that receive a query parameter 'paymentMethod', in this lab you will process 
-this parameter and process the payment properly.
-
-=== Content Base Router
+== Content Base Router
 
 Content Base Router (CBR) is a pattern from the Enterprise Integration Pattern. You will use CBR when you need 
 to filter some result, like conditional statements if and switch in languages as Java.
+
+There is already a GET method that receive a query parameter 'paymentMethod', in this lab you will process 
+this parameter and process the payment properly.
+
+Sample of valid payment API
+
+    http://localhost:8080/camel/order?paymentMethod=credit
 
 === Code the Content Base Router Logic
 
@@ -40,7 +43,7 @@ Process the *paymentMethod* query parameter as a header.
 .. Print "Payment error" as a log message in console
 .. Payment error, try again choosing paymentMethod credit or cash
 
-Run your project locally 
+=== Run your project locally 
 
     mvn spring-boot:run 
     
