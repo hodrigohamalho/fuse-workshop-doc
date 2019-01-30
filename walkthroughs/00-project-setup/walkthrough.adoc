@@ -4,54 +4,62 @@ Setup of the project using Eclipse Che for developing the other tasks.
 
 == Setup Eclipse Che
 
-This tasks uses Eclipse Che. It's not mandatory to use Eclipse Che, you can use your preffered 
-IDE, like Visual Studio Code, JBoss Developer Studio and IntelliJ.
+These tasks use Eclipse Che. It's not mandatory to use Eclipse Che, you can use your preferred 
+
+IDE, like Visual Studio Code, JBoss Developer Studio or IntelliJ.
+
 
 . Open the initial page {openshift-app-host} and Open *Eclipse Che* in the side menu.
 
 image::images/01-che.png[initial web page, role="integr8ly-img-responsive"]
 
-. Create the workspace (Maybe this step happens automaticaly for you)
+* Create the workspace (Maybe this step happens automatically for you)
 
 image::images/02-che.png[initial web page, role="integr8ly-img-responsive"]
 
-. In the *Stack* options, choose *"Java" - "Default Java Stack with JDK 8, Maven and Tomcat."*
-. Change the *RAM* memory to *4 GBs*.
-. Create the workspace and select the option *Open IDE*
+* In the *Stack* options, choose *"Java" - "Default Java Stack with JDK 8, Maven and Tomcat."*
+* Change the *RAM* memory to *4 GBs*.
+* Create the workspace and select the option *Open IDE*
 
 image::images/03-che.png[initial web page, role="integr8ly-img-responsive"]
+
 image::images/04-che.png[initial web page, role="integr8ly-img-responsive"]
 
-IMPORTANT: As you are executing this for the first time, all dependencies will be downloaded and it takes time, please be patient.
+As you are executing this for the first time, all dependencies will be downloaded and it takes time, please be patient.
 
-. In Che IDE, select *import project* > *Github* and fill the URL parameter with:
+
+* In Che IDE, select *import project* > *Github* and fill the URL parameter with:
 
     https://github.com/hodrigohamalho/fuse-workshop.git
 
 image::images/06-che.png[initial web page, role="integr8ly-img-responsive"]
 
-. In project configuration Choose *Java > Maven*
+
+* In project configuration Choose *Java > Maven*
 
 image::images/07-che.png[initial web page, role="integr8ly-img-responsive"]
 
-. If everything worked fine, you should see a screen similar with this one
+
+* If everything worked fine, you should see a screen similar with this one
 
 image::images/08-che.png[initial web page, role="integr8ly-img-responsive"]
 
-. Click on the arrow next to the *PLAY* button, and select *Create Run Command*
-.. Name: run 
-.. Command line:
+
+* Click on the arrow next to the *PLAY* button, and select *Create Run Command*
+** Name: run 
+** Command line:
 
     mvn spring-boot:run -f ${current.project.path}
 
 .. Select apply to *fuse-workshop*
 
 image::images/09-che.png[initial web page, role="integr8ly-img-responsive"]
+
 image::images/10-che.png[initial web page, role="integr8ly-img-responsive"]
 
-. Click in the green button *RUN* 
 
-[time=20]
+* Click on the green button *RUN* 
+
 
 [type=verification]
-Are you seeing a loop  hello message in the logs ?
+Are you seeing a loop hello message in the logs?
