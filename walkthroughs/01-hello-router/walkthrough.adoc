@@ -21,7 +21,7 @@ Components is the key of Camel, it's reusable components that abstracts complex 
 it boosts your productivity!
 Take a look in camel components: https://github.com/apache/camel/blob/master/components/readme.adoc
 
-=== Working with timer component  
+== Timer component  
 
 Let's use some parameters with timer component to repeat only 5 times within the interval of 1 sec. 
 
@@ -32,7 +32,7 @@ Run the project again and see if it works. Just remembering to run the project, 
 
     mvn spring-boot:run
 
-=== Generating Orders Automatically 
+== Generating Orders Automatically 
 
 Now, take a look in the class *OrderService.java*, it generates an *Order.java* object, alternating some 
  values between *Camel* and *ActiveMQ*.
