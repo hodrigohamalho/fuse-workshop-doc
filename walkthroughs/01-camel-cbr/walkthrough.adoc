@@ -2,8 +2,6 @@
 
 Create a content base router to process payment method in a order
 
-[time=15]
-
 == Content Base Router
 
 Content Base Router (CBR) is a pattern from the Enterprise Integration Pattern. You will use CBR when you need 
@@ -15,6 +13,19 @@ this parameter and process the payment properly.
 Sample of valid payment API
 
     http://localhost:8080/camel/order?paymentMethod=credit
+
+=== Import the project 
+
+    git clone https://github.com/hodrigohamalho/fuse-workshop.git
+
+[time=2]
+
+=== Import the project in your favorite IDE 
+
+    As you are free to use your favorite IDE (Recommended: Jboss Developer Studio, Visual Studio Code, Eclipse Che) 
+    just import a Maven project as you usually do.
+
+[time=5]
 
 === Code the Content Base Router Logic
 
@@ -43,6 +54,8 @@ Process the *paymentMethod* query parameter as a header.
 .. Print "Payment error" as a log message in console
 .. Payment error, try again choosing paymentMethod credit or cash
 
+[time=10]
+
 === Run your project locally 
 
     mvn spring-boot:run 
@@ -54,6 +67,8 @@ Access with your web browser:
 . http://localhost:8080/camel/order?paymentMethod=credit
 . http://localhost:8080/camel/order?paymentMethod=cash
 . http://localhost:8080/camel/order?paymentMethod=other
+
+[time=3]
 
 [type=verification]
 Check for payment processing messages in the console as well the return of GET operations.
