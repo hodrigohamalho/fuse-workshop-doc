@@ -12,7 +12,7 @@ this parameter and process the payment properly.
 
 Sample of valid payment API
 
-    http://localhost:8080/camel/order?paymentMethod=credit
+    http://localhost:8080/camel/orders/pay?paymentMethod=credit
 
 === Import the project 
 
@@ -64,9 +64,9 @@ After your project spin up
 
 Access with your web browser: 
 
-. http://localhost:8080/camel/order?paymentMethod=credit
-. http://localhost:8080/camel/order?paymentMethod=cash
-. http://localhost:8080/camel/order?paymentMethod=other
+. http://localhost:8080/camel/orders/pay?paymentMethod=credit
+. http://localhost:8080/camel/orders/pay?paymentMethod=cash
+. http://localhost:8080/camel/orders/pay?paymentMethod=other
 
 [time=3]
 

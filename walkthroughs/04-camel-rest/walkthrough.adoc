@@ -1,0 +1,55 @@
+= 02 - Camel Rest DSL
+
+Exposing APIs using Camel Rest DSL.
+
+== Rest
+
+REST is the preferred way that applications has been using to interact with APIs.
+
+=== Looking for the REST DSL
+
+Camel uses the REST DSL component.
+
+[time=10]
+
+=== Boilerplate code
+
+To make it works, the following depencies was added to the project:
+
+    <dependency>
+        <groupId>org.hsqldb</groupId>
+        <artifactId>hsqldb</artifactId>
+        <scope>runtime</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.camel</groupId>
+        <artifactId>camel-sql-starter</artifactId>
+    </dependency>
+
+For every different base you should add the equivalent dependecy, as an example if you need to interact with MYSQL 
+you must add:
+
+    <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <scope>runtime</scope>
+    </dependency>
+
+The file *schema.sql* was created to populate the database during the startup. Open it and take a look. 
+
+[time=5]
+
+=== Run your project locally 
+
+    mvn spring-boot:run 
+    
+After your project spin up
+
+Access with your web browser: 
+
+. http://localhost:8080/camel/orders
+
+[time=3]
+
+[type=verification]
+Did you see a list with many orders ?

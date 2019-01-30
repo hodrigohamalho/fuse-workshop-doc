@@ -1,0 +1,61 @@
+= 02 - Using database
+
+Simple example on how to interact with a database using camel-sql component.
+
+== Interacting with database
+
+Interacting with database is a common need, so it's important to see how simple camel handle it.
+
+To achieve it, we will keep working on the fuse-workshop project. Let's implement a method to retrieve 
+all orders from a database.
+
+=== Interacting with database
+
+There is a Camel Router class already created for you with the name PersistenceRouter. As the focus here is not test 
+if you know how to write SQL code, the SQL is already implemented in a variable called *selectAll*.
+
+Implement a route to interact with the database. Remember to log the interaction in the route.
+
+[time=10]
+
+=== Boilerplate code
+
+To make it works, the following depencies was added to the project:
+
+    <dependency>
+        <groupId>org.hsqldb</groupId>
+        <artifactId>hsqldb</artifactId>
+        <scope>runtime</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.camel</groupId>
+        <artifactId>camel-sql-starter</artifactId>
+    </dependency>
+
+For every different base you should add the equivalent dependecy, as an example if you need to interact with MYSQL 
+you must add:
+
+    <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+        <scope>runtime</scope>
+    </dependency>
+
+The file *schema.sql* was created to populate the database during the startup. Open it and take a look. 
+
+[time=5]
+
+=== Run your project locally 
+
+    mvn spring-boot:run 
+    
+After your project spin up
+
+Access with your web browser: 
+
+. http://localhost:8080/camel/orders
+
+[time=3]
+
+[type=verification]
+Did you see a list with many orders ?
