@@ -8,14 +8,19 @@ These tasks use Eclipse Che. It's not mandatory to use Eclipse Che, you can use 
 
 IDE, like Visual Studio Code, JBoss Developer Studio or IntelliJ.
 
++
 
 . Open the initial page {openshift-app-host} and Open *Eclipse Che* in the side menu.
 
 image::images/01-che.png[initial web page, role="integr8ly-img-responsive"]
 
++
+
 * Create the workspace (Maybe this step happens automatically for you)
 
 image::images/02-che.png[initial web page, role="integr8ly-img-responsive"]
+
++
 
 * In the *Stack* options, choose *"Java" - "Default Java Stack with JDK 8, Maven and Tomcat."*
 * Change the *RAM* memory to *4 GBs*.
@@ -25,8 +30,11 @@ image::images/03-che.png[initial web page, role="integr8ly-img-responsive"]
 
 image::images/04-che.png[initial web page, role="integr8ly-img-responsive"]
 
++
+
 As you are executing this for the first time, all dependencies will be downloaded and it takes time, please be patient.
 
++
 
 * In Che IDE, select *import project* > *Github* and fill the URL parameter with:
 
@@ -34,16 +42,20 @@ As you are executing this for the first time, all dependencies will be downloade
 
 image::images/06-che.png[initial web page, role="integr8ly-img-responsive"]
 
++
 
 * In project configuration Choose *Java > Maven*
 
 image::images/07-che.png[initial web page, role="integr8ly-img-responsive"]
 
 
++
+
 * If everything worked fine, you should see a screen similar with this one
 
 image::images/08-che.png[initial web page, role="integr8ly-img-responsive"]
 
++
 
 * Click on the arrow next to the *PLAY* button, and select *Create Run Command*
 ** Name: run 
@@ -57,6 +69,7 @@ image::images/09-che.png[initial web page, role="integr8ly-img-responsive"]
 
 image::images/10-che.png[initial web page, role="integr8ly-img-responsive"]
 
++
 
 * Click on the green button *RUN* 
 
