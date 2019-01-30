@@ -1,0 +1,58 @@
+= 01 - Hello Router
+
+Creating your first Camel router.
+
+== Writing your first Camel Router
+
+Using the project *fuse-workshop*, open the class *OrderGenerator.java*. 
+If you are having trouble to find it, look in *src/main/java/com/redhat/fuse/booster/rest/routers* folder.
+
+As you can see, this class is a very simple Camel Router already defined to you. A Camel Router is basic a 
+class that extends RouteBuilder and implements the configure method.  Let's focus in the code that really matters
+at the moment
+
+    from("timer:generateOrder")
+        .log("Hello router!");
+
+This code is using the timer component, with all default configurations, it will be executing in a period of time 
+forever the message *Hello router!"* in console.
+
+Components is the key of Camel, it's reusable components that abstracts complex operations making it trivial, so 
+it boosts your productivity!
+Take a look in camel components: https://github.com/apache/camel/blob/master/components/readme.adoc
+
+=== Working with timer component  
+
+Let's use some parameters with timer component to repeat only 5 times within the interval of 1 sec. 
+
+    from("timer:generateOrder?repeatCount=5&period=1000")
+        .log("Hello router!"); 
+
+Run the project again and see if it works. Just remembering to run the project, you can run as a normal spring-boot application.
+
+    mvn spring-boot:run
+
+=== Generating Orders Automatically 
+
+Now, take a look in the class *OrderService.java*, it generates an *Order.java* object, alternating some 
+ values between *Camel* and *ActiveMQ*.
+
+Let's call this method to get a new Order using a new method called *bean*
+
+    from("timer:generate?period=1000&repeatCount=5")
+        .log("Generating Order...")
+        .bean(OrderService.class, "generateOrder")
+        .log("Order ${body.item} generated")
+        .to("direct:sendBook");
+
+Now, it is using the OrderService class to generate a new Order, print some information in console and in the end 
+it direct calls another router named *sendBook*.
+
+And... Where is the Order object ? 
+
+It's in the body! Think in camel as a pipeline, that transport things *from* some place to *another one*, and 
+this message is in the body. Take a look in the log that access the item attribute inside the Order object, and the Order 
+is the body itself. 
+
+
+

@@ -1,33 +1,11 @@
-= 01 - Content Base Router
+= 02 - Content Base Router
 
-Create a content base router to process payment method in a order
+Using Content Base Router to filter messages.
 
 == Content Base Router
 
 Content Base Router (CBR) is a pattern from the Enterprise Integration Pattern. You will use CBR when you need 
 to filter some result, like conditional statements if and switch in languages as Java.
-
-There is already a GET method that receive a query parameter 'paymentMethod', in this lab you will process 
-this parameter and process the payment properly.
-
-Sample of valid payment API
-
-    http://localhost:8080/camel/orders/pay?paymentMethod=credit
-
-=== Import the project 
-
-    git clone https://github.com/hodrigohamalho/fuse-workshop.git
-
-[time=2]
-
-=== Import the project in your favorite IDE 
-
-    As you are free to use your favorite IDE (Recommended: Jboss Developer Studio, Visual Studio Code, Eclipse Che) 
-    just import a Maven project as you usually do.
-
-[time=5]
-
-=== Code the Content Base Router Logic
 
 The code below is a CBR sample from the Enterprise Integration Pattern website
 
@@ -40,7 +18,40 @@ The code below is a CBR sample from the Enterprise Integration Pattern website
         .otherwise()
           .to("direct:other")
 
-You will use a similar logic to process the paymentMethod logic. 
+You will use a similar code in this lab. 
+
+=== Using CBR in the hello-route
+
+Continuing to evolve the sample used in the lab *hello-router*. The previous lab generated a Order object 
+and call a new route named *sendBook*. 
+
+Let's implement this route, mocking a send of items Camel and ActiveMQ to different destinations.
+
+    from("direct:sendBook")
+        .choice()
+            .when(simple("${body.item} == 'Camel'"))
+                .log("Processing Camel book")
+                .to("mock:camel-store")
+            .when(simple("${body.item} == 'ActiveMQ'"))
+                .log("Processing ActiveMQ book")                
+                .to("mock:activemq-store");
+
+We compare the *item* attribute of Order and based in it content we log some information and send it 
+to a mock destination. 
+
+Run and check if both messages *Processing Camel book* and *Processing ActiveMQ book* appear in the log.
+
+=== Another sample of Content Base Router 
+
+There is a REST endpoint, listening to receive payments. To make it more didact I'm using GET instead of POST.
+
+Some samples of the use of this REST endpoint:
+
+* http://localhost:8080/camel/orders/pay?paymentMethod=credit
+* http://localhost:8080/camel/orders/pay?paymentMethod=cash
+* http://localhost:8080/camel/orders/pay?paymentMethod=invalid
+
+Open the class *ContentBaseRouter.java* to implement this lab. 
 
 Process the *paymentMethod* query parameter as a header.
 
@@ -54,22 +65,17 @@ Process the *paymentMethod* query parameter as a header.
 .. Print "Payment error" as a log message in console
 .. Payment error, try again choosing paymentMethod credit or cash
 
-[time=10]
+Check the answer below, try to do by yourself instead of just copy and paste.
 
-=== Run your project locally 
+    .choice()
+        .when(header("paymentMethod").isEqualTo("credit"))
+            .log("Processing credit payment...")
+            .setBody(simple("[Credit Operation] Thanks for your purchased"))
+        .when(header("paymentMethod").isEqualTo("cash"))
+            .log("[Cash Operation] Processing debit payment...")
+            .setBody(simple("[Cash Operation] Thanks for your purchased"))
+    .otherwise()
+        .log("Payment error")
+        .setBody(simple("Payment error, try again choosing paymentMethod credit or cash"));
 
-    mvn spring-boot:run 
-    
-After your project spin up
-
-Access with your web browser: 
-
-. http://localhost:8080/camel/orders/pay?paymentMethod=credit
-. http://localhost:8080/camel/orders/pay?paymentMethod=cash
-. http://localhost:8080/camel/orders/pay?paymentMethod=other
-
-[time=3]
-
-[type=verification]
-Check for payment processing messages in the console as well the return of GET operations.
-
+Congrats!
