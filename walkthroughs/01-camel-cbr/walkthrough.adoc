@@ -55,5 +55,6 @@ Access with your web browser:
 . http://localhost:8080/camel/order?paymentMethod=cash
 . http://localhost:8080/camel/order?paymentMethod=other
 
-Look for the messages in the console, you must see the payment processing messages.
+[type=verification]
+Check for payment processing messages in the console as well the return of GET operations.
 
