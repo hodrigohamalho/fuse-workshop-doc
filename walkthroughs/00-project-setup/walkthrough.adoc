@@ -1,12 +1,26 @@
 = 00 - Project Setup
 
-Setup of the project using Eclipse Che for developing the other tasks.
+Setup of the project using Eclipse Che for developing the other tasks. 
+
+These tasks use Eclipse Che. It's not mandatory  you can use your preferred IDE, like Visual Studio Code, JBoss Developer Studio or IntelliJ.
+
+To build the project in your own environment, you will need:
+
+* JDK 7+
+* Maven 3+
+* Git 
+
+If you already have all installed, just clone the git repository and run mvn install
+
+    git clone https://github.com/hodrigohamalho/fuse-workshop.git
+    cd fuse-workshop
+    mvn spring-boot:run
+
+The *fuse-workshop* project is a Camel Spring Boot project, 
+with some code already did for you, it will provide help to make you 
+focused in the what really matters instead of boilerplate code.
 
 == Setup Eclipse Che
-
-These tasks use Eclipse Che. It's not mandatory to use Eclipse Che, you can use your preferred 
-
-IDE, like Visual Studio Code, JBoss Developer Studio or IntelliJ.
 
 {empty} +
 
