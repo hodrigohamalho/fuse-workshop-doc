@@ -2,7 +2,7 @@
 
 Simple example on how to interact with a database using camel-sql component.
 
-== Interacting with database
+== Introduction
 
 Interacting with database is a common need, so it's important to see how simple camel handle it.
 
