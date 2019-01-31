@@ -1,4 +1,4 @@
-= 02 - Using database
+= 03 - Using database
 
 Simple example on how to interact with a database using camel-sql component.
 

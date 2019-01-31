@@ -1,4 +1,4 @@
-= Publishing to Openshift 
+= 06 - Publishing to Openshift 
 
 oc login {openshift-host} -u evals01@example.com -p Password1
 

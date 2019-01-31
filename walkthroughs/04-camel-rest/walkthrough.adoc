@@ -1,4 +1,4 @@
-= 02 - Camel Rest DSL
+= 04 - Camel Rest DSL
 
 Exposing APIs using Camel Rest DSL.
 
