@@ -1,0 +1,21 @@
+= Publishing to Openshift 
+
+oc login {openshift-host} -u evals01@example.com -p Password1
+
+    mvn fabric8:deploy -Popenshift
+
+It can take a while depending on your network performance. 
+
+The *fabric8:deploy* uses the oc client authentication under the hood. So it explains all the dark magic during this process. 
+
+It's important to mention that it uses a binary deployment, but you can use the strategy that you want. 
+
+After fabric8:deploy, take a look in the target field inside the project, to be more specific
+look into: target/docker/fuse-workshop/latest/build.
+
+Open the Java Console, and check the metrics available. 
+Also, take a look into the Diagram.
+
+
+[type=verification]
+Are you seeing your application in Openshift?

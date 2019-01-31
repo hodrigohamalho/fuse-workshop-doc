@@ -7,17 +7,16 @@ Creating your first Camel router.
 Using the project *fuse-workshop*, open the class *OrderGenerator.java*. 
 If you are having trouble to find it, look in *src/main/java/com/redhat/fuse/booster/rest/routers* folder.
 
-As you can see, this class is a very simple Camel Router already defined to you. A Camel Router is basic a 
-class that extends RouteBuilder and implements the configure method.  Let's focus in the code that really matters
+As you can see, this class is a very simple Camel Router already defined to you. A Camel Router is basically a class that extends RouteBuilder and implements the configure method.  Let's focus on the code that really matters
 at the moment
 
     from("timer:generateOrder")
         .log("Hello router!");
 
-This code is using the timer component, with all default configurations, it will be executing in a period of time 
-forever the message *Hello router!"* in console.
+This code is using the timer component, with all default configurations, it will be executed in a period of time 
+forever the message *Hello router!"* in the console.
 
-Components is the key of Camel, it's reusable components that abstracts complex operations making it trivial, so 
+Components are the key of Camel, it's reusable components that abstract complex operations making it trivial, so 
 it boosts your productivity!
 Take a look in camel components: https://github.com/apache/camel/blob/master/components/readme.adoc
 
@@ -45,14 +44,12 @@ Let's call this method to get a new Order using a new method called *bean*
         .log("Order ${body.item} generated")
         .to("direct:sendBook");
 
-Now, it is using the OrderService class to generate a new Order, print some information in console and in the end 
+Now, it is using the OrderService class to generate a new Order, print some information in the console and in the end 
 it direct calls another router named *sendBook*.
 
-And... Where is the Order object ? 
+And... Where is the Order object? 
 
-It's in the body! Think in camel as a pipeline, that transport things *from* some place to *another one*, and 
-this message is in the body. Take a look in the log that access the item attribute inside the Order object, and the Order 
-is the body itself. 
+It's in the body! Think in camel as a pipeline, that transport things *from* someplace to *another one*, and this message is in the body. Take a look in the log that accesses the item attribute inside the Order object, and the Order is the body itself. 
 
 
 

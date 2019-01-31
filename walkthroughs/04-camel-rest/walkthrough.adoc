@@ -4,7 +4,7 @@ Exposing APIs using Camel Rest DSL.
 
 == Rest
 
-REST is the preferred way that applications has been using to interact with APIs.
+REST is the preferred way that applications have been using to interact with APIs.
 
 === Looking for the REST DSL
 
@@ -14,7 +14,7 @@ Camel uses the REST DSL component.
 
 === Boilerplate code
 
-To make it works, the following depencies was added to the project:
+To make it works, the following dependencies was added to the project:
 
     <dependency>
         <groupId>org.hsqldb</groupId>
@@ -26,7 +26,7 @@ To make it works, the following depencies was added to the project:
         <artifactId>camel-sql-starter</artifactId>
     </dependency>
 
-For every different base you should add the equivalent dependecy, as an example if you need to interact with MYSQL 
+For every different base, you should add the equivalent dependency, as an example if you need to interact with MYSQL 
 you must add:
 
     <dependency>
@@ -52,4 +52,4 @@ Access with your web browser:
 [time=3]
 
 [type=verification]
-Did you see a list with many orders ?
+Did you see a list with many orders?
