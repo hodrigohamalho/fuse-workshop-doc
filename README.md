@@ -4,13 +4,13 @@ This project is a sequency of hands on labs to help people understand Red Hat Fu
 
 It is focused on the Fuse with Spring Boot.
 
-* [Project setup](00-project-setup/walkthrough.adoc)
-* [Hello Router](01-hello-router/walkthrough.adoc)
-* [Content Base Router](02-camel-cbr/walkthrough.adoc)
-* [Interacting with Database](03-camel-sql/walkthrough.adoc)
-* [REST](04-camel-rest/walkthrough.adoc)
-* [Messaging](05-camel-messaging/walkthrough.adoc)
-* [Deploy in Openshift/Kubernetes](06-camel-openshift/walkthrough.adoc)
+* [Project setup](walkthroughs/00-project-setup/walkthrough.adoc)
+* [Hello Router](walkthroughs/01-hello-router/walkthrough.adoc)
+* [Content Base Router](walkthroughs/02-camel-cbr/walkthrough.adoc)
+* [Interacting with Database](walkthroughs/03-camel-sql/walkthrough.adoc)
+* [REST](walkthroughs/04-camel-rest/walkthrough.adoc)
+* [Messaging](walkthroughs/05-camel-messaging/walkthrough.adoc)
+* [Deploy in Openshift/Kubernetes](walkthroughs/06-camel-openshift/walkthrough.adoc)
 
 If you woud like to contribute, there is some of interesting topics.
 
