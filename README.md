@@ -8,6 +8,6 @@ This project is a sequency of hands on labs to help people understand Red Hat Fu
 * [Interacting with Database](03-camel-sql/walkthrough.adoc)
 * [REST](04-camel-rest/walkthrough.adoc)
 * [Messaging](05-camel-messaging/walkthrough.adoc)
-* [Deploy in Openshift/Kubernetes] (06-camel-openshift/walkthrough.adoc)
+* [Deploy in Openshift/Kubernetes](06-camel-openshift/walkthrough.adoc)
 
 Those walkthroughs follow the structure to be deployed in the Red Hat *Integreatly* environment.
