@@ -5,7 +5,7 @@ Creating your first Camel router.
 == Writing your first Camel Router
 
 Using the project *fuse-workshop*, open the class *OrderGenerator.java*. 
-If you are having trouble to find it, look in *src/main/java/com/redhat/fuse/booster/rest/routers* folder.
+If you are having trouble to find it, look in *src/main/java/com/redhat/fuse/booster/rest/routers* folder.
 
 As you can see, this class is a very simple Camel Router already defined to you. A Camel Router is basically a class that extends RouteBuilder and implements the configure method.  Let's focus on the code that really matters
 at the moment
@@ -49,7 +49,9 @@ it direct calls another router named *sendBook*.
 
 And... Where is the Order object? 
 
-It's in the body! Think in camel as a pipeline, that transport things *from* someplace to *another one*, and this message is in the body. Take a look in the log that accesses the item attribute inside the Order object, and the Order is the body itself. 
+If your answer was in the body, you are right! 
+
+Think in camel as a pipeline, that transport things *from* someplace to *another one*, and this message is in the body. Take a look in the log that accesses the item attribute inside the Order object, and the Order is the body itself. 
 
 
 

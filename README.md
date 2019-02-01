@@ -21,4 +21,3 @@ If you would like to contribute, there are some interesting topics.
 * Testing
 * SOAP to Rest
 * REST from OAS (Swagger)
-
