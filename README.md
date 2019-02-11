@@ -1,8 +1,8 @@
-# Camel Walkthrough
+# Fuse Workshop
 
-This project is a sequence of hands-on labs to help people understand Red Hat Fuse (Camel) in a hands-on approach.
+This project is a sequence of hands-on labs to help people understand Red Hat Fuse based on the community project Apache Camel  in a hands-on approach.
 
-It is focused on the Fuse with Spring Boot.
+This is focused on the Fuse with Spring Boot.
 
 Those walkthroughs follow the structure to be deployed in the Red Hat *Integreatly* environment.
 
