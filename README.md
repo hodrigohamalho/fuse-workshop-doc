@@ -23,7 +23,7 @@ If you would like to contribute, there are some interesting topics.
 * REST from OAS (Swagger)
 
 
-## SETUP this Walkthrough in Integreatly Environment 
+## Setup in Integreatly Environment 
 
 . Login as admin in your openshift cluster
 . Add this repository to your walkthrough catalog
