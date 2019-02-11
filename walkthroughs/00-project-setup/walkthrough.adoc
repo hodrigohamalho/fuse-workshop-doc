@@ -50,6 +50,12 @@ As you are executing this for the first time, all dependencies will be downloade
 
 {empty} +
 
+If everything worked fine, you now are seeing an IDE opened without any project.
+
+image::images/05-che.png[eclipse che, role="integr8ly-img-responsive"]
+
+{empty} +
+
 * In Che IDE, select *import project* > *Github* and fill the URL parameter with:
 
     https://github.com/hodrigohamalho/fuse-workshop.git
