@@ -5,9 +5,10 @@ Creating your first Camel router.
 [type=walkthroughResource]
 .Camel Components
 ****
-* link:https://github.com/apache/camel/blob/master/components/readme.adoc[Camel components link, window="_blank"]
+* link:https://github.com/apache/camel/blob/master/components/readme.adoc[Check components list, window="_blank"]
 ****
 
+[time=2]
 == Writing your first Camel Router
 
 Using the project *fuse-workshop*, open the class *OrderGenerator.java*. 
@@ -41,7 +42,7 @@ If you are doing it locally, you can run as a standard spring-boot application.
 
     mvn spring-boot:run
 
-[time=3]
+[time=5]
 == Generating Orders Automatically 
 
 Now, take a look in the class *OrderService.java*, it generates an *Order.java* object, alternating some 
@@ -52,8 +53,7 @@ Let's call this method to get a new Order using a new method called *bean*
     from("timer:generate?period=1000&repeatCount=5")
         .log("Generating Order...")
         .bean(OrderService.class, "generateOrder")
-        .log("Order ${body.item} generated")
-        .to("direct:sendBook");
+        .log("Order ${body.item} generated");
 
 Now, it is using the OrderService class to generate a new Order, print some information in the console and in the end 
 it direct calls another router named *sendBook*.
@@ -67,6 +67,5 @@ Think in camel as a pipeline, that transport things *from* someplace to *another
 Also, what about *"direct:sendBook* ? Direct is a Camel component to call another router directly, as we are doing integrations we are always taking something *from* somewhere and sending *to* somewhere. So in this router specific instead of calling another system 
 we are merely calling another router, as a method call in the default Java programming model.
 
-[time=5]
 
 

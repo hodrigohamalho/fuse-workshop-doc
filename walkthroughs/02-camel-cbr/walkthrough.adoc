@@ -28,12 +28,14 @@ Let's implement this route, mocking a send of items Camel and ActiveMQ to differ
 
     from("direct:sendBook")
         .choice()
-            .when(simple("${body.item} == 'Camel'"))
-                .log("Processing Camel book")
-                .to("mock:camel-store")
-            .when(simple("${body.item} == 'ActiveMQ'"))
-                .log("Processing ActiveMQ book")                
-                .to("mock:activemq-store");
+        .when(simple("${body.item} == 'Camel'"))
+            .log("Processing Camel book")
+            .marshal().jacksonxml()
+            .to("file:/tmp/camel?fileName=camel-${date:now:yyyy-MM-dd}.xml")
+        .when(simple("${body.item} == 'ActiveMQ'"))
+            .log("Processing ActiveMQ book")
+            .marshal().jacksonxml()
+            .to("file:/tmp/activemq?fileName=camel-${date:now:yyyy-MM-dd}.xml");
 
 We compare the *item* attribute of Order and based on it content we log some information and send it to a mock destination. 
 
