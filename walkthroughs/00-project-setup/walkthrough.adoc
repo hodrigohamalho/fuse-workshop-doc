@@ -20,7 +20,6 @@ The *fuse-workshop* project is a Camel Spring Boot project,
 with some code already did for you, it will provide help to make you 
 focused in the what really matters instead of boilerplate code.
 
-https://developers.redhat.com/products/codeready-workspaces/overview/
 [type=walkthroughResource]
 .Fuse
 ****
@@ -54,6 +53,9 @@ image::images/02-che.png[initial web page, role="integr8ly-img-responsive"]
 
 ... In the *Stack* options, choose *"Java" - "Default Java Stack with JDK 8, Maven and Tomcat."*
 ... Change the *RAM* memory to *4 GBs*.
+... Click on *Add or import project*
+... Repository URL: https://github.com/hodrigohamalho/fuse-workshop.git
+... Click on *Create*
 ... Create the workspace and select the option *Open IDE*
 
 image::images/03-che.png[initial web page, role="integr8ly-img-responsive"]
@@ -66,29 +68,34 @@ As you are executing this for the first time, all dependencies will be downloade
 
 {empty} +
 
-If everything worked fine, you now are seeing an IDE opened without any project.
+If everything worked fine, you now are seeing an IDE with your project imported.
 
 image::images/05-che.png[eclipse che, role="integr8ly-img-responsive"]
+
+In the next step we are going to configure this project properly.
 
 {empty} +
 
 [time=10]
 == Setup Project
 
-. Import a maven project
+. Let's inform to Eclipse Che that it is a Maven project.
 
-.. In Che IDE, select *import project* > *Github* and fill the URL parameter with:
-
-    https://github.com/hodrigohamalho/fuse-workshop.git
+.. Select the project and on the *top menu*, select *Project > Update Project Configuration*.
 
 image::images/06-che.png[initial web page, role="integr8ly-img-responsive"]
 
 {empty} +
 
-.. In project configuration Choose *Java > Maven*
+.. In the *Project Configuration* panel, under the menu *Java* select *Maven* as the option and *Save*.
 
 image::images/07-che.png[initial web page, role="integr8ly-img-responsive"]
 
+{empty} +
+
+.. Select Next in the panel that shows maven configuration.
+
+image::images/07-2-che.png[initial web page, role="integr8ly-img-responsive"]
 
 {empty} +
 
@@ -114,6 +121,8 @@ image::images/10-che.png[initial web page, role="integr8ly-img-responsive"]
 
 . Run Project
 .. Click on the green button *RUN* 
+
+image::images/11-che.png[initial web page, role="integr8ly-img-responsive"]
 
 [time=10]
 [type=verification]
