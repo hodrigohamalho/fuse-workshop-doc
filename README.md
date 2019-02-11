@@ -1,4 +1,4 @@
-# Fuse Workshop
+# Red Hat Fuse Workshop
 
 This project is a sequence of hands-on labs to help people understand Red Hat Fuse based on the community project Apache Camel  in a hands-on approach.
 
