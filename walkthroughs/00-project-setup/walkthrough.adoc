@@ -93,6 +93,16 @@ image::images/10-che.png[initial web page, role="integr8ly-img-responsive"]
 
 * Click on the green button *RUN* 
 
-
 [type=verification]
 Are you seeing a loop hello message in the logs?
+
+
+[type=walkthroughResource]
+.Fuse
+****
+* link:https://launch.openshift.io[Create projects using Launcher link, window="_blank"]
+****
+****
+* link:https://github.com/apache/camel/blob/master/components/readme.adoc[Camel components link, window="_blank"]
+****
+
