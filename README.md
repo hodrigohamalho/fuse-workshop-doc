@@ -21,3 +21,15 @@ If you would like to contribute, there are some interesting topics.
 * Testing
 * SOAP to Rest
 * REST from OAS (Swagger)
+
+
+## SETUP this Walkthrough in Integreatly Environment 
+
+. Login as admin in your openshift cluster
+. Add this repository to your walkthrough catalog
+
+    oc set env dc tutorial-web-app WALKTHROUGH_LOCATIONS="https://github.com/integr8ly/tutorial-web-app-walkthroughs.git#v1.1.1,https://github.com/hodrigohamalho/fuse-springboot-workshop.git#master" -n webapp
+
+Now, you must see those walkthrough sessions in initial page.
+
+![Walkthough Catalog](images/walkthrough-catalog.png)

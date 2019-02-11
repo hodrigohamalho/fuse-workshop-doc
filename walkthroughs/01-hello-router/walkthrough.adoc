@@ -18,7 +18,9 @@ forever the message *Hello router!"* in the console.
 
 Components are the key of Camel, it's reusable components that abstract complex operations making it trivial, so 
 it boosts your productivity!
-Take a look in camel components: https://github.com/apache/camel/blob/master/components/readme.adoc
+
+https://github.com/apache/camel/blob/master/components/readme.adoc[Take a look in camel components]
+
 
 == Timer component  
 
@@ -27,7 +29,9 @@ Let's use some parameters with timer component to repeat only 5 times within the
     from("timer:generateOrder?repeatCount=5&period=1000")
         .log("Hello router!"); 
 
-Run the project again and see if it works. Just remembering to run the project, you can run as a normal spring-boot application.
+Run the project clicking on the RUN action that we previously set up and see if it works.
+
+If you are doing it locally, you can run as a standard spring-boot application.
 
     mvn spring-boot:run
 
