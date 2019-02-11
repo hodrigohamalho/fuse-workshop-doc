@@ -23,8 +23,9 @@ focused in the what really matters instead of boilerplate code.
 [type=walkthroughResource]
 .Fuse
 ****
-* link:https://launch.openshift.io[Create projects using Launcher link, window="_blank"]
+* link:https://launch.openshift.io[Create new projects using Launcher, window="_blank"]
 ****
+
 .Camel Components
 ****
 * link:https://github.com/apache/camel/blob/master/components/readme.adoc[Camel components link, window="_blank"]
@@ -69,7 +70,6 @@ image::images/05-che.png[eclipse che, role="integr8ly-img-responsive"]
 {empty} +
 
 [time=10]
-
 == Setup Project
 
 . Import a maven project
@@ -89,7 +89,7 @@ image::images/07-che.png[initial web page, role="integr8ly-img-responsive"]
 
 {empty} +
 
- If everything worked fine, you should see a screen similar with this one
+If everything worked fine, you should see a screen similar with this one
 
 image::images/08-che.png[initial web page, role="integr8ly-img-responsive"]
 
@@ -109,13 +109,10 @@ image::images/10-che.png[initial web page, role="integr8ly-img-responsive"]
 
 {empty} +
 
-[time=5]
-
 . Run Project
 .. Click on the green button *RUN* 
 
-[time=5]
-
+[time=10]
 [type=verification]
 Are you seeing a loop hello message in the logs?
 
