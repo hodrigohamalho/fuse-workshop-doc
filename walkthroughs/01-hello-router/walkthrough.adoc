@@ -2,6 +2,12 @@
 
 Creating your first Camel router.
 
+[type=walkthroughResource]
+.Camel Components
+****
+* link:https://github.com/apache/camel/blob/master/components/readme.adoc[Camel components link, window="_blank"]
+****
+
 == Writing your first Camel Router
 
 Using the project *fuse-workshop*, open the class *OrderGenerator.java*. 
@@ -21,7 +27,7 @@ it boosts your productivity!
 
 https://github.com/apache/camel/blob/master/components/readme.adoc[Take a look in camel components]
 
-
+[time=2]
 == Timer component  
 
 Let's use some parameters with timer component to repeat only 5 times within the interval of 1 sec. 
@@ -35,6 +41,7 @@ If you are doing it locally, you can run as a standard spring-boot application.
 
     mvn spring-boot:run
 
+[time=3]
 == Generating Orders Automatically 
 
 Now, take a look in the class *OrderService.java*, it generates an *Order.java* object, alternating some 
@@ -57,5 +64,9 @@ If your answer was in the body, you are right!
 
 Think in camel as a pipeline, that transport things *from* someplace to *another one*, and this message is in the body. Take a look in the log that accesses the item attribute inside the Order object, and the Order is the body itself. 
 
+Also, what about *"direct:sendBook* ? Direct is a Camel component to call another router directly, as we are doing integrations we are always taking something *from* somewhere and sending *to* somewhere. So in this router specific instead of calling another system 
+we are merely calling another router, as a method call in the default Java programming model.
+
+[time=5]
 
 

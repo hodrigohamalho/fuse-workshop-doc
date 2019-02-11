@@ -20,16 +20,19 @@ The *fuse-workshop* project is a Camel Spring Boot project,
 with some code already did for you, it will provide help to make you 
 focused in the what really matters instead of boilerplate code.
 
+https://developers.redhat.com/products/codeready-workspaces/overview/
 [type=walkthroughResource]
 .Fuse
 ****
 * link:https://launch.openshift.io[Create new projects using Launcher, window="_blank"]
 ****
 
-.Camel Components
+[type=walkthroughResource]
+.Openshift CodeReady (Eclipse Che)
 ****
-* link:https://github.com/apache/camel/blob/master/components/readme.adoc[Camel components link, window="_blank"]
+* link:https://developers.redhat.com/products/codeready-workspaces/overview/[Want to know more about Openshift CodeReady Workspace ?, window="_blank"]
 ****
+
 
 == Setup Eclipse Che
 
@@ -115,5 +118,3 @@ image::images/10-che.png[initial web page, role="integr8ly-img-responsive"]
 [time=10]
 [type=verification]
 Are you seeing a loop hello message in the logs?
-
-
