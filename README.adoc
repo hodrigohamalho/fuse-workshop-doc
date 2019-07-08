@@ -44,6 +44,7 @@ Those walkthroughs follow the structure to be deployed in the *Red Hat Integreat
 
 | 15:30-16:00
 | Recap and summary
+|===
 
 * walkthroughs/00-project-setup/walkthrough.adoc[Project setup]
 * walkthroughs/01-hello-router/walkthrough.adoc[Hello Router]
