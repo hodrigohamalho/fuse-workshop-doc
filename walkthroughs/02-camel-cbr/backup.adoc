@@ -1,0 +1,38 @@
+== Content Base Router with REST 
+
+There is a REST endpoint, listening to receive payments. To make it more didact I'm using GET instead of POST.
+
+Some samples of the use of this REST endpoint:
+
+* http://localhost:8080/camel/orders/pay?paymentMethod=credit
+* http://localhost:8080/camel/orders/pay?paymentMethod=cash
+* http://localhost:8080/camel/orders/pay?paymentMethod=invalid
+
+Open the class *ContentBaseRouter.java* to implement this lab. 
+
+Process the *paymentMethod* query parameter as a header.
+
+. when it is equal to *credit*.
+.. Print "Processing credit payment..." as a log message in the console 
+.. Set Message "[Credit Operation] Thank you for shopping with us" in the body 
+. when it is equal to *cash*.
+.. Print "Processing cash payment..." as a log message in the console 
+.. Set Message "[Cash Operation] Thank you for shopping with us" in the body 
+. Otherwise 
+.. Print "Payment error" as a log message in the console
+.. Payment error, try again choosing paymentMethod credit or cash
+
+Check the answer below, try to do by yourself instead of just copy and paste.
+
+    .choice()
+        .when(header("paymentMethod").isEqualTo("credit"))
+            .log("Processing credit payment...")
+            .setBody(simple("[Credit Operation] Thanks for your purchased"))
+        .when(header("paymentMethod").isEqualTo("cash"))
+            .log("[Cash Operation] Processing debit payment...")
+            .setBody(simple("[Cash Operation] Thanks for your purchased"))
+    .otherwise()
+        .log("Payment error")
+        .setBody(simple("Payment error, try again choosing paymentMethod credit or cash"));
+
+Congrats!

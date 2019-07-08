@@ -12,7 +12,7 @@ Creating your first Camel router.
 == Writing your first Camel Router
 
 Using the project *fuse-workshop*, open the class *OrderGenerator.java*. 
-If you are having trouble to find it, look in *src/main/java/com/redhat/fuse/booster/rest/routers* folder.
+If you are having trouble to find it, look in *src/main/java/com/redhat/fuse/booster/rest/routers/lab01* folder.
 
 As you can see, this class is a very simple Camel Router already defined to you. A Camel Router is basically a class that extends RouteBuilder and implements the configure method.  Let's focus on the code that really matters
 at the moment
@@ -31,7 +31,7 @@ https://github.com/apache/camel/blob/master/components/readme.adoc[Take a look i
 [time=2]
 == Timer component  
 
-Let's use some parameters with timer component to repeat only 5 times within the interval of 1 sec. 
+Let's use some parameters with timer component to repeat *only 5 times* within the *interval of 1 sec*. 
 
     from("timer:generateOrder?repeatCount=5&period=1000")
         .log("Hello router!"); 
