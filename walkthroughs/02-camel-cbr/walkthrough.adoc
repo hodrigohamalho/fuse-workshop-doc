@@ -45,7 +45,7 @@ We compare the *item* attribute of the object Order and print a message.
 
 Run and check if both messages *Processing Camel book* and *Processing ActiveMQ book* appear in the log.
 
-image::../images/02-camel-cbr-01.png[]
+image::../../images/02-camel-cbr-01.png[]
 
 == Interacting with Files
 
@@ -71,7 +71,7 @@ The line .convertBodyTo(String.class) is just invoking the Order.class to String
 
 Run and check if the directories has files inside and the content of the files.
 
-image::../images/02-camel-cbr-02.png[]
+image::../../images/02-camel-cbr-02.png[]
 
 But wait, look at file names is auto generated and very weird. Let's fix these exploring some parameters of the file component. 
 
@@ -87,7 +87,7 @@ ActiveMQ
 
 Run and check if the files have the names in the structured defined. 
 
-image::../images/02-camel-cbr-03.png[]
+image::../../images/02-camel-cbr-03.png[]
 
 == Data Transform
 
