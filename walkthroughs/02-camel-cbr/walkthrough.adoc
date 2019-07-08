@@ -56,7 +56,7 @@ interact with the file system easily.
 
 Adjust the router to persist the camel book in the directory */tmp/fuse-workshop/camel* and the activemq book in  */tmp/fuse-workshop/activemq*
 
-from("direct:book-to-file")
+    from("direct:book-to-file")
 		.choice()
 			.when(simple("${body.item} == 'Camel'"))
                 .log("Processing a camel book")
@@ -120,4 +120,6 @@ Update the route to the following:
                 .to("file:/tmp/fuse-workshop/activemq?fileName=activemq-${date:now:yyyy-MM-dd-HHmmssSSS}.xml");
 
 Run and check if the files have the correct extensions and if the content is in in the format described.
+
+image::../../images/02-camel-cbr-04.png[]
 
