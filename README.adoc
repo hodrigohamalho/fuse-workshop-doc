@@ -18,18 +18,32 @@ Those walkthroughs follow the structure to be deployed in the *Red Hat Integreat
 
 == Agenda
 
-.Agenda
 |===
 | Time | Activity
 
-| 8:00-9:00     , Registration and breakfast
-| 9:00-10:00    , An introduction to agile integration concepts, use cases, and roadmap 
-| 10:00-11:00   , Hands on demo
-| 11:00-11:15   , Break
-| 11:15-12:00   , **Labs**
-| 12:00-13:00   , Lunch
-| 13:00-15:30   , **Lab:** 
-| 15:30-16:00   , Recap and summary
+| 8:00-9:00
+| Registration and breakfast
+
+| 9:00-10:00
+| An introduction to agile integration concepts, use cases, and roadmap 
+
+| 10:00-11:00
+| Hands on demo
+
+| 11:00-11:15
+| Break
+
+| 11:15-12:00
+| **Labs**
+
+| 12:00-13:00
+| Lunch
+
+| 13:00-15:30
+| **Lab:** 
+
+| 15:30-16:00
+| Recap and summary
 
 * walkthroughs/00-project-setup/walkthrough.adoc[Project setup]
 * walkthroughs/01-hello-router/walkthrough.adoc[Hello Router]
