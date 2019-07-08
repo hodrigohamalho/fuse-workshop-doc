@@ -4,17 +4,17 @@ This project is a sequence of hands-on labs to help people understand Red Hat Fu
 
 This is focused on the Fuse with Spring Boot. But also have a few labs with Camel K and Fuse Online (Syndesis)
 
-Those walkthroughs follow the structure to be deployed in the Red Hat *Integreatly* environment.
+Those walkthroughs follow the structure to be deployed in the **Red Hat Integreatly** environment.
 
 ## Pre Requirements
 
-. Notebook (At least 4 GB RAM)
-. JDK 1.8+
-. Git
-. oc client 
-.. https://access.redhat.com/downloads/content/290[Download from Red Hat]
-.. https://www.okd.io/download.html[Download from Community]
-. https://visualstudio.microsoft.com/downloads/[Visual Studio IDE]
+* Notebook (At least 4 GB RAM)
+* JDK 1.8+
+* Git
+* oc client 
+** https://access.redhat.com/downloads/content/290[Download from Red Hat]
+** https://www.okd.io/download.html[Download from Community]
+* https://visualstudio.microsoft.com/downloads/[Visual Studio IDE]
 
 ## Agenda
 
