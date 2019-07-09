@@ -5,6 +5,13 @@ basic transformations, transform a Java Object (POJO) in a file with JSON and XM
 
 image::../../images/Content-base-router-lab.png[]
 
+Content covered on this lab:
+
+* Content base router pattern 
+* XML and JSON transformation 
+* File component 
+* FTP component 
+
 == Content base router introduction
 
 Content Base Router (CBR) is a pattern from the Enterprise Integration Pattern. You will use CBR when you need 
@@ -126,3 +133,24 @@ Run and check if the files have the correct extensions and if the content is in 
 
 image::../../images/02-camel-cbr-04.png[]
 
+== Ftp Server 
+
+Now, let's do another route to upload those files to a ftp server. 
+
+The ftp server credentials will be passed by the instructor during the class. 
+
+Implement a route that takes all files on camel directory and publish it in the ftp server. 
+
+The FTP directory that should be used is the */var/fuse-workshop/<your-user>* . 
+For evals01, that path will be */var/fuse-workshop/evals01*.
+
+
+The sample for activemq directory it's the following:
+
+    from("file:/tmp/fuse-workshop/activemq")
+        .log("uploading activemq orders to ftp")
+    .to("ftp://<ftp-user>@<ftp-host>?password=<ftp-password>&localWorkDirectory=<ftp-path>");
+
+Do the same with the files on the camel directory.
+
+Is it all? Yes, it is :-)
