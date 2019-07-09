@@ -199,7 +199,7 @@ from("file:/tmp/fuse-workshop/activemq?delete=true")
     .setHeader("CamelFileName", simple("activemq-${date:now:yyyy-MM-dd-HHmmssSSS}.xml"))
     .marshal().jacksonxml()
 .to("ftp://<ftp-user>@<ftp-host>?password=<ftp-password>&localWorkDirectory=<ftp-path>");
----
+----
 
 You can create a standalone class to make your code clean. Inside the processor you can call your business logic as an example.
 
