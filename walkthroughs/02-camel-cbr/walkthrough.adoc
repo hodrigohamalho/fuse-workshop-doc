@@ -11,6 +11,7 @@ Content covered during this lab:
 * XML and JSON transformation 
 * File component 
 * FTP component 
+* Processor 
 
 == Content base router introduction
 
@@ -141,15 +142,64 @@ Implement a route that takes all files on camel directory and publishes it in th
 The FTP directory that should be used is the */var/fuse-workshop/<your-user>* . 
 For evals01, that path will be */var/fuse-workshop/evals01*.
 
+Also remember to configure the component to *delete the files* before consumed..
+
 
 The sample for activemq directory it's the following:
 
-    from("file:/tmp/fuse-workshop/activemq")
+    from("file:/tmp/fuse-workshop/activemq?delete=true")
         .log("uploading activemq orders to ftp")
     .to("ftp://<ftp-user>@<ftp-host>?password=<ftp-password>&localWorkDirectory=<ftp-path>");
 
 Do the same with the files on the camel directory.
 
-Check the FTP server 
-
 Is it all? Yes, it is :-)
+
+=== Processor and Transformation 
+
+But to add some adrenaline to it. Let's change the Order attribute "consumed" to true, in the case of activemq messages
+before uploading to the FTP. 
+
+One way to do it is using a Processor, on the processor you can have total access to the message and headers being transported 
+on the camel pipeline. 
+
+So let's create a process, capture de object Order on the Camel Body and change the attribute process to *true*.
+
+    from("file:/tmp/fuse-workshop/activemq?delete=true")
+        .log("uploading activemq orders to ftp")
+        .process(new Processor(){
+            @Override
+            public void process(Exchange exchange) throws Exception {
+                Order order = exchange.getIn().getBody(Order.class);
+                order.setProcessed(true);
+                exchange.getOut().setBody(order);
+            }
+        })
+    .to("ftp://<ftp-user>@<ftp-host>?password=<ftp-password>&localWorkDirectory=<ftp-path>");
+
+But, if you try to run this new example it will *fail*, and why ? Because we are trying to manipulate as a Java Object, 
+a File in XML, so to make it work we have to first transform it back to Java Object (using unmarshal()) after we have to 
+manipulate and after transform it again to file. 
+
+It's a good exercise to work with transformation.
+
+[source,java,linenums]
+----
+from("file:/tmp/fuse-workshop/activemq?delete=true")
+    .log("uploading activemq orders to ftp")
+    .unmarshal().jacksonxml(Order.class)
+    .process(new Processor(){
+        @Override
+        public void process(Exchange exchange) throws Exception {
+            Order order = exchange.getIn().getBody(Order.class);
+            order.setProcessed(true);
+            exchange.getOut().setBody(order);
+        }
+    })
+    .setHeader("CamelFileName", simple("activemq-${date:now:yyyy-MM-dd-HHmmssSSS}.xml"))
+    .marshal().jacksonxml()
+.to("ftp://<ftp-user>@<ftp-host>?password=<ftp-password>&localWorkDirectory=<ftp-path>");
+---
+
+You can create a standalone class to make your code clean. Inside the processor you can call your business logic as an example.
+
