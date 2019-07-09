@@ -183,7 +183,7 @@ manipulate and after transform it again to file.
 
 It's a good exercise to work with transformation.
 
-[source,java,linenums]
+[source%linenums,java]
 ----
 from("file:/tmp/fuse-workshop/activemq?delete=true")
     .log("uploading activemq orders to ftp")
