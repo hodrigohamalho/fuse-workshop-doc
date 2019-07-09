@@ -1,11 +1,11 @@
 = 02 - Content Base Router, Transformation and File
 
-On this lab we will explore some basic concepts of Camel, and explore the *file* component and also work with 
+On this lab, we will explore some basic concepts of Camel, and explore the *file* component and also work with 
 basic transformations, transform a Java Object (POJO) in a file with JSON and XML format.
 
 image::../../images/Content-base-router-lab.png[]
 
-Content covered on this lab:
+Content covered during this lab:
 
 * Content base router pattern 
 * XML and JSON transformation 
@@ -14,10 +14,10 @@ Content covered on this lab:
 
 == Content base router introduction
 
-Content Base Router (CBR) is a pattern from the Enterprise Integration Pattern. You will use CBR when you need 
-to filter some result, like conditional statements if and switch in languages like Java.
+Content-Base Router (CBR) is a pattern from the Enterprise Integration Pattern. You will use CBR when you need 
+to filter some result.
 
-The code below is a CBR sample from the Enterprise Integration Pattern website
+The code below is a CBR sample from the Enterprise Integration Pattern website.
 
     from("direct:in")
       .choice()
@@ -32,11 +32,11 @@ You will use similar code in this lab.
 
 == Separating different types of Order
 
-Continuing to evolve the previous lab *hello-router*. We have 5 orders being generated automatically by the previous lab. 
+We are continuing to evolve the previous lab. We have five orders being generated automatically by the last lab. 
 In each order generated the item description is different, alternating between *ActiveMQ Book* and *Camel Book*.
 
-Let's separate each of this different books with countent based router pattern. But first let's update the previous router to 
-invoke the next router that we will build on this lab:
+Let's separate each of these different books with content-based router pattern. But first, let's update the previous router to 
+invoke the one that we will be working on this lab.
 
 Add this line to the previous lab: 
 
@@ -45,11 +45,11 @@ Add this line to the previous lab:
 Now, let's implement the content base router pattern:
 
     from("direct:book-to-file")
-		.choice()
-			.when(simple("${body.item} == 'Camel'"))
-				.log("Processing a camel book")
-			.otherwise()
-				.log("Processing an activemq book");
+        .choice()
+            .when(simple("${body.item} == 'Camel'"))
+                .log("Processing a camel book")
+            .otherwise()
+                .log("Processing an activemq book");
 
 We compare the *item* attribute of the object Order and print a message.
 
@@ -61,29 +61,28 @@ image::../../images/02-camel-cbr-01.png[]
 
 https://camel.apache.org/file2.html
 
-Let's use a new *File* component to persist this order on filesystem. *File* component is very powerful and enable us to 
-interact with the file system easily. 
+Let's use a new *File* component to persist this order on the filesystem. *File* component is powerful and enables us to interact with the file system easily. 
 
 Adjust the router to persist the camel book in the directory */tmp/fuse-workshop/camel* and the activemq book in  */tmp/fuse-workshop/activemq*
 
     from("direct:book-to-file")
-		.choice()
-			.when(simple("${body.item} == 'Camel'"))
+        .choice()
+            .when(simple("${body.item} == 'Camel'"))
                 .log("Processing a camel book")
                 .convertBodyTo(String.class)
                 .to("file:/tmp/fuse-workshop/camel")
-			.otherwise()
+            .otherwise()
                 .log("Processing an activemq book")
                 .convertBodyTo(String.class)
                 .to("file:/tmp/fuse-workshop/activemq");
 
 The line .convertBodyTo(String.class) is just invoking the Order.class to String method. and after we are saving all files in the filesystem.
 
-Run and check if the directories has files inside and the content of the files.
+Run and check if the directories have files inside and the content of the files.
 
 image::../../images/02-camel-cbr-02.png[]
 
-But wait, look at file names is auto generated and very weird. Let's fix these exploring some parameters of the file component. 
+But wait, look at file names is auto-generated and weird. Let's fix these exploring some parameters of the file component. 
 
 Change the last line as the following:
 
@@ -103,18 +102,16 @@ image::../../images/02-camel-cbr-03.png[]
 
 https://camel.apache.org/data-format.html
 
-Now, let's take the example before and instead of store everything in *.txt* format, let's tranform the Java object 
-in camel body (Order.java). 
+Now, let's take the example before and instead of store everything in *.txt* format, let's transform the Java object in camel body (Order.java). 
 
 Let's transform the Camel type to JSON and the ActiveMQ to XML.
 
-Basic to work with Data Format we have basic two methods, *marshall()* and *unmarshall()*. 
+To work with Data Format, we have two methods: *marshall()* and *unmarshal()*. 
 
-* *marshall()* we use to convert a Java Bean in other datype as xml,json,csv...
-* *unmarshall()* we use to the oposite, when we have a datatype as xml,json,csv and would like to transform in a Java Bean. 
+* *marshall()* we use to convert a Java Bean in other datatype as XML,JSON,CSV..
+* *unmarshal()* we use to the opposite when we have a datatype as XML, JSON, CSV and would like to transform in a Java Bean. 
 
-Let's remove the transformation of the body to String and do a properly transformation. To camel items let's transform to JSON and 
-to ActiveMQ items to XML. 
+Let's remove the transformation of the body to String and do a proper transformation. To camel items let's transform to JSON and ActiveMQ items to XML. 
 
 Update the route to the following: 
 
@@ -135,11 +132,11 @@ image::../../images/02-camel-cbr-04.png[]
 
 == Ftp Server 
 
-Now, let's do another route to upload those files to a ftp server. 
+Now, let's do another route to upload those files to an FTP server. 
 
-The ftp server credentials will be passed by the instructor during the class. 
+The FTP server credentials will be provided by the instructor during the class. 
 
-Implement a route that takes all files on camel directory and publish it in the ftp server. 
+Implement a route that takes all files on camel directory and publishes it in the FTP server. 
 
 The FTP directory that should be used is the */var/fuse-workshop/<your-user>* . 
 For evals01, that path will be */var/fuse-workshop/evals01*.
@@ -152,5 +149,7 @@ The sample for activemq directory it's the following:
     .to("ftp://<ftp-user>@<ftp-host>?password=<ftp-password>&localWorkDirectory=<ftp-path>");
 
 Do the same with the files on the camel directory.
+
+Check the FTP server 
 
 Is it all? Yes, it is :-)
