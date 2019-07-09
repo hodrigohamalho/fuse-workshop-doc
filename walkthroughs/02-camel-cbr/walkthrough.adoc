@@ -1,8 +1,11 @@
-= 02 - Content Base Router
+= 02 - Content Base Router, Transformation and File
 
-Using Content Base Router pattern to filter messages.
+On this lab we will explore some basic concepts of Camel, and explore the *file* component and also work with 
+basic transformations, transform a Java Object (POJO) in a file with JSON and XML format.
 
-== Introduction
+image::../../images/Content-base-router-lab.png[]
+
+== Content base router introduction
 
 Content Base Router (CBR) is a pattern from the Enterprise Integration Pattern. You will use CBR when you need 
 to filter some result, like conditional statements if and switch in languages like Java.
@@ -20,7 +23,7 @@ The code below is a CBR sample from the Enterprise Integration Pattern website
 
 You will use similar code in this lab. 
 
-== Using CBR to separate different Books
+== Separating different types of Order
 
 Continuing to evolve the previous lab *hello-router*. We have 5 orders being generated automatically by the previous lab. 
 In each order generated the item description is different, alternating between *ActiveMQ Book* and *Camel Book*.
