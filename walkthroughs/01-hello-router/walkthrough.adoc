@@ -14,8 +14,8 @@ Creating your first Camel router.
 Using the project *fuse-workshop*, open the class *OrderGenerator.java*. 
 If you are having trouble to find it, look in *src/main/java/com/redhat/fuse/booster/rest/routers/lab01* folder.
 
-As you can see, this class is a very simple Camel Router already defined to you. A Camel Router is basically a class that extends RouteBuilder and implements the configure method.  Let's focus on the code that really matters
-at the moment
+As you can see, this class is a very simple Camel Router already defined to you. A Camel Router is basically a class that extends RouteBuilder and implements the configure method.  
+Let's focus on the code that really matters at the moment
 
     from("timer:generateOrder")
         .log("Hello router!");
@@ -36,7 +36,14 @@ Let's use some parameters with timer component to repeat *only 5 times* within t
     from("timer:generateOrder?repeatCount=5&period=1000")
         .log("Hello router!"); 
 
-Run the project clicking on the RUN action that we previously set up and see if it works.
+image::../../images/camel-structure.png[]
+
+This is the basic of a component usage. The component name (some examples: *file, ftp, http*), after we have the component 
+name and for last the parameters supported by the documentation. 
+
+If you configured your IDE correctly you should have auto complete working for it. 
+
+Now, let's run the project clicking on the RUN action that we previously set up and see if it works.
 
 If you are doing it locally, you can run as a standard spring-boot application.
 
@@ -48,15 +55,14 @@ If you are doing it locally, you can run as a standard spring-boot application.
 Now, take a look in the class *OrderService.java*, it generates an *Order.java* object, alternating some 
  values between *Camel* and *ActiveMQ*.
 
-Let's call this method to get a new Order using a new method called *bean*
+Let's call this method to get a new Order using a the *bean* method. 
 
     from("timer:generate?period=1000&repeatCount=5")
         .log("Generating Order...")
         .bean(OrderService.class, "generateOrder")
         .log("Order ${body.item} generated");
 
-Now, it is using the OrderService class to generate a new Order, print some information in the console and in the end 
-it direct calls another router named *sendBook*.
+Now, it is using the OrderService class to generate a new Order, print some information in the console.
 
 And... Where is the Order object? 
 
@@ -64,8 +70,10 @@ If your answer was in the body, you are right!
 
 Think in camel as a pipeline, that transport things *from* someplace to *another one*, and this message is in the body. Take a look in the log that accesses the item attribute inside the Order object, and the Order is the body itself. 
 
-Also, what about *"direct:sendBook* ? Direct is a Camel component to call another router directly, as we are doing integrations we are always taking something *from* somewhere and sending *to* somewhere. So in this router specific instead of calling another system 
-we are merely calling another router, as a method call in the default Java programming model.
+image::../../images/camel-pipeline.png[]
+
+Take some time and take a look on https://access.redhat.com/documentation/en-us/red_hat_jboss_fuse/6.3/html/apache_camel_development_guide/basicprinciples[this documentation] to understand better how the camel pipeline works. 
+
 
 
 

@@ -36,3 +36,9 @@ Check the answer below, try to do by yourself instead of just copy and paste.
         .setBody(simple("Payment error, try again choosing paymentMethod credit or cash"));
 
 Congrats!
+
+
+
+
+Also, what about *"direct:sendBook* ? Direct is a Camel component to call another router directly, as we are doing integrations we are always taking something *from* somewhere and sending *to* somewhere. So in this router specific instead of calling another system 
+we are merely calling another router, as a method call in the default Java programming model.
