@@ -20,7 +20,7 @@ to filter some result.
 
 The code below is a CBR sample from the Enterprise Integration Pattern website.
 
-[source%linenums,java]
+[source,java]
 ----
 from("direct:in")
     .choice()
@@ -48,7 +48,7 @@ Add this line to the previous lab:
 
 Now, let's implement the content base router pattern:
 
-[source%linenums,java]
+[source,java]
 ----
 from("direct:book-to-file")
     .choice()
@@ -76,7 +76,7 @@ image::../../images/lab02-filesystem.png[]
 
 See the code below:
 
-[source%linenums,java]
+[source,java]
 ----
 from("direct:book-to-file")
     .choice()
@@ -131,7 +131,7 @@ Let's remove the transformation of the body to String and do a proper transforma
 
 Update the route to the following: 
 
-[source%linenums,java]
+[source,java]
 ----
 from("direct:book-to-file")
     .choice()
@@ -166,7 +166,7 @@ Also, remember to configure the component to *delete the files* before consumed.
 
 The sample for activemq directory it's the following:
 
-[source%linenums,java]
+[source,java]
 ----
 from("file:/tmp/fuse-workshop/activemq?delete=true")
     .log("uploading activemq orders to ftp")
@@ -194,7 +194,7 @@ So let's create a process, capture de object Order on the Camel Body and change 
 
 Open the OrderProcessor.java file, and do the logic to change the attribute processed of Order object.
 
-[source%linenums,java]
+[source,java]
 ----
 public void process(Exchange exchange) throws Exception {
     Order order = exchange.getIn().getBody(Order.class);
@@ -205,7 +205,7 @@ public void process(Exchange exchange) throws Exception {
 ----
 
 And in the route, add the process before the first transformation of ActiveMQ books. 
-[source%linenums,java]
+[source,java]
 ----
 from("direct:book-to-file")
     .choice()
@@ -225,7 +225,7 @@ Run again and check if everything runs without any error. After,  check if the l
 Just as an additional note, if you would like to consume files from FTP and work as a Java Object, instead to use marshal, you 
 must use unmarshal(), example:
 
-[source%linenums,java]
+[source,java]
 ----
     .log("reading files from ftp")
     .unmarshal().jacksonxml(Order.class) // Transform the file to Java Object
