@@ -47,14 +47,11 @@ Those walkthroughs follow the structure to be deployed in the *Red Hat Integreat
 | Recap and summary
 |===
 
-* walkthroughs/00-project-setup/walkthrough.adoc[Project setup]
-* walkthroughs/01-hello-router/walkthrough.adoc[Hello Router]
-* walkthroughs/02-camel-cbr/walkthrough.adoc[Content Base Router]
-* walkthroughs/03-camel-sql/walkthrough.adoc[Interacting with Database]
-* walkthroughs/04-camel-rest/walkthrough.adoc[REST]
-* walkthroughs/05-camel-messaging/walkthrough.adoc[Messaging]
-* walkthroughs/06-camel-openshift/walkthrough.adoc[Deploy in Openshift/Kubernetes]
+== Lab structure 
 
+All the labs uses the https://github.com/hodrigohamalho/fuse-workshop[Fuse-workshop project skeleton].
+
+So just to warm up your machine clone this project and do a `mvn package`.
 
 == Setup in Integreatly Environment 
 

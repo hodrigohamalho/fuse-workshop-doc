@@ -1,4 +1,4 @@
-= 02 - Content Base Router, Transformation and File
+= 02 - Integration with Files and FTP
 
 On this lab, we will explore some basic concepts of Camel, and explore the *file* component and also work with 
 basic transformations, transform a Java Object (POJO) in a file with JSON and XML format.
