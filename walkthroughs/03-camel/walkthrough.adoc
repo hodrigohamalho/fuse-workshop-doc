@@ -2,8 +2,7 @@
 
 == Introduction 
 
-REST is key when we talk about integration. On this lab we are going to explore some basic REST constructions 
-with Red Hat Fuse (Camel). 
+REST is key when we talk about integration. On this lab, we are going to explore some basic REST constructions with Red Hat Fuse (Camel). 
 
 image::../../images/lab03-rest-diagram.png[]
 
@@ -27,6 +26,8 @@ Let's create the endpoints needed for this lab.
 
 Open the *RestRouter.java*. And inside the configure() method, let's declare our first REST endpoint.
 
+=== Get all orders (GET)
+
 [source,java]
 ----
 rest("/orders")
@@ -38,12 +39,11 @@ rest("/orders")
 
 After that, run the project and access http://localhost:8080/camel/orders. 
 
-Everytime you hit the HTTP endpoint the message "geting all orders entries from database" should appear in the log. It doesn't returning anything 
-because we doesn't implement anything, but doesn't worry about it for now. 
+Every time you hit the HTTP endpoint the message *" getting all orders entries from database"* should appear in the log. It doesn't return anything because nothing was implemented to return. But for now, doesn't worry about it.
 
 image::../../images/lab03-log01.png[]
 
-To the find order by ID endpoint, let's declare:
+=== Get order by ID (GET)
 
 [source,java]
 ----
@@ -53,10 +53,10 @@ To the find order by ID endpoint, let's declare:
     .endRest()
 ----
 
-Rerun the application and access the http://localhost:8080/camel/orders/1 endpoint. Once again everytime you hit the endpoint 
+Rerun the application and access the http://localhost:8080/camel/orders/1 endpoint. Once again, every time you hit the endpoint, 
 a new message must appear in the logs. 
 
-And for last, let's work with the POST method.
+=== Create a new order (POST)
 
 [source,java]
 ----
@@ -66,7 +66,7 @@ And for last, let's work with the POST method.
     .endRest()
 ----
 
-To test, Rerun your application and do a POST request to http://localhost:8080/camel/orders with the body:
+To test, Rerun your application and make a POST request to http://localhost:8080/camel/orders with the body:
 
 [source,javascript]
 ----
@@ -80,11 +80,11 @@ To test, Rerun your application and do a POST request to http://localhost:8080/c
 
 == Rest Documentation
 
-The Open API Specification (aka Swagger) is being auto generated. Take a look in http://localhost:8080/camel/api-doc . 
+The Open API Specification (aka Swagger) is being auto-generated. Take a look in http://localhost:8080/camel/api-doc . 
 
 image::../../images/lab03-api-doc.png[]
 
-If you prefer to see it in a human readable way, check through the swagger-ui interface http://localhost:8080/webjars/swagger-ui/index.html?url=/camel/api-doc 
+If you prefer to see it in a human-readable way, check through the swagger-UI interface http://localhost:8080/webjars/swagger-ui/index.html?url=/camel/api-doc 
 
 image::../../images/lab03-swagger.png[]
 
@@ -155,7 +155,7 @@ Dependencies:
 
 == Database
 
-Simple example on how to interact with a database using camel-sql component.
+A simple example of how to interact with a database using camel-SQL component.
 
 == Introduction
 
@@ -175,7 +175,7 @@ Implement a route to interact with the database. Remember to log the interaction
 
 === Boilerplate code
 
-To make it works, the following dependencies was added to the project:
+To make it works, the following dependencies were added to the project:
 
     <dependency>
         <groupId>org.hsqldb</groupId>
@@ -204,7 +204,7 @@ The file *schema.sql* was created to populate the database during the startup. O
 
     mvn spring-boot:run 
     
-After your project spin up
+After your project spin-up
 
 Access with your web browser: 
 
