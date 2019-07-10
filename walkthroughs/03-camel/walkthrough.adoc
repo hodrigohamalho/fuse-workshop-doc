@@ -53,8 +53,9 @@ image::../../images/lab03-log01.png[]
     .endRest()
 ----
 
-Rerun the application and access the http://localhost:8080/camel/orders/1 endpoint. Once again, every time you hit the endpoint, 
-a new message must appear in the logs. 
+Rerun the application and access the http://localhost:8080/camel/orders/1 endpoint. 
+
+Once again, every time you hit the endpoint, a new message must appear in the logs. 
 
 === Create a new order (POST)
 
@@ -109,7 +110,7 @@ rest("/orders").description("Orders CRUD REST endpoint")
 
 image::../../images/lab03-swagger-documented.png[]
 
-=== Boilerplate code
+== Boilerplate code
 
 RestSetup.java 
 
@@ -155,9 +156,12 @@ Dependencies:
 
 == Database
 
-A simple example of how to interact with a database using camel-SQL component.
+Ok, we have the REST endpoints but it doesn't nothing until now. Let's work on interact with Orders database 
+to retrieve relevant order information. 
 
-== Introduction
+On this case we will use the camel-SQL component to do it. 
+
+=== Introduction
 
 Interacting with a database is a common need, so it's important to see how simple camel handle it.
 
@@ -166,14 +170,46 @@ all orders from a database.
 
 === Interacting with database
 
-There is a Camel Router class already created for you with the name PersistenceRouter. As the focus here is not test 
-if you know how to write SQL code, the SQL is already implemented in a variable called *selectAll*.
+There are two strings *selectAll* and *selectById* already made for retrieve the properly information from database 
+use it on the REST DSL to interact with database. 
 
-Implement a route to interact with the database. Remember to log the interaction in the route.
+All the maven dependencies are already included by you and on the develop environment you will be using a embedded database, 
+so don't worry with any installation process.
+
+
+=== GET all and by ID
+
+[source,java]
+----
+.get("/").description("Get all orders")
+    .route().routeId("all-orders")
+    .log("geting all orders entries from database")
+    .to(this.selectAll)
+    .endRest()
+
+.get("/{id}").description("Get orders by id")
+    .route().routeId("find-by-id")
+    .log("geting order with id ${header.id} entry from database")
+    .to(this.selectById)
+    .endRest()
+----
+
+Run the project and access the endpoints:
+
+. http://localhost:8080/camel/orders
+. http://localhost:8080/camel/orders/1
+
+The response should be like this:
+
+image::../../images/lab03-orders-from-database01.png[]
+
+image::../../images/lab03-orders-from-database02.png[]
+
+The file *schema.sql* was created to populate the database during the startup. Open it and take a look. 
 
 [time=10]
 
-=== Boilerplate code
+== Boilerplate code
 
 To make it works, the following dependencies were added to the project:
 
@@ -199,18 +235,6 @@ you must add:
 The file *schema.sql* was created to populate the database during the startup. Open it and take a look. 
 
 [time=5]
-
-=== Run your project locally 
-
-    mvn spring-boot:run 
-    
-After your project spin-up
-
-Access with your web browser: 
-
-. http://localhost:8080/camel/orders
-
-[time=3]
 
 [type=verification]
 Did you see a list with many orders?
