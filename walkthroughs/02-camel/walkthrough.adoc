@@ -233,7 +233,7 @@ must use unmarshal(), example:
 
 === Boilerplate code
 
-To make it works, the following dependencies was added to the project:
+To make this lab works, the following dependencies was added to the project:
 
     <!-- PARSER -->
     <dependency>
