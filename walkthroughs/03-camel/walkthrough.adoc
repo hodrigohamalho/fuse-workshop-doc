@@ -254,6 +254,10 @@ from("direct:create-order")
     .to(this.insertOrder);
 ----
 
+image::../../images/lab03-post02.png[]
+image::../../images/lab03-post03.png[]
+image::../../images/lab03-post04.png[]
+
 [time=10]
 
 == Boilerplate code
