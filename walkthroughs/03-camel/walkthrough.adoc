@@ -13,7 +13,7 @@ We are going to work on 3 REST JSON endpoints:
 * GET -/orders/{id} - Retrieve a specific order by id 
 * POST - /orders - CREATE a order in an async way. 
 
-Content covered during this lab:
+=== Content covered during this lab
 
 * REST 
 * Swagger Generation

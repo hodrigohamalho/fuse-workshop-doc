@@ -7,7 +7,7 @@ basic transformations, transform a Java Object (POJO) in a file with JSON and XM
 
 image::../../images/lab02-process-diagram.png[]
 
-Content covered during this lab:
+=== Content covered during this lab
 
 * Content base router pattern 
 * XML and JSON transformation 
