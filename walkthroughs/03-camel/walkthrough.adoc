@@ -203,9 +203,56 @@ The response should be like this:
 
 image::../../images/lab03-orders-from-database01.png[]
 
-image::../../images/lab03-orders-from-database02.png[]
-
 The file *schema.sql* was created to populate the database during the startup. Open it and take a look. 
+
+=== Create a new Order (POST)
+
+To the method post let's do a quick response to the user and do all processing in background.
+For it we are going to use the wiretap component to make a copy of the message on the Camel pipeline and 
+post it in a JMS queue.
+
+First set a simple text message to return in the body.
+
+[source,java]
+----
+    .post("/").type(Order.class).description("Create a new order")
+        .route().routeId("create order")
+        .log("Order received")
+        .setBody().simple("We received your request, as soon we process your request we will notify you by email.")
+        .endRest();
+----
+
+Run the route and do a POST request to http://localhost:8080/camel/orders, you should see the message in the response.
+
+image::../../images/lab03-post.png[]
+
+Now, let's tap the body to work with the body async in the background. 
+
+[source,java]
+----
+    .post("/").type(Order.class).description("Create a new order")
+        .route().routeId("create order")
+        .log("Order received")
+        .wireTap("direct:create-order")
+        .setBody().simple("We received your request, as soon we process your request we will notify you by email.")
+        .endRest();
+
+    from("direct:create-order")
+        .log("processing order async");
+----
+
+Run again and check the log to see if the new message *" processing order async "* appeared. 
+
+image::../../images/lab03-post-async.png[]
+
+Now, just to finish the creation of the user async. let's call the SQL to insert.
+
+[source,java]
+----
+from("direct:create-order")
+    .log("processing order async")
+    .to(this.insertOrder);
+----
 
 [time=10]
 
