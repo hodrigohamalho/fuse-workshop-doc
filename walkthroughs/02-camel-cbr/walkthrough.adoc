@@ -3,7 +3,7 @@
 On this lab, we will explore some basic concepts of Camel, and explore the *file* component and also work with 
 basic transformations, transform a Java Object (POJO) in a file with JSON and XML format.
 
-image::../../images/Content-base-router-lab.png[]
+image::../../images/lab02-transform-diagram.png[]
 
 Content covered during this lab:
 
@@ -20,14 +20,17 @@ to filter some result.
 
 The code below is a CBR sample from the Enterprise Integration Pattern website.
 
-    from("direct:in")
-      .choice()
+[source%linenums,java]
+----
+from("direct:in")
+    .choice()
         .when(header("type").isEqualTo("widget"))
-          .to("direct:widget")
+            .to("direct:widget")
         .when(header("type").isEqualTo("gadget"))
-          .to("direct:gadget")
+            .to("direct:gadget")
         .otherwise()
-          .to("direct:other")
+            .to("direct:other")
+----
 
 You will use similar code in this lab. 
 
@@ -45,12 +48,15 @@ Add this line to the previous lab:
 
 Now, let's implement the content base router pattern:
 
-    from("direct:book-to-file")
-        .choice()
-            .when(simple("${body.item} == 'Camel'"))
-                .log("Processing a camel book")
-            .otherwise()
-                .log("Processing an activemq book");
+[source%linenums,java]
+----
+from("direct:book-to-file")
+    .choice()
+        .when(simple("${body.item} == 'Camel'"))
+            .log("Processing a camel book")
+        .otherwise()
+            .log("Processing an activemq book");
+----
 
 We compare the *item* attribute of the object Order and print a message.
 
@@ -62,20 +68,25 @@ image::../../images/02-camel-cbr-01.png[]
 
 https://camel.apache.org/file2.html
 
+image::../../images/lab02-filesystem.png[]
+
 Let's use a new *File* component to persist this order on the filesystem. *File* component is powerful and enables us to interact with the file system easily. 
 
 Adjust the router to persist the camel book in the directory */tmp/fuse-workshop/camel* and the activemq book in  */tmp/fuse-workshop/activemq*
 
-    from("direct:book-to-file")
-        .choice()
-            .when(simple("${body.item} == 'Camel'"))
-                .log("Processing a camel book")
-                .convertBodyTo(String.class)
-                .to("file:/tmp/fuse-workshop/camel")
-            .otherwise()
-                .log("Processing an activemq book")
-                .convertBodyTo(String.class)
-                .to("file:/tmp/fuse-workshop/activemq");
+[source%linenums,java]
+----
+from("direct:book-to-file")
+    .choice()
+        .when(simple("${body.item} == 'Camel'"))
+            .log("Processing a camel book")
+            .convertBodyTo(String.class)
+            .to("file:/tmp/fuse-workshop/camel")
+        .otherwise()
+            .log("Processing an activemq book")
+            .convertBodyTo(String.class)
+            .to("file:/tmp/fuse-workshop/activemq");
+----
 
 The line .convertBodyTo(String.class) is just invoking the Order.class to String method. and after we are saving all files in the filesystem.
 
@@ -103,6 +114,8 @@ image::../../images/02-camel-cbr-03.png[]
 
 https://camel.apache.org/data-format.html
 
+image::../../images/lab02-content-base-router.png[]
+
 Now, let's take the example before and instead of store everything in *.txt* format, let's transform the Java object in camel body (Order.java). 
 
 Let's transform the Camel type to JSON and the ActiveMQ to XML.
@@ -116,16 +129,19 @@ Let's remove the transformation of the body to String and do a proper transforma
 
 Update the route to the following: 
 
-    from("direct:book-to-file")
-        .choice()
-            .when(simple("${body.item} == 'Camel'"))
-                .log("Processing a camel book")
-                .marshal().json()
-                .to("file:/tmp/fuse-workshop/camel?fileName=camel-${date:now:yyyy-MM-dd-HHmmssSSS}.json")
-            .otherwise()
-                .log("Processing an activemq book")
-                .marshal().jacksonxml()
-                .to("file:/tmp/fuse-workshop/activemq?fileName=activemq-${date:now:yyyy-MM-dd-HHmmssSSS}.xml");
+[source%linenums,java]
+----
+from("direct:book-to-file")
+    .choice()
+        .when(simple("${body.item} == 'Camel'"))
+            .log("Processing a camel book")
+            .marshal().json()
+            .to("file:/tmp/fuse-workshop/camel?fileName=camel-${date:now:yyyy-MM-dd-HHmmssSSS}.json")
+        .otherwise()
+            .log("Processing an activemq book")
+            .marshal().jacksonxml()
+            .to("file:/tmp/fuse-workshop/activemq?fileName=activemq-${date:now:yyyy-MM-dd-HHmmssSSS}.xml");
+----
 
 Run and check if the files have the correct extensions and if the content is in in the format described.
 
@@ -139,67 +155,78 @@ The FTP server credentials will be provided by the instructor during the class.
 
 Implement a route that takes all files on camel directory and publishes it in the FTP server. 
 
+image::../../images/lab02-ftp-server-diagram.png[]
+
 The FTP directory that should be used is the */var/fuse-workshop/<your-user>* . 
 For evals01, that path will be */var/fuse-workshop/evals01*.
 
 Also remember to configure the component to *delete the files* before consumed..
 
-
 The sample for activemq directory it's the following:
 
-    from("file:/tmp/fuse-workshop/activemq?delete=true")
-        .log("uploading activemq orders to ftp")
+[source%linenums,java]
+----
+from("file:/tmp/fuse-workshop/activemq?delete=true")
+    .log("uploading activemq orders to ftp")
     .to("ftp://<ftp-user>@<ftp-host>?password=<ftp-password>&localWorkDirectory=<ftp-path>");
+----
 
 Do the same with the files on the camel directory.
+
+Run the integration again and check if the files was uploaded from FTP server and removed from filesystem. 
+
+image::../../images/lab02-filezilla-files.png[]
 
 Is it all? Yes, it is :-)
 
 === Processor and Transformation 
 
-But to add some adrenaline to it. Let's change the Order attribute "consumed" to true, in the case of activemq messages
-before uploading to the FTP. 
+But to add some adrenaline to it. Let's change the Order attribute "processed" to true, 
+in the case of activemq messages before uploading to the FTP. 
+
+image::../../images/lab02-transform-diagram.png[]
 
 One way to do it is using a Processor, on the processor you can have total access to the message and headers being transported 
 on the camel pipeline. 
 
 So let's create a process, capture de object Order on the Camel Body and change the attribute process to *true*.
 
-    from("file:/tmp/fuse-workshop/activemq?delete=true")
-        .log("uploading activemq orders to ftp")
-        .process(new Processor(){
-            @Override
-            public void process(Exchange exchange) throws Exception {
-                Order order = exchange.getIn().getBody(Order.class);
-                order.setProcessed(true);
-                exchange.getOut().setBody(order);
-            }
-        })
-    .to("ftp://<ftp-user>@<ftp-host>?password=<ftp-password>&localWorkDirectory=<ftp-path>");
-
-But, if you try to run this new example it will *fail*, and why ? Because we are trying to manipulate as a Java Object, 
-a File in XML, so to make it work we have to first transform it back to Java Object (using unmarshal()) after we have to 
-manipulate and after transform it again to file. 
-
-It's a good exercise to work with transformation.
+Open the OrderProcessor.java file, and do the logic to change the attribute proccessed of Order object.
 
 [source%linenums,java]
 ----
-from("file:/tmp/fuse-workshop/activemq?delete=true")
-    .log("uploading activemq orders to ftp")
-    .unmarshal().jacksonxml(Order.class)
-    .process(new Processor(){
-        @Override
-        public void process(Exchange exchange) throws Exception {
-            Order order = exchange.getIn().getBody(Order.class);
-            order.setProcessed(true);
-            exchange.getOut().setBody(order);
-        }
-    })
-    .setHeader("CamelFileName", simple("activemq-${date:now:yyyy-MM-dd-HHmmssSSS}.xml"))
-    .marshal().jacksonxml()
-.to("ftp://<ftp-user>@<ftp-host>?password=<ftp-password>&localWorkDirectory=<ftp-path>");
+public void process(Exchange exchange) throws Exception {
+    Order order = exchange.getIn().getBody(Order.class);
+    order.setProcessed(true);
+    System.out.println("attributed process changed");
+    exchange.getOut().setBody(order);
+}
 ----
 
-You can create a standalone class to make your code clean. Inside the processor you can call your business logic as an example.
+And in the route, add the process before the first transformation of ActiveMQ books. 
+[source%linenums,java]
+----
+from("direct:book-to-file")
+    .choice()
+        .when(simple("${body.item} == 'Camel'"))
+            .log("Processing a camel book")
+            .marshal().json()
+            .to("file:/tmp/fuse-workshop/camel?fileName=camel-${date:now:yyyy-MM-dd-HHmmssSSS}.json")
+        .otherwise()
+            .log("Processing an activemq book")
+            .process(new OrderProcessor()) // ADD THIS LINE
+            .marshal().jacksonxml()
+            .to("file:/tmp/fuse-workshop/activemq?fileName=activemq-${date:now:yyyy-MM-dd-HHmmssSSS}.xml");
+----
+
+Run again and check if everything runs without any error. After check if the last XML files uploaded have the process attribute as true.
+
+Just as a aditional note, if you would like to consume files from FTP and work as a Java Object, instead to use marshal, you 
+must use unmarshal(), example:
+
+[source%linenums,java]
+----
+    .log("reading files from ftp")
+    .unmarshal().jacksonxml(Order.class) // Transform the file to Java Object
+----
 
