@@ -80,7 +80,7 @@ To test, Rerun your application and make a POST request to http://localhost:8080
 
 == Rest Documentation
 
-The Open API Specification (aka Swagger) is being auto-generated. Take a look in http://localhost:8080/camel/api-doc . 
+The Open API Specification (aka Swagger) is being auto-generated. Take a look in http://localhost:8080/camel/api-doc. 
 
 image::../../images/lab03-api-doc.png[]
 
