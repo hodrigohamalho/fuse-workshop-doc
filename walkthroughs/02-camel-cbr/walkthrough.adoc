@@ -149,7 +149,7 @@ Run and check if the files have the correct extensions and if the content is in 
 
 image::../../images/02-camel-cbr-04.png[]
 
-== Ftp Server 
+== FTP Server 
 
 Now, let's do another route to upload those files to an FTP server. 
 
@@ -159,10 +159,10 @@ Implement a route that takes all files on camel directory and publishes it in th
 
 image::../../images/lab02-ftp-server-diagram.png[]
 
-The FTP directory that should be used is the */var/fuse-workshop/<your-user>* . 
+The FTP directory must be the */var/fuse-workshop/<your-user>*.  
 For evals01, that path will be */var/fuse-workshop/evals01*.
 
-Also remember to configure the component to *delete the files* before consumed..
+Also, remember to configure the component to *delete the files* before consumed.
 
 The sample for activemq directory it's the following:
 
@@ -175,7 +175,7 @@ from("file:/tmp/fuse-workshop/activemq?delete=true")
 
 Do the same with the files on the camel directory.
 
-Run the integration again and check if the files was uploaded from FTP server and removed from filesystem. 
+Rerun the integration and check if the files were uploaded from FTP server and removed from the filesystem. 
 
 image::../../images/lab02-filezilla-files.png[]
 
@@ -184,16 +184,15 @@ Is it all? Yes, it is :-)
 === Processor and Transformation 
 
 But to add some adrenaline to it. Let's change the Order attribute "processed" to true, 
-in the case of activemq messages before uploading to the FTP. 
+in the case of ActiveMQ books before uploading to the FTP. 
 
 image::../../images/lab02-process-diagram.png[]
 
-One way to do it is using a Processor, on the processor you can have total access to the message and headers being transported 
-on the camel pipeline. 
+One way to do it is by using a Processor. On the Processor, you can have total access to the message and headers being transported on the camel pipeline. 
 
 So let's create a process, capture de object Order on the Camel Body and change the attribute process to *true*.
 
-Open the OrderProcessor.java file, and do the logic to change the attribute proccessed of Order object.
+Open the OrderProcessor.java file, and do the logic to change the attribute processed of Order object.
 
 [source%linenums,java]
 ----
@@ -221,9 +220,9 @@ from("direct:book-to-file")
             .to("file:/tmp/fuse-workshop/activemq?fileName=activemq-${date:now:yyyy-MM-dd-HHmmssSSS}.xml");
 ----
 
-Run again and check if everything runs without any error. After check if the last XML files uploaded have the process attribute as true.
+Run again and check if everything runs without any error. After,  check if the last XML files uploaded have the process attribute is true.
 
-Just as a aditional note, if you would like to consume files from FTP and work as a Java Object, instead to use marshal, you 
+Just as an additional note, if you would like to consume files from FTP and work as a Java Object, instead to use marshal, you 
 must use unmarshal(), example:
 
 [source%linenums,java]
