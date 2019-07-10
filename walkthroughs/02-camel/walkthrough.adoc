@@ -1,5 +1,7 @@
 = 02 - Integration with Files and FTP
 
+== Introduction 
+
 On this lab, we will explore some basic concepts of Camel, and explore the *file* component and also work with 
 basic transformations, transform a Java Object (POJO) in a file with JSON and XML format.
 
@@ -13,7 +15,7 @@ Content covered during this lab:
 * FTP component 
 * Processor 
 
-== Content base router introduction
+== Content-base Router introduction
 
 Content-Base Router (CBR) is a pattern from the Enterprise Integration Pattern. You will use CBR when you need 
 to filter some result.

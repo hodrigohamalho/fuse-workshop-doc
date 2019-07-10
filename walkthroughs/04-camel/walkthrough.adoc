@@ -1,1 +1,2 @@
-= 04 - Camel Rest DSL
+= Camel Rest DSL
+
