@@ -68,11 +68,13 @@ image::../../images/02-camel-cbr-01.png[]
 
 https://camel.apache.org/file2.html
 
-image::../../images/lab02-filesystem.png[]
-
 Let's use a new *File* component to persist this order on the filesystem. *File* component is powerful and enables us to interact with the file system easily. 
 
 Adjust the router to persist the camel book in the directory */tmp/fuse-workshop/camel* and the activemq book in  */tmp/fuse-workshop/activemq*
+
+image::../../images/lab02-filesystem.png[]
+
+See the code below:
 
 [source%linenums,java]
 ----
@@ -114,11 +116,11 @@ image::../../images/02-camel-cbr-03.png[]
 
 https://camel.apache.org/data-format.html
 
-image::../../images/lab02-content-base-router.png[]
-
 Now, let's take the example before and instead of store everything in *.txt* format, let's transform the Java object in camel body (Order.java). 
 
 Let's transform the Camel type to JSON and the ActiveMQ to XML.
+
+image::../../images/lab02-content-base-router.png[]
 
 To work with Data Format, we have two methods: *marshall()* and *unmarshal()*. 
 
