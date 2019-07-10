@@ -5,7 +5,7 @@
 REST is key when we talk about integration. On this lab we are going to explore some basic REST constructions 
 with Red Hat Fuse (Camel). 
 
-image::../../images/lab02-process-diagram.png[]
+image::../../images/lab03-rest-diagram.png[]
 
 We are going to work on 3 REST JSON endpoints: 
 
