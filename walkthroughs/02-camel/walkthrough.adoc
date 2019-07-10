@@ -231,3 +231,26 @@ must use unmarshal(), example:
     .unmarshal().jacksonxml(Order.class) // Transform the file to Java Object
 ----
 
+=== Boilerplate code
+
+To make it works, the following dependencies was added to the project:
+
+    <!-- PARSER -->
+    <dependency>
+        <groupId>org.apache.camel</groupId>
+        <artifactId>camel-jackson-starter</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.camel</groupId>
+        <artifactId>camel-jacksonxml</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.camel</groupId>
+        <artifactId>camel-xstream</artifactId>
+    </dependency>
+    <!-- FTP --> 
+    <dependency>
+        <groupId>org.apache.camel</groupId>
+        <artifactId>camel-ftp</artifactId>
+    </dependency>
+
