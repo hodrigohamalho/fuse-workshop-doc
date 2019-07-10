@@ -23,14 +23,18 @@ We are going to work on 3 REST JSON endpoints:
 
 == Creating REST endpoints
 
-Let's create the endpoints needed for this lab. Open the *RestRouter.java*. And inside the configure() method, let's declare our first 
-REST endpoint.
+Let's create the endpoints needed for this lab. 
 
+Open the *RestRouter.java*. And inside the configure() method, let's declare our first REST endpoint.
+
+[source,java]
+----
 rest("/orders")
     .get("/")
         .route()
         .log("geting all orders entries from database")
         .endRest()
+----
 
 After that, run the project and access http://localhost:8080/camel/orders. 
 
@@ -41,29 +45,38 @@ image::../../images/lab03-log01.png[]
 
 To the find order by ID endpoint, let's declare:
 
-    .get("/{id}")
-        .route()
-        .log("geting order with id ${header.id} entry from database")
-        .endRest()
+[source,java]
+----
+.get("/{id}")
+    .route()
+    .log("geting order with id ${header.id} entry from database")
+    .endRest()
+----
 
 Rerun the application and access the http://localhost:8080/camel/orders/1 endpoint. Once again everytime you hit the endpoint 
 a new message must appear in the logs. 
 
 And for last, let's work with the POST method.
 
-    .post("/")
-        .route()
-        .log("Order received")
-        .endRest()
+[source,java]
+----
+.post("/")
+    .route()
+    .log("Order received")
+    .endRest()
+----
 
 To test, Rerun your application and do a POST request to http://localhost:8080/camel/orders with the body:
 
-    {
-        "item": "Inserting a order",
-        "amount": 2,
-        "description": "Testing order insert",
-        "processed": true
-    }
+[source,javascript]
+----
+{
+    "item": "Inserting a order",
+    "amount": 2,
+    "description": "Testing order insert",
+    "processed": true
+}
+----
 
 == Rest Documentation
 
@@ -77,19 +90,22 @@ image::../../images/lab03-swagger.png[]
 
 You could enrich the documentation adding some descriptions in your code, let's do it:
 
-    rest("/orders").description("Orders CRUD REST endpoint")
-        .get("/").description("Get all orders")
-            .route().routeId("all-orders")
-            .log("geting all orders entries from database")
-            .endRest()
-        .get("/{id}").description("Get orders by id")
-            .route().routeId("find-by-id")
-            .log("geting order with id ${header.id} entry from database")
-            .endRest()
-        .post("/").type(Order.class).description("Create a new order")
-            .route().routeId("create order")
-            .log("Order received")
-            .endRest();
+[source,java]
+----
+rest("/orders").description("Orders CRUD REST endpoint")
+    .get("/").description("Get all orders")
+        .route().routeId("all-orders")
+        .log("geting all orders entries from database")
+        .endRest()
+    .get("/{id}").description("Get orders by id")
+        .route().routeId("find-by-id")
+        .log("geting order with id ${header.id} entry from database")
+        .endRest()
+    .post("/").type(Order.class).description("Create a new order")
+        .route().routeId("create order")
+        .log("Order received")
+        .endRest();
+----
 
 image::../../images/lab03-swagger-documented.png[]
 
@@ -97,39 +113,45 @@ image::../../images/lab03-swagger-documented.png[]
 
 RestSetup.java 
 
-    restConfiguration()
-        .apiContextPath("/api-doc")
-        .apiProperty("api.title", "Greeting REST API")
-        .apiProperty("api.version", "1.0")
-        .apiProperty("cors", "true")
-        .apiProperty("base.path", "camel/")
-        .apiProperty("api.path", "/")
-        .apiProperty("host", "")
-        .apiContextRouteId("doc-api")
-    .component("servlet")
-    .bindingMode(RestBindingMode.json);
+[source,java]
+----
+restConfiguration()
+    .apiContextPath("/api-doc")
+    .apiProperty("api.title", "Greeting REST API")
+    .apiProperty("api.version", "1.0")
+    .apiProperty("cors", "true")
+    .apiProperty("base.path", "camel/")
+    .apiProperty("api.path", "/")
+    .apiProperty("host", "")
+    .apiContextRouteId("doc-api")
+.component("servlet")
+.bindingMode(RestBindingMode.json);
+----
 
 Dependencies:
 
-    <dependency>
-        <groupId>org.webjars</groupId>
-        <artifactId>swagger-ui</artifactId>
-        <version>3.13.0</version>
-    </dependency>
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-web</artifactId>
-        <exclusions>
-            <exclusion>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-tomcat</artifactId>
-            </exclusion>
-        </exclusions>
-    </dependency>
-    <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-undertow</artifactId>
-    </dependency>
+[source,xml]
+----
+<dependency>
+    <groupId>org.webjars</groupId>
+    <artifactId>swagger-ui</artifactId>
+    <version>3.13.0</version>
+</dependency>
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-web</artifactId>
+    <exclusions>
+        <exclusion>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+        </exclusion>
+    </exclusions>
+</dependency>
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-undertow</artifactId>
+</dependency>
+----
 
 == Database
 
