@@ -3,7 +3,7 @@
 On this lab, we will explore some basic concepts of Camel, and explore the *file* component and also work with 
 basic transformations, transform a Java Object (POJO) in a file with JSON and XML format.
 
-image::../../images/lab02-transform-diagram.png[]
+image::../../images/lab02-process-diagram.png[]
 
 Content covered during this lab:
 
@@ -184,7 +184,7 @@ Is it all? Yes, it is :-)
 But to add some adrenaline to it. Let's change the Order attribute "processed" to true, 
 in the case of activemq messages before uploading to the FTP. 
 
-image::../../images/lab02-transform-diagram.png[]
+image::../../images/lab02-process-diagram.png[]
 
 One way to do it is using a Processor, on the processor you can have total access to the message and headers being transported 
 on the camel pipeline. 
