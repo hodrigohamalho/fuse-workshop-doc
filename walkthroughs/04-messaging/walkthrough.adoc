@@ -1,9 +1,9 @@
 = Messaging 
 
-Messaging makes applications loosely coupled by communicating asynchronously, which also makes the communication more reliable because the two applications do not have to be running at the same time. Messaging makes the messaging system responsible for transferring data from one application to another, so the applications can focus on what data they need to share but not worry so much about how to share it.
+Messaging makes applications loosely coupled by communicating asynchronously, which also makes the communication more reliable because the two applications do not have to be running at the same time. Messaging makes the messaging system responsible for transferring data from one application to another, so the apps can focus on what data they need to share but not worry so much about how to share it.
 
-Let's create a post dand answer a quick response to the user and do all processing in background.
-For it we are going to use the wiretap component to make a copy of the message on the Camel pipeline and 
+Let's create a post and answer a quick response to the user and do all processing in the background.
+For it, we are going to use the wiretap component to make a copy of the message on the Camel pipeline and 
 post it in a JMS queue.
 
 First set a simple text message to return in the body.
@@ -17,9 +17,10 @@ First set a simple text message to return in the body.
     .endRest();
 ----
 
-Run the route and do a POST request to http://localhost:8080/camel/orders/async, you should see the message in the response.
+Run the application and test, calling the POST async method accessing the http://localhost:8080/webjars/swagger-ui/index.html?url=/camel/api-doc[Swagger UI] page.
 
-image::../../images/lab03-post.png[]
+image::../../images/lab04-messaging-01.png[]
+image::../../images/lab04-messaging-02.png[]
 
 Now, let's tap the body to work with the body async in the background. 
 
@@ -40,7 +41,7 @@ Run again and check the log to see if the new message *" processing order async 
 
 image::../../images/lab03-post-async.png[]
 
-Now, instead of calling directly the SQL, let's send the order to a message broker. 
+Now, instead of calling the SQL directly, let's send the order to a message broker. 
 
 [source,java]
 ----
@@ -49,9 +50,8 @@ from("direct:create-order")
     .to("activemq:queue:orders");
 ----
 
-Everything should work fine, to simulate the entire flow, let's now do another route to consume and persist this information. This second 
-router could be another system consuming this message, remember that this kind of architecture aims decouple. It could do retries in case of 
-failures, scale independent of the consume/producer, etc.
+Everything should work fine, to simulate the entire flow, let's now do another route to consume and persist this information. This second router could be another system consuming this message, remember that this kind of architecture aims decouple. It could do retries in case of 
+failures, scale independent of the consumer/producer, etc.
 
 [source,java]
 ----
@@ -63,6 +63,7 @@ from("activemq:queue:orders")
 
 Run the application and test, calling the POST async method accessing the http://localhost:8080/webjars/swagger-ui/index.html?url=/camel/api-doc[Swagger UI] page.
 
-image::../../lab04-messaging-01.png[]
-image::../../lab04-messaging-02.png[]
-image::../../lab04-messaging-03.png[]
+Check the logs to see the message being exchanged in the queue. As we are using an embedded broker to test our application without the need to deploy in any place, there isn't a web console, so don't worry with it for now. When we deploy it on Openshift, we take a look in the AMQ console.
+
+image::../../images/lab04-messaging-03.png[]
+
