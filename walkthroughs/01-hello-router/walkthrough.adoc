@@ -1,4 +1,4 @@
-= 01 - Hello Router
+= 01 - Hello World
 
 Creating your first Camel router.
 

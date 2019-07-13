@@ -1,0 +1,68 @@
+= Messaging 
+
+Messaging makes applications loosely coupled by communicating asynchronously, which also makes the communication more reliable because the two applications do not have to be running at the same time. Messaging makes the messaging system responsible for transferring data from one application to another, so the applications can focus on what data they need to share but not worry so much about how to share it.
+
+Let's create a post dand answer a quick response to the user and do all processing in background.
+For it we are going to use the wiretap component to make a copy of the message on the Camel pipeline and 
+post it in a JMS queue.
+
+First set a simple text message to return in the body.
+
+[source,java]
+----
+.post("/async").type(Order.class).description("Create a new order")
+    .route().routeId("create order")
+    .log("Order received")
+    .setBody().simple("We received your request, as soon we process your request we will notify you by email.")
+    .endRest();
+----
+
+Run the route and do a POST request to http://localhost:8080/camel/orders/async, you should see the message in the response.
+
+image::../../images/lab03-post.png[]
+
+Now, let's tap the body to work with the body async in the background. 
+
+[source,java]
+----
+    .post("/").type(Order.class).description("Create a new order")
+        .route().routeId("create order")
+        .log("Order received")
+        .wireTap("direct:create-order")
+        .setBody().simple("We received your request, as soon we process your request we will notify you by email.")
+        .endRest();
+
+    from("direct:create-order")
+        .log("processing order async");
+----
+
+Run again and check the log to see if the new message *" processing order async "* appeared. 
+
+image::../../images/lab03-post-async.png[]
+
+Now, instead of calling directly the SQL, let's send the order to a message broker. 
+
+[source,java]
+----
+from("direct:create-order")
+    .log("sending ${body.item} to JMS queue")
+    .to("activemq:queue:orders");
+----
+
+Everything should work fine, to simulate the entire flow, let's now do another route to consume and persist this information. This second 
+router could be another system consuming this message, remember that this kind of architecture aims decouple. It could do retries in case of 
+failures, scale independent of the consume/producer, etc.
+
+[source,java]
+----
+from("activemq:queue:orders")
+    .log("received ${body.item} from JMS queue")
+    .to(this.insertOrder)
+    .to("mock:notify-by-email");
+----
+
+Run the application and test, calling the POST async method accessing the http://localhost:8080/webjars/swagger-ui/index.html?url=/camel/api-doc[Swagger UI] page.
+
+image::../../lab04-messaging-01.png[]
+image::../../lab04-messaging-02.png[]
+image::../../lab04-messaging-03.png[]

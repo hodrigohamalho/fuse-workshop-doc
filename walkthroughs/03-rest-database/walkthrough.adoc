@@ -1,4 +1,4 @@
-= REST
+= REST and Database 
 
 == Introduction 
 
@@ -288,4 +288,4 @@ The file *schema.sql* was created to populate the database during the startup. O
 [time=5]
 
 [type=verification]
-Did you see a list with many orders?
+Do you see a list with many orders?
