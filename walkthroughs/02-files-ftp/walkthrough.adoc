@@ -62,10 +62,10 @@ We compare the *item* attribute of the object Order and print a message.
 
 Run the integration. 
 
+image::./images/02-camel-cbr-01.png[]
+
 [type=verification]
 Do you see both messages *Processing Camel book* and *Processing ActiveMQ book* in the log?
-
-image::./images/02-camel-cbr-01.png[]
 
 == Interacting with Files
 
@@ -100,7 +100,7 @@ Run the integration
 image::./images/02-camel-cbr-02.png[]
 
 [type=verification]
-Do you see the files inside the directory ?
+Do you see the files inside the directory camel under your project?
 
 But wait, look at file names is auto-generated and weird. Let's fix these exploring some parameters of the file component. 
 
