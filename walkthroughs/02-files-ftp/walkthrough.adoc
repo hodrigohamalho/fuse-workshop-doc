@@ -1,13 +1,11 @@
 = 02 - Integration with Files and FTP
 
-== Introduction 
-
-On this lab, we will explore some basic concepts of Camel, and explore the *file* component and also work with 
-basic transformations, transform a Java Object (POJO) in a file with JSON and XML format.
+Let's understand the basic concepts of Camel, exploring a use case with *FILE* and *FTP* component doing some 
+basic transformations with POJO, XML and JSON.
 
 image::./images/lab02-process-diagram.png[]
 
-=== Content covered during this lab
+Contents covered during this lab
 
 * Content base router pattern 
 * XML and JSON transformation 
@@ -36,7 +34,7 @@ from("direct:in")
 
 You will use similar code in this lab. 
 
-== Separating different types of Order
+=== Separating different types of Order
 
 We are continuing to evolve the previous lab. We have five orders being generated automatically by the last lab. 
 In each order generated the item description is different, alternating between *ActiveMQ Book* and *Camel Book*.
@@ -62,7 +60,10 @@ from("direct:book-to-file")
 
 We compare the *item* attribute of the object Order and print a message.
 
-Run and check if both messages *Processing Camel book* and *Processing ActiveMQ book* appear in the log.
+Run the integration. 
+
+[type=verification]
+Do you see both messages *Processing Camel book* and *Processing ActiveMQ book* in the log?
 
 image::./images/02-camel-cbr-01.png[]
 
@@ -94,9 +95,12 @@ from("direct:book-to-file")
 
 The line .convertBodyTo(String.class) is just invoking the Order.class to String method. and after we are saving all files in the filesystem.
 
-Run and check if the directories have files inside and the content of the files.
+Run the integration
 
 image::./images/02-camel-cbr-02.png[]
+
+[type=verification]
+Do you see the files inside the directory ?
 
 But wait, look at file names is auto-generated and weird. Let's fix these exploring some parameters of the file component. 
 
@@ -110,9 +114,13 @@ ActiveMQ
 
     .to("file:/tmp/fuse-workshop/activemq?fileName=activemq-${date:now:yyyy-MM-dd-HHmmssSSS}.txt");
 
-Run and check if the files have the names in the structured defined. 
+Run the integration
+
 
 image::./images/02-camel-cbr-03.png[]
+
+[type=verification]
+Do you see the files with the new pattern that was defined?
 
 == Data Transform
 
@@ -147,9 +155,13 @@ from("direct:book-to-file")
             .to("file:/tmp/fuse-workshop/activemq?fileName=activemq-${date:now:yyyy-MM-dd-HHmmssSSS}.xml");
 ----
 
-Run and check if the files have the correct extensions and if the content is in in the format described.
+Run the integration
 
 image::./images/02-camel-cbr-04.png[]
+
+[type=verification]
+Do you see the files with the correct extensions and the content of the files is on the correct format?
+
 
 == FTP Server 
 
@@ -177,11 +189,12 @@ from("file:/tmp/fuse-workshop/activemq?delete=true")
 
 Do the same with the files on the camel directory.
 
-Rerun the integration and check if the files were uploaded from FTP server and removed from the filesystem. 
+Run the integration.
 
 image::./images/lab02-filezilla-files.png[]
 
-Is it all? Yes, it is :-)
+[type=verification]
+Do you see the files uploaded to FTP server and also it removed from the filesystem?
 
 === Processor and Transformation 
 
@@ -222,7 +235,10 @@ from("direct:book-to-file")
             .to("file:/tmp/fuse-workshop/activemq?fileName=activemq-${date:now:yyyy-MM-dd-HHmmssSSS}.xml");
 ----
 
-Run again and check if everything runs without any error. After,  check if the last XML files uploaded have the process attribute is true.
+Run the integration.
+
+[type=verification]
+Do you see the last XML files uploaded with the process attribute as true?
 
 Just as an additional note, if you would like to consume files from FTP and work as a Java Object, instead to use marshal, you 
 must use unmarshal(), example:
