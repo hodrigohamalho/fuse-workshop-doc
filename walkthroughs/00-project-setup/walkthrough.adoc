@@ -1,24 +1,19 @@
-= 00 - Project Setup
+= 00 - Workshop Introduction
 
-Setup of the project using Eclipse Che for developing the other tasks. 
-
-These tasks use Eclipse Che. It's not mandatory  you can use your preferred IDE, like Visual Studio Code, JBoss Developer Studio or IntelliJ.
-
-To build the project in your own environment, you will need:
-
-* JDK 7+
-* Maven 3+
-* Git 
-
-If you already have all installed, just clone the git repository and run mvn install
-
-    git clone https://github.com/hodrigohamalho/fuse-workshop.git
-    cd fuse-workshop
-    mvn spring-boot:run
-
-The *fuse-workshop* project is a Camel Spring Boot project, 
-with some code already did for you, it will provide help to make you 
-focused in the what really matters instead of boilerplate code.
+Workshop structure and environment set up.
++
+Welcome to the Fuse workshop! It's a pleasure to guide you on this hands-on experience. 
++
+This workshop has as target to offer you a pratical experience with Red Hat Fuse, it's not a complete training 
+of Red Hat Fuse, for this purpose we have an amazing https://www.redhat.com/pt-br/services/training/jb421-red-hat-jboss-fuse-camel-development[official training] 
+covery many aspects of Red Hat Fuse in deep.
++
+As the objective is not cover all details and cover many Fuse aspects during this workshop, 
+we will be using a https://github.com/hodrigohamalho/fuse-workshop.git[project skeleton] during this lab.
++
+This project called *fuse-workshop* project is a Red Hat Fuse (aka Camel) Spring Boot project, 
+with some code already did for you, it will provide help to make you focused in the what really matters 
+instead of boilerplate code.
 
 [type=walkthroughResource]
 .Fuse
@@ -32,8 +27,31 @@ focused in the what really matters instead of boilerplate code.
 * link:https://developers.redhat.com/products/codeready-workspaces/overview/[Want to know more about Openshift CodeReady Workspace ?, window="_blank"]
 ****
 
+== Setup Code Ready Workspace
 
-== Setup Eclipse Che
+These walkthrough use Code Ready Workspace (Eclipse Che). 
+It's an IDE on the cloud, but I recommend you to set up a local environment because it's usually what the most developers use on a daily routine. 
+
+. It's not mandatory  you can use your preferred IDE, like Visual Studio Code, JBoss Developer Studio or IntelliJ.
+
+To build the project in your own environment, you will need:
+
+* JDK 7+
+* Maven 3+
+* Git 
+
+If you already have all installed, just clone the git repository and run mvn install
+
+[source,bash]
+----
+git clone https://github.com/hodrigohamalho/fuse-workshop.git
+cd fuse-workshop
+mvn spring-boot:run
+----
+
+The *fuse-workshop* project is a Camel Spring Boot project, 
+with some code already did for you, it will provide help to make you 
+focused in the what really matters instead of boilerplate code.
 
 {empty} +
 
