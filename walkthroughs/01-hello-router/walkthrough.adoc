@@ -2,28 +2,7 @@
 
 Write your first Red Hat Fuse integration route.
 
-Using the project *fuse-workshop*, open the class *OrderGenerator.java*. 
-If you are having trouble to find it, look in *src/main/java/com/redhat/fuse/booster/rest/routers/lab01* folder.
-
-As you can see, this class is a very simple Camel Router already defined to you. A Camel Router is basically a class that extends RouteBuilder and implements the configure method.  
-Let's focus on the code that really matters at the moment
-
-[source,java]
-----
-from("timer:generateOrder")
-    .log("Hello router!");
-----    
-
-This code is using the timer component, with all default configurations, it will be executed in a period of time 
-forever the message *Hello router!"* in the console.
-
-
-Components are the key of Camel, it's reusable components that abstract complex operations making it trivial, so 
-it boosts your productivity!
-
-https://github.com/apache/camel/blob/master/components/readme.adoc[Take a look in camel components]
-
-Let's explore a simple scenario where we are going to use a timer component to generate Orders automatic for us.
+Let's explore a simple scenario where we are going to use a timer component to generate Orders automatically.
 
 [type=walkthroughResource]
 .Camel Components
@@ -34,7 +13,27 @@ Let's explore a simple scenario where we are going to use a timer component to g
 [time=2]
 == Timer component  
 
-Let's use some parameters with timer component to repeat *only 5 times* within the *interval of 1 sec*. 
+Using the project *fuse-workshop*, open the class *OrderGenerator.java*. 
+If you are having trouble to find it, look in *src/main/java/com/redhat/fuse/booster/rest/routers/lab01* folder.
+
+As you can see, this class is a very simple Camel Router already defined to you. A Camel Router is basically a class that extends RouteBuilder and implements the configure method.  
+Let's focus on the code that really matters at the moment.
+
+[source,java]
+----
+from("timer:generateOrder")
+    .log("Hello router!");
+----    
+
+This code is using the timer component, with all default configurations, it will be executed in a forever the message *Hello router!"* in the console in a specific frequency.
+
+
+Components are the key of Camel. They are flexible and reusable "libraries" that abstract complex operations making it trivial, boosting the developer productivity!
+
+https://github.com/apache/camel/blob/master/components/readme.adoc[Take a look in camel components]
+
+
+Now, let's use some parameters with timer component to repeat *only 5 times* within the *interval of 1 sec*. 
 
 [source,java]
 ----
@@ -44,10 +43,10 @@ from("timer:generateOrder?repeatCount=5&period=1000")
 
 image::./images/camel-structure.png[]
 
-This is the basic of a component usage. The component name (some examples: *file, ftp, http*), after we have the component 
-name and for last the parameters supported by the documentation. 
+This is the basis of component usage. The component (some examples: *file, ftp, http*), after we have the component 
+name (chosen by you) and for last the parameters supported by the documentation. 
 
-If you configured your IDE correctly you should have auto complete working for it. 
+If you configured your IDE correctly, you should have autocomplete working for it. 
 
 Now, let's run the project clicking on the RUN action that we previously set up and see if it works.
 
@@ -56,14 +55,14 @@ If you are doing it locally, you can run as a standard spring-boot application.
     mvn spring-boot:run
 
 [type=verification]
-Are you seeing 5 *Hello router!* messages on the console?
+Do you see 5 *Hello router!* messages on the console?
 
 [time=5]
 == Generating Orders Automatically 
 
 Now, take a look in the class *OrderService.java*, it generates an *Order.java* object, alternating some values between *Camel* and *ActiveMQ*.
 
-Let's call this method to get a new Order using a the *bean* method. 
+Let's call this method to get a new Order using the *bean* method. 
 
 [source,java]
 ----
@@ -80,12 +79,12 @@ And... Where is the Order object?
 If your answer was in the body, you are right! 
 
 [type=verification]
-Are you seeing different Orders by the messages on the console?
+Do you see different Orders by the messages on the console?
 
 Think in camel as a pipeline, that transport things *from* someplace to *another one*, and this message is in the body. 
 Take a look in the log that accesses the item attribute inside the Order object, and the Order is the body itself. 
 
 image::./images/camel-pipeline.png[]
 
-Take some time and take a look on https://access.redhat.com/documentation/en-us/red_hat_jboss_fuse/6.3/html/apache_camel_development_guide/basicprinciples[this documentation] to understand better how the camel pipeline works. 
+Take some time and take a look at https://access.redhat.com/documentation/en-us/red_hat_jboss_fuse/6.3/html/apache_camel_development_guide/basicprinciples[this documentation] to understand better how the camel pipeline works. 
 
