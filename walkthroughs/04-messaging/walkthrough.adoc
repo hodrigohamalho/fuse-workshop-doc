@@ -19,8 +19,8 @@ First set a simple text message to return in the body.
 
 Run the application and test, calling the POST async method accessing the http://localhost:8080/webjars/swagger-ui/index.html?url=/camel/api-doc[Swagger UI] page.
 
-image::../../images/lab04-messaging-01.png[]
-image::../../images/lab04-messaging-02.png[]
+image::./images/lab04-messaging-01.png[]
+image::./images/lab04-messaging-02.png[]
 
 Now, let's tap the body to work with the body async in the background. 
 
@@ -39,7 +39,7 @@ Now, let's tap the body to work with the body async in the background.
 
 Run again and check the log to see if the new message *" processing order async "* appeared. 
 
-image::../../images/lab03-post-async.png[]
+image::./images/lab03-post-async.png[]
 
 Now, instead of calling the SQL directly, let's send the order to a message broker. 
 
@@ -65,5 +65,5 @@ Run the application and test, calling the POST async method accessing the http:/
 
 Check the logs to see the message being exchanged in the queue. As we are using an embedded broker to test our application without the need to deploy in any place, there isn't a web console, so don't worry with it for now. When we deploy it on Openshift, we take a look in the AMQ console.
 
-image::../../images/lab04-messaging-03.png[]
+image::./images/lab04-messaging-03.png[]
 

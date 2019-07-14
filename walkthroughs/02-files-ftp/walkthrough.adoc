@@ -5,7 +5,7 @@
 On this lab, we will explore some basic concepts of Camel, and explore the *file* component and also work with 
 basic transformations, transform a Java Object (POJO) in a file with JSON and XML format.
 
-image::../../images/lab02-process-diagram.png[]
+image::./images/lab02-process-diagram.png[]
 
 === Content covered during this lab
 

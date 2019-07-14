@@ -36,7 +36,7 @@ Let's use some parameters with timer component to repeat *only 5 times* within t
     from("timer:generateOrder?repeatCount=5&period=1000")
         .log("Hello router!"); 
 
-image::../../images/camel-structure.png[]
+image::./images/camel-structure.png[]
 
 This is the basic of a component usage. The component name (some examples: *file, ftp, http*), after we have the component 
 name and for last the parameters supported by the documentation. 
@@ -70,7 +70,7 @@ If your answer was in the body, you are right!
 
 Think in camel as a pipeline, that transport things *from* someplace to *another one*, and this message is in the body. Take a look in the log that accesses the item attribute inside the Order object, and the Order is the body itself. 
 
-image::../../images/camel-pipeline.png[]
+image::./images/camel-pipeline.png[]
 
 Take some time and take a look on https://access.redhat.com/documentation/en-us/red_hat_jboss_fuse/6.3/html/apache_camel_development_guide/basicprinciples[this documentation] to understand better how the camel pipeline works. 
 

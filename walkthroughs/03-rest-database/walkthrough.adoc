@@ -4,7 +4,7 @@
 
 REST is key when we talk about integration. On this lab, we are going to explore some basic REST constructions with Red Hat Fuse (Camel). 
 
-image::../../images/lab03-rest-diagram.png[]
+image::./images/lab03-rest-diagram.png[]
 
 We are going to work on 3 REST JSON endpoints: 
 
@@ -41,7 +41,7 @@ After that, run the project and access http://localhost:8080/camel/orders.
 
 Every time you hit the HTTP endpoint the message *" getting all orders entries from database"* should appear in the log. It doesn't return anything because nothing was implemented to return. But for now, doesn't worry about it.
 
-image::../../images/lab03-log01.png[]
+image::./images/lab03-log01.png[]
 
 === Get order by ID (GET)
 
@@ -83,11 +83,11 @@ To test, Rerun your application and make a POST request to http://localhost:8080
 
 The Open API Specification (aka Swagger) is being auto-generated. Take a look in http://localhost:8080/camel/api-doc. 
 
-image::../../images/lab03-api-doc.png[]
+image::./images/lab03-api-doc.png[]
 
 If you prefer to see it in a human-readable way, check through the swagger-UI interface http://localhost:8080/webjars/swagger-ui/index.html?url=/camel/api-doc 
 
-image::../../images/lab03-swagger.png[]
+image::./images/lab03-swagger.png[]
 
 You could enrich the documentation adding some descriptions in your code, let's do it:
 
@@ -108,7 +108,7 @@ rest("/orders").description("Orders CRUD REST endpoint")
         .endRest();
 ----
 
-image::../../images/lab03-swagger-documented.png[]
+image::./images/lab03-swagger-documented.png[]
 
 == Boilerplate code
 
@@ -201,7 +201,7 @@ Run the project and access the endpoints:
 
 The response should be like this:
 
-image::../../images/lab03-orders-from-database01.png[]
+image::./images/lab03-orders-from-database01.png[]
 
 The file *schema.sql* was created to populate the database during the startup. Open it and take a look. 
 
@@ -224,7 +224,7 @@ First set a simple text message to return in the body.
 
 Run the route and do a POST request to http://localhost:8080/camel/orders, you should see the message in the response.
 
-image::../../images/lab03-post.png[]
+image::./images/lab03-post.png[]
 
 Now, let's tap the body to work with the body async in the background. 
 
@@ -243,7 +243,7 @@ Now, let's tap the body to work with the body async in the background.
 
 Run again and check the log to see if the new message *" processing order async "* appeared. 
 
-image::../../images/lab03-post-async.png[]
+image::./images/lab03-post-async.png[]
 
 Now, just to finish the creation of the user async. let's call the SQL to insert.
 
@@ -254,9 +254,9 @@ from("direct:create-order")
     .to(this.insertOrder);
 ----
 
-image::../../images/lab03-post02.png[]
-image::../../images/lab03-post03.png[]
-image::../../images/lab03-post04.png[]
+image::./images/lab03-post02.png[]
+image::./images/lab03-post03.png[]
+image::./images/lab03-post04.png[]
 
 [time=10]
 
