@@ -1,4 +1,4 @@
-= 06 - Publishing to Openshift 
+= 05 - Publishing to Openshift 
 
 There are several ways to deploy an application into openshift. Directly from the git repository using S2I, 
 directly from the machine using binary deployment or directly from a Docker image.

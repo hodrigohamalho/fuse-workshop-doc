@@ -64,7 +64,7 @@ We compare the *item* attribute of the object Order and print a message.
 
 Run and check if both messages *Processing Camel book* and *Processing ActiveMQ book* appear in the log.
 
-image::../../images/02-camel-cbr-01.png[]
+image::./images/02-camel-cbr-01.png[]
 
 == Interacting with Files
 
@@ -74,7 +74,7 @@ Let's use a new *File* component to persist this order on the filesystem. *File*
 
 Adjust the router to persist the camel book in the directory */tmp/fuse-workshop/camel* and the activemq book in  */tmp/fuse-workshop/activemq*
 
-image::../../images/lab02-filesystem.png[]
+image::./images/lab02-filesystem.png[]
 
 See the code below:
 
@@ -96,7 +96,7 @@ The line .convertBodyTo(String.class) is just invoking the Order.class to String
 
 Run and check if the directories have files inside and the content of the files.
 
-image::../../images/02-camel-cbr-02.png[]
+image::./images/02-camel-cbr-02.png[]
 
 But wait, look at file names is auto-generated and weird. Let's fix these exploring some parameters of the file component. 
 
@@ -112,7 +112,7 @@ ActiveMQ
 
 Run and check if the files have the names in the structured defined. 
 
-image::../../images/02-camel-cbr-03.png[]
+image::./images/02-camel-cbr-03.png[]
 
 == Data Transform
 
@@ -122,7 +122,7 @@ Now, let's take the example before and instead of store everything in *.txt* for
 
 Let's transform the Camel type to JSON and the ActiveMQ to XML.
 
-image::../../images/lab02-content-base-router.png[]
+image::./images/lab02-content-base-router.png[]
 
 To work with Data Format, we have two methods: *marshall()* and *unmarshal()*. 
 
@@ -149,7 +149,7 @@ from("direct:book-to-file")
 
 Run and check if the files have the correct extensions and if the content is in in the format described.
 
-image::../../images/02-camel-cbr-04.png[]
+image::./images/02-camel-cbr-04.png[]
 
 == FTP Server 
 
@@ -159,7 +159,7 @@ The FTP server credentials will be provided by the instructor during the class.
 
 Implement a route that takes all files on camel directory and publishes it in the FTP server. 
 
-image::../../images/lab02-ftp-server-diagram.png[]
+image::./images/lab02-ftp-server-diagram.png[]
 
 The FTP directory must be the */var/fuse-workshop/<your-user>*.  
 For evals01, that path will be */var/fuse-workshop/evals01*.
@@ -179,7 +179,7 @@ Do the same with the files on the camel directory.
 
 Rerun the integration and check if the files were uploaded from FTP server and removed from the filesystem. 
 
-image::../../images/lab02-filezilla-files.png[]
+image::./images/lab02-filezilla-files.png[]
 
 Is it all? Yes, it is :-)
 
@@ -188,7 +188,7 @@ Is it all? Yes, it is :-)
 But to add some adrenaline to it. Let's change the Order attribute "processed" to true, 
 in the case of ActiveMQ books before uploading to the FTP. 
 
-image::../../images/lab02-process-diagram.png[]
+image::./images/lab02-process-diagram.png[]
 
 One way to do it is by using a Processor. On the Processor, you can have total access to the message and headers being transported on the camel pipeline. 
 
