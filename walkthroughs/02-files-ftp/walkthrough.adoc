@@ -1,6 +1,6 @@
-= 02 - Integration with Files and FTP
+= Lab 2 - Integration with Files and FTP
 
-Let's understand the basic concepts of Camel, exploring a use case with *FILE* and *FTP* component doing some 
+Explore the basic concepts of Camel, with a use case with *FILE* and *FTP* components doing some 
 basic transformations with POJO, XML and JSON.
 
 image::./images/lab02-process-diagram.png[]
@@ -157,7 +157,7 @@ from("direct:book-to-file")
 
 Run the integration
 
-image::./images/02-camel-cbr-04.png[]
+aimage::./images/02-camel-cbr-04.png[]
 
 [type=verification]
 Do you see the files with the correct extensions and the content of the files is on the correct format?
@@ -238,7 +238,7 @@ from("direct:book-to-file")
 Run the integration.
 
 [type=verification]
-Do you see the last XML files uploaded with the process attribute as true?
+Do you see the last XML files uploaded with the process attribute is true?
 
 Just as an additional note, if you would like to consume files from FTP and work as a Java Object, instead to use marshal, you 
 must use unmarshal(), example:
@@ -251,7 +251,7 @@ must use unmarshal(), example:
 
 === Boilerplate code
 
-To make this lab works, the following dependencies was added to the project:
+To make this lab works, the following dependencies were added to the project:
 
     <!-- PARSER -->
     <dependency>

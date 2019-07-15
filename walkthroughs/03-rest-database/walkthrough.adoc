@@ -1,8 +1,7 @@
-= 03 - REST and Database
+= Lab 3 - REST and Database
 
-== Introduction 
-
-REST is key when we talk about integration. On this lab, we are going to explore some basic REST constructions with Red Hat Fuse (Camel). 
+REST is key when we talk about integration. On this lab, we are going to explore some basic REST constructions with Red Hat Fuse (Camel).
+Interacting with a SQL database. 
 
 image::./images/lab03-rest-diagram.png[]
 
@@ -12,7 +11,7 @@ We are going to work on 3 REST JSON endpoints:
 * GET -/orders/{id} - Retrieve a specific order by id 
 * POST - /orders - CREATE a order in an async way. 
 
-=== Content covered during this lab
+Contents covered during this lab
 
 * REST 
 * Swagger Generation
@@ -37,13 +36,18 @@ rest("/orders")
         .endRest()
 ----
 
-After that, run the project and access http://localhost:8080/camel/orders. 
+Run the integration and access the endpoint http://localhost:8080/camel/orders. 
 
 Every time you hit the HTTP endpoint the message *" getting all orders entries from database"* should appear in the log. It doesn't return anything because nothing was implemented to return. But for now, doesn't worry about it.
 
 image::./images/lab03-log01.png[]
 
+[type=verification]
+Do you see the message *"getting all orders entries from database"* in the logs everytime you hit the /came/oders HTTP endpoint?
+
 === Get order by ID (GET)
+
+Observe how whe declare the path parameter ID on the URL on this new route.
 
 [source,java]
 ----
@@ -53,31 +57,39 @@ image::./images/lab03-log01.png[]
     .endRest()
 ----
 
-Rerun the application and access the http://localhost:8080/camel/orders/1 endpoint. 
+Run the integration and access the http://localhost:8080/camel/orders/1 endpoint. 
 
-Once again, every time you hit the endpoint, a new message must appear in the logs. 
+[type=verification]
+Do you see the message *"geting order with id ${header.id} entry from database"* in the logs everytime you hit the /came/oders/1 HTTP endpoint?
 
 === Create a new order (POST)
+
+Now we will implement the same path as before "/" bot using the HTTP verb POST. 
 
 [source,java]
 ----
 .post("/")
     .route()
-    .log("Order received")
+    .log("Order ${body.item} received")
     .endRest()
 ----
 
-To test, Rerun your application and make a POST request to http://localhost:8080/camel/orders with the body:
+Run the integration and make a POST request to http://localhost:8080/camel/orders with the body:
 
 [source,javascript]
 ----
 {
-    "item": "Inserting a order",
+    "item": "Red Hat Fuse Workshop",
     "amount": 2,
-    "description": "Testing order insert",
+    "description": "Workshop to explore Fuse on springboot",
     "processed": true
 }
 ----
+
+To do this request, use the http://localhost:8080/webjars/swagger-ui/index.html?url=/camel/api-doc[swagger-ui interface]. Details about the API documentation will be covered on the next session.
+
+[type=verification]
+Do you see the message *"Workshop to explore Fuse on springboot"* in the logs everytime you hit the /came/oders HTTP (POST) endpoint?
 
 == Rest Documentation
 
@@ -110,9 +122,12 @@ rest("/orders").description("Orders CRUD REST endpoint")
 
 image::./images/lab03-swagger-documented.png[]
 
+[type=verification]
+Have you been able to access an interface from swagger ui?
+
 == Boilerplate code
 
-RestSetup.java 
+RestSetup.java. Using the restConfiguration() method you specify everything about your REST server and swagger doc, take a look:
 
 [source,java]
 ----
@@ -129,15 +144,17 @@ restConfiguration()
 .bindingMode(RestBindingMode.json);
 ----
 
-Dependencies:
+Also, some dependencies are needed:
 
 [source,xml]
 ----
+<!-- Swagger UI -->
 <dependency>
     <groupId>org.webjars</groupId>
     <artifactId>swagger-ui</artifactId>
     <version>3.13.0</version>
 </dependency>
+<!-- REST --> 
 <dependency>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-web</artifactId>
@@ -148,6 +165,7 @@ Dependencies:
         </exclusion>
     </exclusions>
 </dependency>
+<!-- WEB SERVER -->
 <dependency>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-undertow</artifactId>
@@ -161,21 +179,18 @@ to retrieve relevant order information.
 
 On this case we will use the camel-SQL component to do it. 
 
-=== Introduction
-
 Interacting with a database is a common need, so it's important to see how simple camel handle it.
 
-To achieve it, we will keep working on the fuse-workshop project. Let's implement a method to retrieve 
-all orders from a database.
+To achieve it, we will keep working with REST resources but interacting with database to get the orders available
+and create new ones.
 
 === Interacting with database
 
-There are two strings *selectAll* and *selectById* already made for retrieve the properly information from database 
+There are three strings *selectAll*, *selectById*, *insertOrder* already made for retrieve/register  properly information from database 
 use it on the REST DSL to interact with database. 
 
 All the maven dependencies are already included by you and on the develop environment you will be using a embedded database, 
 so don't worry with any installation process.
-
 
 === GET all and by ID
 
@@ -194,7 +209,8 @@ so don't worry with any installation process.
     .endRest()
 ----
 
-Run the project and access the endpoints:
+
+Run the integration and invoke the REST endpoints using the swagger-ui interface:
 
 . http://localhost:8080/camel/orders
 . http://localhost:8080/camel/orders/1
@@ -203,60 +219,36 @@ The response should be like this:
 
 image::./images/lab03-orders-from-database01.png[]
 
+[type=verification]
+Are you seeing the Orders from the database now?
+
 The file *schema.sql* was created to populate the database during the startup. Open it and take a look. 
 
 === Create a new Order (POST)
 
-To the method post let's do a quick response to the user and do all processing in background.
-For it we are going to use the wiretap component to make a copy of the message on the Camel pipeline and 
-post it in a JMS queue.
-
-First set a simple text message to return in the body.
-
 [source,java]
 ----
     .post("/").type(Order.class).description("Create a new order")
         .route().routeId("create order")
         .log("Order received")
-        .setBody().simple("We received your request, as soon we process your request we will notify you by email.")
+        .to(this.insertOrder);
         .endRest();
 ----
 
-Run the route and do a POST request to http://localhost:8080/camel/orders, you should see the message in the response.
+Run the integration and make a POST request to http://localhost:8080/camel/orders with the body:
 
-image::./images/lab03-post.png[]
-
-Now, let's tap the body to work with the body async in the background. 
-
-[source,java]
+[source,javascript]
 ----
-    .post("/").type(Order.class).description("Create a new order")
-        .route().routeId("create order")
-        .log("Order received")
-        .wireTap("direct:create-order")
-        .setBody().simple("We received your request, as soon we process your request we will notify you by email.")
-        .endRest();
-
-    from("direct:create-order")
-        .log("processing order async");
+{
+    "item": "Red Hat Fuse Workshop",
+    "amount": 2,
+    "description": "Workshop to explore Fuse on springboot",
+    "processed": true
+}
 ----
 
-Run again and check the log to see if the new message *" processing order async "* appeared. 
-
-image::./images/lab03-post-async.png[]
-
-Now, just to finish the creation of the user async. let's call the SQL to insert.
-
-[source,java]
-----
-from("direct:create-order")
-    .log("processing order async")
-    .to(this.insertOrder);
-----
-
-image::./images/lab03-post02.png[]
-image::./images/lab03-post03.png[]
-image::./images/lab03-post04.png[]
+[type=verification]
+Execute the get all Orders, could you see the new order that you just created?
 
 [time=10]
 

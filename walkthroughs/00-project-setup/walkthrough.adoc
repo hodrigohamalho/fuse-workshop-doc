@@ -1,4 +1,4 @@
-= 00 - Workshop Introduction
+= Lab 0 - Workshop Introduction
 
 Workshop structure and environment set up.
 +
