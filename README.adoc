@@ -15,7 +15,7 @@ Those walkthroughs follow the structure to be deployed in the *Red Hat Integreat
 .. https://access.redhat.com/downloads/content/290[Download from Red Hat]
 .. https://www.okd.io/download.html[Download from Community]
 . https://visualstudio.microsoft.com/downloads/[Visual Studio IDE]
-. Filezila
+. https://filezilla-project.org/download.php?type=client[Filezila]
 
 == Agenda
 
