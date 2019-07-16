@@ -27,7 +27,7 @@ instead of boilerplate code.
 * link:https://developers.redhat.com/products/codeready-workspaces/overview/[Want to know more about Openshift CodeReady Workspace ?, window="_blank"]
 ****
 
-== Requirements
+Lab Requirements
 
 . Notebook (At least 4 GB RAM)
 . JDK 1.8+
@@ -37,6 +37,11 @@ instead of boilerplate code.
 .. https://www.okd.io/download.html[Download from Community]
 . https://visualstudio.microsoft.com/downloads/[Visual Studio IDE]
 . https://filezilla-project.org/download.php?type=client[Filezila]
+
+Knowledge Requirements 
+
+. Java
+. Maven 
 
 == Setup Code Ready Workspace
 
