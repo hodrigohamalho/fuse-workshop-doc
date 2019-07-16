@@ -19,6 +19,7 @@ Contents covered during this lab
 * Wiretap (Async process)
 * Messaging
 
+[time=10]
 == Creating REST endpoints
 
 Let's create the endpoints needed for this lab. 
@@ -91,6 +92,7 @@ To do this request, use the http://localhost:8080/webjars/swagger-ui/index.html?
 [type=verification]
 Do you see the message *"Workshop to explore Fuse on springboot"* in the logs everytime you hit the /came/oders HTTP (POST) endpoint?
 
+[time=5]
 == Rest Documentation
 
 The Open API Specification (aka Swagger) is being auto-generated. Take a look in http://localhost:8080/camel/api-doc. 
@@ -125,6 +127,7 @@ image::./images/lab03-swagger-documented.png[]
 [type=verification]
 Have you been able to access an interface from swagger ui?
 
+[time=5]
 == Boilerplate code
 
 RestSetup.java. Using the restConfiguration() method you specify everything about your REST server and swagger doc, take a look:
@@ -172,6 +175,7 @@ Also, some dependencies are needed:
 </dependency>
 ----
 
+[time=15]
 == Database
 
 Ok, we have the REST endpoints but it doesn't nothing until now. Let's work on interact with Orders database 
@@ -250,8 +254,7 @@ Run the integration and make a POST request to http://localhost:8080/camel/order
 [type=verification]
 Execute the get all Orders, could you see the new order that you just created?
 
-[time=10]
-
+[time=3]
 == Boilerplate code
 
 To make it works, the following dependencies were added to the project:
@@ -276,8 +279,6 @@ you must add:
     </dependency>
 
 The file *schema.sql* was created to populate the database during the startup. Open it and take a look. 
-
-[time=5]
 
 [type=verification]
 Do you see a list with many orders?
