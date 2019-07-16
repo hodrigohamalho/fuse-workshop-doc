@@ -34,7 +34,7 @@ rest("/orders")
     .get("/")
         .route()
         .log("geting all orders entries from database")
-        .endRest()
+        .endRest();
 ----
 
 Run the integration and access the endpoint http://localhost:8080/camel/orders. 
@@ -48,7 +48,8 @@ Do you see the message *"getting all orders entries from database"* in the logs 
 
 === Get order by ID (GET)
 
-Observe how whe declare the path parameter ID on the URL on this new route.
+Observe how whe declare the path parameter ID on the URL on this new route. 
+Remember to remove the *;* char and move to the final *endRest()*.
 
 [source,java]
 ----
