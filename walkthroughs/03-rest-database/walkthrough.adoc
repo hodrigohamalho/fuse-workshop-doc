@@ -56,7 +56,7 @@ Remember to remove the *;* char and move to the final *endRest()*.
 .get("/{id}")
     .route()
     .log("geting order with id ${header.id} entry from database")
-    .endRest()
+    .endRest();
 ----
 
 Run the integration and access the http://localhost:8080/camel/orders/1 endpoint. 
@@ -73,7 +73,7 @@ Now we will implement the same path as before "/" bot using the HTTP verb POST.
 .post("/").type(Order.class)
     .route()
     .log("Order ${body.item} received")
-    .endRest()
+    .endRest();
 ----
 
 Access the http://localhost:8080/webjars/swagger-ui/index.html?url=/camel/api-doc[Swagger UI] and 

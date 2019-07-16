@@ -38,6 +38,8 @@ Lab Requirements
 . https://visualstudio.microsoft.com/downloads/[Visual Studio IDE]
 . https://filezilla-project.org/download.php?type=client[Filezila]
 
++
+
 Knowledge Requirements 
 
 . Java
