@@ -10,6 +10,7 @@ post it in a JMS queue. After we recover from the queue and make the order inser
 
 image::./images/lab04-messaging-architecture.png[]
 
+[time=5]
 == Async router 
 
 First set a simple text message to return in the body.
@@ -74,8 +75,7 @@ When we deploy it on Openshift, we take a look in the AMQ console.
 
 image::./images/lab04-messaging-03.png[]
 
-[time=5]
-
+[time=15]
 == Using a AMQ BROKER on Openshift remotely
 
 Create the project fuse-<your-user>:
@@ -168,5 +168,3 @@ from("activemq:queue:orders")
 Run the integration again and look to the messages on the console after the startup
 
 image::./images/lab04-messaging-14.png[]
-
-[time=15]
