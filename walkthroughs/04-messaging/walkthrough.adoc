@@ -1,6 +1,8 @@
 = Lab 4 - Messaging
 
-Messaging makes applications loosely coupled by communicating asynchronously, which also makes the communication more reliable because the two applications do not have to be running at the same time. Messaging makes the messaging system responsible for transferring data from one application to another, so the apps can focus on what data they need to share but not worry so much about how to share it.
+Messaging makes applications loosely coupled by communicating asynchronously, which also makes the communication more reliable because the two applications do not have to be running at the same time. 
+
+Messaging makes the messaging system responsible for transferring data from one application to another, so the apps can focus on what data they need to share but not worry so much about how to share it.
 
 Let's create a post and answer a quick response to the user and do all processing in the background.
 For it, we are going to use the wiretap component to make a copy of the message on the Camel pipeline and 
