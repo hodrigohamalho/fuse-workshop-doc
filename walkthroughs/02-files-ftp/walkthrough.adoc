@@ -13,6 +13,7 @@ Contents covered during this lab
 * FTP component 
 * Processor 
 
+[time=2]
 == Content-base Router introduction
 
 Content-Base Router (CBR) is a pattern from the Enterprise Integration Pattern. You will use CBR when you need 
@@ -34,6 +35,7 @@ from("direct:in")
 
 You will use similar code in this lab. 
 
+[time=5]
 === Separating different types of Order
 
 We are continuing to evolve the previous lab. We have five orders being generated automatically by the last lab. 
@@ -67,6 +69,7 @@ image::./images/02-camel-cbr-01.png[]
 [type=verification]
 Do you see both messages *Processing Camel book* and *Processing ActiveMQ book* in the log?
 
+[time=5]
 == Interacting with Files
 
 https://camel.apache.org/file2.html
@@ -122,6 +125,7 @@ image::./images/02-camel-cbr-03.png[]
 [type=verification]
 Do you see the files with the new pattern that was defined?
 
+[time=10]
 == Data Transform
 
 https://camel.apache.org/data-format.html
@@ -162,7 +166,7 @@ aimage::./images/02-camel-cbr-04.png[]
 [type=verification]
 Do you see the files with the correct extensions and the content of the files is on the correct format?
 
-
+[time=10]
 == FTP Server 
 
 Now, let's do another route to upload those files to an FTP server. 
@@ -196,6 +200,7 @@ image::./images/lab02-filezilla-files.png[]
 [type=verification]
 Do you see the files uploaded to FTP server and also it removed from the filesystem?
 
+[time=10]
 === Processor and Transformation 
 
 But to add some adrenaline to it. Let's change the Order attribute "processed" to true, 
@@ -249,6 +254,7 @@ must use unmarshal(), example:
     .unmarshal().jacksonxml(Order.class) // Transform the file to Java Object
 ----
 
+[time=2]
 === Boilerplate code
 
 To make this lab works, the following dependencies were added to the project:
