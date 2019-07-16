@@ -37,10 +37,10 @@ Those walkthroughs follow the structure to be deployed in the *Red Hat Integreat
 | 11:15-13:00
 | **Labs**
 
-* Project-setup
-* Hello-router
-* Files-ftp
-* Rest-database
+    * Project-setup
+    * Hello-router
+    * Files-ftp
+    * Rest-database
 
 | 13:00-14:00
 | Lunch
@@ -48,9 +48,9 @@ Those walkthroughs follow the structure to be deployed in the *Red Hat Integreat
 | 14:00-16:30
 | **Lab:** 
 
-* Messaging
-* Openshift
-* Fuse AMQ Online
+    * Messaging
+    * Openshift
+    * Fuse AMQ Online
 
 | 16:30-17:00
 | Recap and summary
