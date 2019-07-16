@@ -10,6 +10,15 @@ post it in a JMS queue. After we recover from the queue and make the order inser
 
 image::./images/lab04-messaging-architecture.png[]
 
+Contents covered during this lab
+
+* activemq component
+* Producing and Consuming messages to a queue
+* Openshift port forward feature
+* Use a Local and Remote Broker
+* Deploy AMQ broker on Openshift
+* AMQ Console
+
 [time=5]
 == Async router 
 
@@ -57,23 +66,16 @@ from("direct:create-order")
     .to("activemq:queue:orders");
 ----
 
-Everything should work fine, to simulate the entire flow, let's now do another route to consume and persist this information. This second router could be another system consuming this message, remember that this kind of architecture aims decouple. It could do retries in case of 
-failures, scale independent of the consumer/producer, etc.
-
-[source,java]
-----
-from("activemq:queue:orders")
-    .log("received ${body.item} from JMS queue")
-    .to(this.insertOrder)
-    .to("mock:notify-by-email");
-----
-
 Run the application and test, calling the POST async method accessing the http://localhost:8080/webjars/swagger-ui/index.html?url=/camel/api-doc[Swagger UI] page.
 
-Check the logs to see the message being exchanged in the queue. As we are using an embedded broker to test our application without the need to deploy in any place, there isn't a web console, so don't worry with it for now. 
-When we deploy it on Openshift, we take a look in the AMQ console.
+Check the logs to see the message being exchanged in the queue. As we are using an embedded broker to test our application without the need to deploy in any place, 
+there isn't a web console, so don't worry with it for now. 
+When we deploy it on Openshift, we'll take a look in the AMQ console.
 
 image::./images/lab04-messaging-03.png[]
+
+[type=verification]
+Do you see the message  *" processing order async "* in the logs when you create a new Order?
 
 [time=15]
 == Using a AMQ BROKER on Openshift remotely
