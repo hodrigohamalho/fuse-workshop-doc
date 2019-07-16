@@ -57,7 +57,7 @@ If you are doing it locally, you can run as a standard spring-boot application.
 [type=verification]
 Do you see 5 *Hello router!* messages on the console?
 
-[time=5]
+[time=10]
 == Generating Orders Automatically 
 
 Now, take a look in the class *OrderService.java*, it generates an *Order.java* object, alternating some values between *Camel* and *ActiveMQ*.
