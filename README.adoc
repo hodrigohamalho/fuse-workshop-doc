@@ -48,9 +48,9 @@ Those walkthroughs follow the structure to be deployed in the *Red Hat Integreat
 | 14:00-16:30
 | **Lab:** 
 
-* 04-messaging
-* 05-openshift
-* 06-fuse-amq-online
+* Messaging
+* Openshift
+* Fuse AMQ Online
 
 | 16:30-17:00
 | Recap and summary
