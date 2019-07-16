@@ -41,7 +41,7 @@ Now, let's tap the body to work with the body async in the background.
 
 [source,java]
 ----
-    .post("/").type(Order.class).description("Create a new order")
+    .post("/async").type(Order.class).description("Create a new order")
         .route().routeId("create order")
         .log("Order received")
         .wireTap("direct:create-order")
