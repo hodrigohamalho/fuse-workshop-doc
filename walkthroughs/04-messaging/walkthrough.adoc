@@ -46,7 +46,7 @@ Now, let's tap the body to work with the body async in the background.
 
 Run again and check the log to see if the new message *" processing order async "* appeared. 
 
-image::./images/lab03-post-async.png[]
+image::./images/lab04-post-async.png[]
 
 Now, instead of calling the SQL directly, let's send the order to a message broker. 
 
