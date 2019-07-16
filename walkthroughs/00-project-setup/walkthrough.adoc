@@ -1,16 +1,16 @@
 = Lab 0 - Workshop Introduction
 
 Workshop structure and environment set up.
-+
+
 Welcome to the Fuse workshop! It's a pleasure to guide you on this hands-on experience. 
-+
+
 This workshop has as target to offer you a pratical experience with Red Hat Fuse, it's not a complete training 
 of Red Hat Fuse, for this purpose we have an amazing https://www.redhat.com/pt-br/services/training/jb421-red-hat-jboss-fuse-camel-development[official training] 
 covery many aspects of Red Hat Fuse in deep.
-+
+
 As the objective is not cover all details and cover many Fuse aspects during this workshop, 
 we will be using a https://github.com/hodrigohamalho/fuse-workshop.git[project skeleton] during this lab.
-+
+
 This project called *fuse-workshop* project is a Red Hat Fuse (aka Camel) Spring Boot project, 
 with some code already did for you, it will provide help to make you focused in the what really matters 
 instead of boilerplate code.
