@@ -27,13 +27,16 @@ instead of boilerplate code.
 * link:https://developers.redhat.com/products/codeready-workspaces/overview/[Want to know more about Openshift CodeReady Workspace ?, window="_blank"]
 ****
 
-== Requirements 
+== Requirements
 
-* Maven 
-* JDK 
-* Visual Studio Code (Or another Java IDE) 
-* Openshift client
-* Kamel 
+. Notebook (At least 4 GB RAM)
+. JDK 1.8+
+. Git
+. oc client 
+.. https://access.redhat.com/downloads/content/290[Download from Red Hat]
+.. https://www.okd.io/download.html[Download from Community]
+. https://visualstudio.microsoft.com/downloads/[Visual Studio IDE]
+. https://filezilla-project.org/download.php?type=client[Filezila]
 
 == Setup Code Ready Workspace
 
