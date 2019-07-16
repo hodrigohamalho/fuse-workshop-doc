@@ -75,7 +75,8 @@ Now we will implement the same path as before "/" bot using the HTTP verb POST.
     .endRest()
 ----
 
-Run the integration and make a POST request to http://localhost:8080/camel/orders with the body:
+Access the http://localhost:8080/webjars/swagger-ui/index.html?url=/camel/api-doc[Swagger UI] and 
+make a POST request to /orders.
 
 [source,javascript]
 ----
