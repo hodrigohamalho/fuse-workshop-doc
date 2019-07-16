@@ -82,6 +82,15 @@ If your answer was in the body, you are right!
 Do you see different Orders by the messages on the console?
 
 Think in camel as a pipeline, that transport things *from* someplace to *another one*, and this message is in the body. 
+
+Camel’s syntax is inspired by the UNIX pipeline.
+
+In UNIX, we might execute something like ps -fe | grep foo. When we run this command, the output of the ps command becomes the input to the grep command. We “pipe” the output of one command into the input of another command.
+
+Camel chains these actions together in an object called an Exchange, which consists of an input message (called the “In” message), some sort of processor (like a component, for instance) and possibly an output or “Out” message if the processor is meant to provide a synchronous response.
+
+A series of Exchange state changes creates a Camel Route.
+
 Take a look in the log that accesses the item attribute inside the Order object, and the Order is the body itself. 
 
 image::./images/camel-pipeline.png[]
