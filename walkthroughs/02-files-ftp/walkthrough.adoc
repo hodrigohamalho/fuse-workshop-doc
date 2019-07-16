@@ -1,6 +1,6 @@
 = Lab 2 - Integration with Files and FTP
 
-Explore the basic concepts of Camel, with a use case with *FILE* and *FTP* components doing some 
+Explore the basic concepts of Camel, with a use case with FILE and FTP components doing some 
 basic transformations with POJO, XML and JSON.
 
 image::./images/lab02-process-diagram.png[]
