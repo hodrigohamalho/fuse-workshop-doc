@@ -1,12 +1,16 @@
 = Lab 4 - Messaging
 
-Messaging makes applications loosely coupled by communicating asynchronously, which also makes the communication more reliable because the two applications do not have to be running at the same time. 
+Messaging makes applications loosely coupled by communicating asynchronously. which also makes the communication more reliable because the two applications do not have to be running at the same time. 
 
 Messaging makes the messaging system responsible for transferring data from one application to another, so the apps can focus on what data they need to share but not worry so much about how to share it.
 
 Let's create a post and answer a quick response to the user and do all processing in the background.
 For it, we are going to use the wiretap component to make a copy of the message on the Camel pipeline and 
-post it in a JMS queue.
+post it in a JMS queue. After we recover from the queue and make the order insert, for last notify the user by email.
+
+image::./images/lab04-messaging-architecture.png[]
+
+== Async router 
 
 First set a simple text message to return in the body.
 
@@ -65,12 +69,12 @@ from("activemq:queue:orders")
 
 Run the application and test, calling the POST async method accessing the http://localhost:8080/webjars/swagger-ui/index.html?url=/camel/api-doc[Swagger UI] page.
 
-Check the logs to see the message being exchanged in the queue. As we are using an embedded broker to test our application without the need to deploy in any place, there isn't a web console, so don't worry with it for now. When we deploy it on Openshift, we take a look in the AMQ console.
+Check the logs to see the message being exchanged in the queue. As we are using an embedded broker to test our application without the need to deploy in any place, there isn't a web console, so don't worry with it for now. 
+When we deploy it on Openshift, we take a look in the AMQ console.
 
 image::./images/lab04-messaging-03.png[]
 
-https://access.redhat.com/documentation/en-us/red_hat_amq/7.3/html-single/deploying_amq_broker_on_openshift_container_platform/index
-
+== Using a AMQ BROKER on Openshift remotely
 
 Create the project fuse-<your-user>:
 
