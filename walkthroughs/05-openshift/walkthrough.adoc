@@ -5,6 +5,7 @@ There are several ways to deploy an application into openshift. Directly from th
 On this lab we will use the binary deployment option, uploading the code directly from our machine to Openshift server.
 For it works, we will need the `oc` client working in our local machine.
 
+[time=15]
 == Openshift deploy
 
 First login into Openshift:
@@ -26,8 +27,6 @@ look into: target/docker/fuse-workshop/latest/build.
 
 Open the Java Console, and check the metrics available. 
 Also, take a look into the Diagram.
-
-[time=10]
 
 [type=verification]
 Are you seeing your application in Openshift?
