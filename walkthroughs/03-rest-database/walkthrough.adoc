@@ -69,7 +69,7 @@ Now we will implement the same path as before "/" bot using the HTTP verb POST.
 
 [source,java]
 ----
-.post("/")
+.post("/").type(Order.class)
     .route()
     .log("Order ${body.item} received")
     .endRest()
