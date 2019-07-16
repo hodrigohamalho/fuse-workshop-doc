@@ -237,7 +237,7 @@ The file *schema.sql* was created to populate the database during the startup. O
     .post("/").type(Order.class).description("Create a new order")
         .route().routeId("create order")
         .log("Order received")
-        .to(this.insertOrder);
+        .to(this.insertOrder)
         .endRest();
 ----
 
