@@ -5,14 +5,13 @@ Messaging makes applications loosely coupled by communicating asynchronously.
 Messaging makes the messaging system responsible for transferring data from one application to another, so the apps can focus on what data they need to share but not worry so much about how to share it.
 
 Let's create a post and answer a quick response to the user and do all processing in the background.
-For it, we are going to use the wiretap component to make a copy of the message on the Camel pipeline and 
-post it in a JMS queue. After we recover from the queue and make the order insert, for last notify the user by email.
+For it, we are going to use the wiretap component to make a copy of the message on the Camel pipeline and post it in a JMS queue. After we recover from the queue and make the order insert, for last notify the user by email.
 
 image::./images/lab04-messaging-architecture.png[]
 
 Contents covered during this lab
 
-* activemq component
+* ActiveMQ component
 * Producing and Consuming messages to a queue
 * Openshift port forward feature
 * Use a Local and Remote Broker
@@ -68,7 +67,7 @@ from("direct:create-order")
 
 Run the application and test, calling the POST async method accessing the http://localhost:8080/webjars/swagger-ui/index.html?url=/camel/api-doc[Swagger UI] page.
 
-Check the logs to see the message being exchanged in the queue. As we are using an embedded broker to test our application without the need to deploy in any place, 
+Check the logs to see the messages exchanged in the queue. As we are using an embedded broker to test our application without the need to deploy in any place, 
 there isn't a web console, so don't worry with it for now. 
 When we deploy it on Openshift, we'll take a look in the AMQ console.
 
@@ -106,16 +105,16 @@ Fill the fields *AMQ username* and *AMQ Password* with the value *redhat*.
 image::./images/lab04-messaging-08.png[]
 +
 
-If your project was provisioned correctly you will see a screen like this:
+If your project was provisioned correctly, you would see a screen like this:
 
 image::./images/lab04-messaging-09.png[]
 +
 
-Now that we already have the broker deployed on Openshift, let's use a mechanism that enables we open a 
+Now that we already have the broker deployed on Openshift let's use a mechanism that enables we open a 
 a TCP tunnel with openshift and work with services as they are in our local machine, it's very useful to 
 test resources as database and message broker.
 
-First login at Openshift after choose the project that you created before and after list the pods of this project.
+First login at Openshift after choosing the project that you created before and after list the pods of this project.
 
 [source,bash]
 ----
@@ -127,7 +126,7 @@ NAME                 READY     STATUS    RESTARTS   AGE
 broker-amq-1-ck9mc   1/1       Running   0          6m
 ----
 
-Now, that you have the exact name of the pod running AMQ Broker, let's execute the port forward command
+Now, that you have the exact name of the pod running AMQ Broker, let's execute the port-forward command
 
 [source, bash]
 ----
@@ -150,7 +149,7 @@ activemq.broker.url=tcp://localhost:61616
 
 ----
 
-And comment this:
+And comment on this:
 
 [source, bash]
 ----
@@ -160,7 +159,7 @@ And comment this:
 
 ----
 
-Run your integration and create a order using the /order/async HTTP POST method.
+Run your integration and create an order using the /order/async HTTP POST method.
 
 Click on the AMQ console URL:
 
@@ -178,7 +177,7 @@ On the *Artemis* item on horizontal Menu, select *Addresses*
 image::./images/lab04-messaging-13.png[]
 +
 
-Now that you are seeing the message metrics. Create many (like 10) new orders, using the /order/async HTTP POST method.
+Now that you see the message metrics. Create many (like 10) new orders, using the /order/async HTTP POST method.
 
 Look to the metrics again, you should se some messages on the Message Count column.
 
@@ -186,7 +185,7 @@ image::./images/lab04-messaging-15.png[]
 +
 
 Everything should work fine, to simulate the entire flow, let's now do another route to consume and persist this information. 
-This second router could be another system consuming this message, remember that this kind of architecture aims decouple. 
+This second router could be another system consuming this message. Remember that this kind of architecture aims decouple. 
 It could do retries in case of failures, scale independent of the consumer/producer, etc.
 
 [source,java]
@@ -198,6 +197,6 @@ from("activemq:queue:orders")
     .to("mock:notify-by-email");
 ----
 
-Run the integration again and look to the messages on the console after the startup
+Rerun the integration and look to the messages on the console after the startup
 
 image::./images/lab04-messaging-14.png[]

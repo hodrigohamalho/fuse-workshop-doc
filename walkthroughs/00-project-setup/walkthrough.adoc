@@ -27,6 +27,14 @@ instead of boilerplate code.
 * link:https://developers.redhat.com/products/codeready-workspaces/overview/[Want to know more about Openshift CodeReady Workspace ?, window="_blank"]
 ****
 
+== Requirements 
+
+* Maven 
+* JDK 
+* Visual Studio Code (Or another Java IDE) 
+* Openshift client
+* Kamel 
+
 == Setup Code Ready Workspace
 
 These walkthrough use Code Ready Workspace (Eclipse Che). 
