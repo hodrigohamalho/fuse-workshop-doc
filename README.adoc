@@ -35,7 +35,7 @@ Those walkthroughs follow the structure to be deployed in the *Red Hat Integreat
 | Break
 
 | 11:15-13:00
-| **Labs**\n Project-setup
+| **Labs**<br/> Project-setup
 | Project-setup
 | Hello-router
 | Files-ftp
