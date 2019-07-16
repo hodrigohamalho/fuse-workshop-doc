@@ -74,6 +74,8 @@ When we deploy it on Openshift, we take a look in the AMQ console.
 
 image::./images/lab04-messaging-03.png[]
 
+[time=5]
+
 == Using a AMQ BROKER on Openshift remotely
 
 Create the project fuse-<your-user>:
@@ -167,5 +169,4 @@ Run the integration again and look to the messages on the console after the star
 
 image::./images/lab04-messaging-14.png[]
 
-
-
+[time=15]
