@@ -188,7 +188,7 @@ The sample for activemq directory it's the following:
 ----
 from("file:/tmp/fuse-workshop/activemq?delete=true")
     .log("uploading activemq orders to ftp")
-    .to("ftp://<ftp-user>@<ftp-host>?password=<ftp-password>&localWorkDirectory=<ftp-path>");
+    .to("ftp://<ftp-user>@<ftp-host>?password=<ftp-password>");
 ----
 
 Do the same with the files on the camel directory.
