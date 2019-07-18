@@ -67,7 +67,7 @@ of Red Hat Fuse.
 
 Click on the blue circle to access the pod of the integration, after click on *Open Java Console*.
 
-image::./images/lab05-fuse-console01.png[]
+image::./images/lab05-fuse-console-01.png[]
 
 Select Routers on the side menu and look for the statistics changing. If you would like to generate 
 some data, capture the URL of list all orders as an example and do the following script 
@@ -77,26 +77,26 @@ in your shell:
 
 It will do one request per sec, so you have some data to see on the console.
 
-image::./images/lab05-fuse-console02.png[]
+image::./images/lab05-fuse-console-02.png[]
 
 Now, click on *Route Diagram* feature:
 
 You will see the route in a more human-readable way, and the count of requests flowing by the routes. 
 
-image::./images/lab05-fuse-console03.png[]
+image::./images/lab05-fuse-console-03.png[]
 
 The source code as XML:
 
-image::./images/lab05-fuse-console04.png[]
+image::./images/lab05-fuse-console-04.png[]
 
 Let's try to do some debug, select the *all-orders* on the side menu and click on 
 *Start debugging*.
 
-image::./images/lab05-fuse-console05.png[]
+image::./images/lab05-fuse-console-05.png[]
 
 Now, a double click on Log step. A breakpoint should appear on the box. 
 
-image::./images/lab05-fuse-console07.png[]
+image::./images/lab05-fuse-console-07.png[]
 
 Make a request to get all the orders. Could be using the Swagger UI.
 
@@ -105,7 +105,7 @@ Now, let's close the debug. Otherwise, it will stay stuck until a timeout in eve
 If you are using an embedded broker, as we are using on the beginning of the labs, 
 here you can see some metrics of this local broker. 
 
-image::./images/lab05-fuse-console10.png[]
+image::./images/lab05-fuse-console-10.png[]
 
 
 == Application deploy into Openshift using S2I
