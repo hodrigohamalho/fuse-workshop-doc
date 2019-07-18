@@ -37,6 +37,7 @@ Lab Requirements
 .. https://www.okd.io/download.html[Download from Community]
 . https://visualstudio.microsoft.com/downloads/[Visual Studio IDE]
 .. Plugin: *Extension Pack for Apache Camel*
+.. Plugin: *Language Support for Apache Camel*
 . https://filezilla-project.org/download.php?type=client[Filezila]
 
 +
