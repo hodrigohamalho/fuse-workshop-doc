@@ -44,7 +44,8 @@ Lab Requirements
 Knowledge Requirements 
 
 . Java
-. Maven 
+. Maven
+.. Replace your ~/.m2/settings.xml by the fuse-workshop/configuration/settings.xml
 
 == Setup Code Ready Workspace
 
