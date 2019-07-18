@@ -85,29 +85,37 @@ The images examples are using evals02, but *YOU MUST* use *your user*.
 Click on create project button:
 
 image::./images/lab04-messaging-04.png[]
+
 +
+
 image::./images/lab04-messaging-05.png[] 
+
 +
 
 Select the project previously created
+
 +
 
 image::./images/lab04-messaging-06.png[]
+
 +
 
 Find  for *AMQ BROKER 7.3*
 
 image::./images/lab04-messaging-07.png[]
+
 +
 
 Fill the fields *AMQ username* and *AMQ Password* with the value *redhat*.
 
 image::./images/lab04-messaging-08.png[]
+
 +
 
 If your project was provisioned correctly, you would see a screen like this:
 
 image::./images/lab04-messaging-09.png[]
+
 +
 
 Now that we already have the broker deployed on Openshift let's use a mechanism that enables we open a 
@@ -136,6 +144,7 @@ Now, that you have the exact name of the pod running AMQ Broker, let's execute t
 The output should be like this:
 
 image::./images/lab04-messaging-17.png[]
+
 +
 
 Now, update your application.properties to use the local broker instead of the embedded one. 
@@ -164,17 +173,20 @@ Run your integration and create an order using the /order/async HTTP POST method
 Click on the AMQ console URL:
 
 image::./images/lab04-messaging-09.png[]
+
 +
 
 Choose *AMQ Console* option:
 
 image::./images/lab04-messaging-10.png[]
 image::./images/lab04-messaging-12.png[]
+
 +
 
 On the *Artemis* item on horizontal Menu, select *Addresses*
 
 image::./images/lab04-messaging-13.png[]
+
 +
 
 Now that you see the message metrics. Create many (like 10) new orders, using the /order/async HTTP POST method.
@@ -182,6 +194,7 @@ Now that you see the message metrics. Create many (like 10) new orders, using th
 Look to the metrics again, you should se some messages on the Message Count column.
 
 image::./images/lab04-messaging-15.png[]
+
 +
 
 Everything should work fine, to simulate the entire flow, let's now do another route to consume and persist this information. 
