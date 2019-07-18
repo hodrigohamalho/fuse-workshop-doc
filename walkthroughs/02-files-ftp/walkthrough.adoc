@@ -245,8 +245,10 @@ Run the integration.
 [type=verification]
 Do you see the last XML files uploaded with the process attribute is true?
 
-Just as an additional note, if you would like to consume files from FTP and work as a Java Object, instead to use marshal, you 
-must use unmarshal(), example:
+*Just as an additional note*
+
+If you would like to consume files from FTP and work as a Java Object, 
+instead to use marshal, you must use *unmarshal()*, example:
 
 [source,java]
 ----
