@@ -4,7 +4,7 @@
 :amq-documentation-url: https://access.redhat.com/documentation/en-us/red_hat_amq/7.3/
 
 [id='integrating-eventdriven-and-apidriven-applications']
-= Lab 7 - Integrating message-oriented middleware with Fuse Online and AMQ Online
+= Lab 7 - Bonus Lab - Integrating message-oriented middleware with Fuse Online and AMQ Online
 
 // word count range that fits best is 15-22, with 20 really being the sweet spot. Character count for that space would be 100-125
 This walkthrough demonstrates a fault tolerant integration pattern that integrates a message driven architecture with a RESTful API architecture.
