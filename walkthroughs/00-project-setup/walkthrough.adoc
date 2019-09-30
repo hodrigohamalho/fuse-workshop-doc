@@ -1,3 +1,10 @@
+:walkthrough: Setup Codeready workspace with Fuse
+:codeready-url: https://codeready-codeready.{openshift-app-host}`
+:next-lab-url: ../01-hello-router/walkthrough.adoc
+:user-password: Abt7MjWMb8v4ECS
+
+endif::[]
+
 = Lab 0 - Workshop Introduction
 
 Workshop structure and environment set up.
@@ -53,7 +60,7 @@ Knowledge Requirements
 These walkthrough use Code Ready Workspace (Eclipse Che). 
 It's an IDE on the cloud, but I recommend you to set up a local environment because it's usually what the most developers use on a daily routine. 
 
-. It's not mandatory  you can use your preferred IDE, like Visual Studio Code, JBoss Developer Studio or IntelliJ.
+. It's not mandatory  you can use your preferred IDE, like Visual Studio Code or JBoss Developer Studio.
 
 To build the project in your own environment, you will need:
 
@@ -76,9 +83,12 @@ focused in the what really matters instead of boilerplate code.
 
 {empty} +
 
-. Provision Eclipse Che environment
+. Open link:{codeready-url}[CodeReady Workspaces, window="_blank"]
 
-.. Open the initial page {openshift-app-host} and Open *Eclipse Che* in the side menu.
+*Credentials:*
+
+Your username is: `{user-username}` +
+Your password is: `{user-password}`
 
 image::images/01-che.png[initial web page, role="integr8ly-img-responsive"]
 
