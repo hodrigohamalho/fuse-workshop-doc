@@ -96,14 +96,12 @@ focused in the what really matters instead of boilerplate code.
 
 {empty} +
 
-. Open link:{codeready-url}[CodeReady Workspaces, window="_blank"]
+.Open link:{codeready-url}[CodeReady Workspaces, window="_blank"]
 
-*Credentials:*
+Credentials:
 
 Your username is: `{user-username}` +
 Your password is: `{user-password}`
-
-image::images/01-che.png[initial web page, role="integr8ly-img-responsive"]
 
 {empty} +
 
@@ -189,3 +187,8 @@ image::images/11-che.png[initial web page, role="integr8ly-img-responsive"]
 [time=10]
 [type=verification]
 Are you seeing a loop hello message in the logs?
+
+During the workshop you will do several changes in the source code, so to redeploy 
+just hit the *Re-run* button.
+
+image::images/12-che.png[]
