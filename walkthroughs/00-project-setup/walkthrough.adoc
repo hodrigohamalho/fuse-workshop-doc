@@ -1,5 +1,5 @@
 :walkthrough: Setup Codeready workspace with Fuse
-:codeready-url: https://codeready-codeready.{openshift-app-host}`
+:codeready-url: https://codeready-codeready.{openshift-app-host}
 :next-lab-url: ../01-hello-router/walkthrough.adoc
 :user-password: Abt7MjWMb8v4ECS
 
@@ -23,29 +23,42 @@ with some code already did for you, it will provide help to make you focused in 
 instead of boilerplate code.
 
 [type=walkthroughResource]
+.CodeReady Workspaces
+****
+* link:{codeready-url}[Console, window="_blank"]
+****
+
+****
+* link:https://developers.redhat.com/products/codeready-workspaces/overview/[Want to know more about Openshift CodeReady Workspace ?, window="_blank"]
+****
+
+[type=walkthroughResource]
+.Openshift Console
+****
+* link:{openshift-url}[Console, window="_blank"]
+****
+
 .Fuse
 ****
 * link:https://launch.openshift.io[Create new projects using Launcher, window="_blank"]
 ****
 
-[type=walkthroughResource]
-.Openshift CodeReady (Eclipse Che)
-****
-* link:https://developers.redhat.com/products/codeready-workspaces/overview/[Want to know more about Openshift CodeReady Workspace ?, window="_blank"]
-****
-
 Lab Requirements
 
-. Notebook (At least 4 GB RAM)
-. JDK 1.8+
-. Git
-. oc client 
-.. https://access.redhat.com/downloads/content/290[Download from Red Hat]
-.. https://www.okd.io/download.html[Download from Community]
-. https://visualstudio.microsoft.com/downloads/[Visual Studio IDE]
-.. Plugin: *Extension Pack for Apache Camel*
-.. Plugin: *Language Support for Apache Camel*
-. https://filezilla-project.org/download.php?type=client[Filezila]
+. Cloud
+.. Browser
+
+. Local machine
+.. Notebook (At least 4 GB RAM)
+.. JDK 1.8+
+.. Git
+.. oc client 
+... https://access.redhat.com/downloads/content/290[Download from Red Hat]
+... https://www.okd.io/download.html[Download from Community]
+.. https://visualstudio.microsoft.com/downloads/[Visual Studio IDE]
+... Plugin: *Extension Pack for Apache Camel*
+... Plugin: *Language Support for Apache Camel*
+.. https://filezilla-project.org/download.php?type=client[Filezila]
 
 +
 
@@ -78,7 +91,7 @@ mvn spring-boot:run
 ----
 
 The *fuse-workshop* project is a Camel Spring Boot project, 
-with some code already did for you, it will provide help to make you 
+with some boilerplate code already did for you, it will provide help to make you 
 focused in the what really matters instead of boilerplate code.
 
 {empty} +
@@ -103,7 +116,7 @@ image::images/02-che.png[initial web page, role="integr8ly-img-responsive"]
 ... In the *Stack* options, choose *"Java" - "Default Java Stack with JDK 8, Maven and Tomcat."*
 ... Change the *RAM* memory to *4 GBs*.
 ... Click on *Add or import project*
-... Repository URL: https://github.com/hodrigohamalho/fuse-workshop.git
+... Repository URL: `https://github.com/hodrigohamalho/fuse-workshop.git`
 ... Click on *Create*
 ... Create the workspace and select the option *Open IDE*
 
