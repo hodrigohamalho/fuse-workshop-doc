@@ -47,7 +47,7 @@ First set a simple text message to return in the body.
 [source,java]
 ----
 .post("/async").type(Order.class).description("Create a new order")
-    .route().routeId("create order")
+    .route().routeId("create-order-async")
     .log("Order received")
     .setBody().simple("We received your request, as soon we process your request we will notify you by email.")
     .endRest();
@@ -63,7 +63,7 @@ Now, let's tap the body to work with the body async in the background.
 [source,java]
 ----
     .post("/async").type(Order.class).description("Create a new order")
-        .route().routeId("create order")
+        .route().routeId("create-order-async")
         .log("Order received")
         .wireTap("direct:create-order")
         .setBody().simple("We received your request, as soon we process your request we will notify you by email.")
