@@ -61,6 +61,10 @@ from("timer:generateOrder?repeatCount=5&period=1000")
     .log("Hello router!"); 
 ----
 
+Use *CTLR* + *SPACE* to use the auto complete feature:
+
+image::./images/codeready-autocomplete.gif[]
+
 image::./images/camel-structure.png[]
 
 This is the basis of component usage. The component (some examples: *file, ftp, http*), after we have the component 
@@ -129,5 +133,5 @@ Congratulations you finished the Hello Router lab!
 On this lab, you learned about the camel pipelines and how it works. 
 Also to interact with Jave Beans directly from your DSL.
 
-You can now proceed to link:{next-lab-url}[REST and Database].
+You can now proceed to link:{next-lab-url}[REST and Database].  
 
