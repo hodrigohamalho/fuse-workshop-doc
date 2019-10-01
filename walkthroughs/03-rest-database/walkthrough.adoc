@@ -1,3 +1,7 @@
+:walkthrough: REST and Database
+:codeready-url: https://codeready-codeready.{openshift-app-host}
+:next-lab-url: https://tutorial-web-app-webapp.{openshift-app-host}/tutorial/fuse-springboot-workshop.git-walkthroughs-04-messaging
+
 = Lab 3 - REST and Database
 
 REST is key when we talk about integration. On this lab, we are going to explore some basic REST constructions with Red Hat Fuse (Camel).

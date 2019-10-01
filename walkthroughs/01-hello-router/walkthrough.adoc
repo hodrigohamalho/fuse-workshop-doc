@@ -1,8 +1,8 @@
-:walkthrough: Setup Codeready workspace with Fuse
+:walkthrough: Hello World Camel
 :codeready-url: https://codeready-codeready.{openshift-app-host}
-:next-lab-url: https://tutorial-web-app-webapp.{openshift-app-host}/tutorial/fuse-springboot-workshop.git-walkthroughs-03-rest-database
+:next-lab-url: https://tutorial-web-app-webapp.{openshift-app-host}/tutorial/fuse-springboot-workshop.git-walkthroughs-02-files-ftp
 
-= Lab 1 - Hello World
+= Lab 1 - Hello World Camel
 
 Write your first Red Hat Fuse integration route.
 

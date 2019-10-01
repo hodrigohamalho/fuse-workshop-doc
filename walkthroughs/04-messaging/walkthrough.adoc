@@ -1,3 +1,7 @@
+:walkthrough: Messaging
+:codeready-url: https://codeready-codeready.{openshift-app-host}
+:next-lab-url: https://tutorial-web-app-webapp.{openshift-app-host}/tutorial/fuse-springboot-workshop.git-walkthroughs-05-openshift/
+
 = Lab 4 - Messaging
 
 Messaging makes applications loosely coupled by communicating asynchronously.
