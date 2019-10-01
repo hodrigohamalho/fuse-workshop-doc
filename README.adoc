@@ -38,8 +38,11 @@ Those walkthroughs follow the structure to be deployed in the *Red Hat Integreat
 | **Labs**
 
     * Project-setup
+
     * Hello-router
+
     * Files-ftp
+
     * Rest-database
 
 | 13:00-14:00
@@ -49,7 +52,9 @@ Those walkthroughs follow the structure to be deployed in the *Red Hat Integreat
 | **Lab:** 
 
     * Messaging
+
     * Openshift
+
     * Fuse AMQ Online
 
 | 16:30-17:00
@@ -67,8 +72,10 @@ So just to warm up your machine clone this project and do a `mvn package`.
 . Login as admin in your openshift cluster
 . Add this repository to your walkthrough catalog
 
-    oc set env dc tutorial-web-app WALKTHROUGH_LOCATIONS="https://github.com/integr8ly/tutorial-web-app-walkthroughs.git#v1.1.1,https://github.com/hodrigohamalho/fuse-springboot-workshop.git#master" -n webapp
+    oc patch webapp tutorial-web-app-operator --type=merge -o yaml -p '{ "spec": { "template": { "parameters": { "WALKTHROUGH_LOCATIONS": "https://github.com/integr8ly/tutorial-web-app-walkthroughs.git#master,https://github.com/hodrigohamalho/fuse-springboot-workshop.git#master" }}}}' -n webapp
+
 
 Now, you must see those walkthrough sessions in initial page.
 
-![Walkthough Catalog](images/walkthrough-catalog.png)
+image::./images/walkthrough-catalog.png[Walkthough Catalog]
+
