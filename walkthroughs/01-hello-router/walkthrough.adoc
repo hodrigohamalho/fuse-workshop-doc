@@ -16,7 +16,7 @@ Let's explore a simple scenario where we are going to use a timer component to g
 Using the project *fuse-workshop*, open the class *OrderGenerator.java*. 
 If you are having trouble to find it, look in *src/main/java/com/redhat/fuse/booster/rest/routers/lab01* folder.
 
-As you can see, this class is a very simple Camel Router already defined to you. A Camel Router is basically a class that extends RouteBuilder and implements the configure method.  
+As you can see, this class is a very simple Camel Router already defined for you. A Camel Router is basically a class that extends RouteBuilder and implements the configure method.  
 Let's focus on the code that really matters at the moment.
 
 [source,java]
@@ -48,7 +48,9 @@ name (chosen by you) and for last the parameters supported by the documentation.
 
 If you configured your IDE correctly, you should have autocomplete working for it. 
 
-Now, let's run the project clicking on the RUN action that we previously set up and see if it works.
+Now, let's run the project clicking on the *RUN* or *RE-RUN* action that we previously set up and see if it works.
+
+image::images/12-che.png[]
 
 If you are doing it locally, you can run as a standard spring-boot application.
 
@@ -56,6 +58,22 @@ If you are doing it locally, you can run as a standard spring-boot application.
 
 [type=verification]
 Do you see 5 *Hello router!* messages on the console?
+
+Think in camel as a pipeline, that transport things *from* someplace to *another one*, and this message is in the body. 
+
+Camel’s syntax is inspired by the UNIX pipeline.
+
+In UNIX, we might execute something like ps -fe | grep foo. When we run this command, the output of the ps command becomes the input to the grep command. We “pipe” the output of one command into the input of another command.
+
+Camel chains these actions together in an object called an Exchange, which consists of an input message (called the “In” message), some sort of processor (like a component, for instance) and possibly an output or “Out” message if the processor is meant to provide a synchronous response.
+
+A series of Exchange state changes creates a Camel Route.
+
+Take a look in the log that accesses the item attribute inside the Order object, and the Order is the body itself. 
+
+image::./images/camel-pipeline.png[]
+
+Take some time and take a look at https://access.redhat.com/documentation/en-us/red_hat_jboss_fuse/6.3/html/apache_camel_development_guide/basicprinciples[this documentation] to understand better how the camel pipeline works. 
 
 [time=10]
 == Generating Orders Automatically 
@@ -80,20 +98,3 @@ If your answer was in the body, you are right!
 
 [type=verification]
 Do you see different Orders by the messages on the console?
-
-Think in camel as a pipeline, that transport things *from* someplace to *another one*, and this message is in the body. 
-
-Camel’s syntax is inspired by the UNIX pipeline.
-
-In UNIX, we might execute something like ps -fe | grep foo. When we run this command, the output of the ps command becomes the input to the grep command. We “pipe” the output of one command into the input of another command.
-
-Camel chains these actions together in an object called an Exchange, which consists of an input message (called the “In” message), some sort of processor (like a component, for instance) and possibly an output or “Out” message if the processor is meant to provide a synchronous response.
-
-A series of Exchange state changes creates a Camel Route.
-
-Take a look in the log that accesses the item attribute inside the Order object, and the Order is the body itself. 
-
-image::./images/camel-pipeline.png[]
-
-Take some time and take a look at https://access.redhat.com/documentation/en-us/red_hat_jboss_fuse/6.3/html/apache_camel_development_guide/basicprinciples[this documentation] to understand better how the camel pipeline works. 
-
