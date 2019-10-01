@@ -135,5 +135,5 @@ Congratulations you finished the Hello Router lab!
 On this lab, you learned about the camel pipelines and how it works. 
 Also to interact with Jave Beans directly from your DSL.
 
-You can now proceed to link:{next-lab-url}[REST and Database].  
+You can now proceed to link:{next-lab-url}[Working with Files and FTP].  
 

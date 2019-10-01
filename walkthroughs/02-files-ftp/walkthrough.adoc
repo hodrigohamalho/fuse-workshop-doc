@@ -231,7 +231,7 @@ One way to do it is by using a Processor. On the Processor, you can have total a
 
 So let's create a process, capture de object Order on the Camel Body and change the attribute process to *true*.
 
-Open the OrderProcessor.java file, and do the logic to change the attribute processed of Order object.
+Open the *OrderProcessor.java* file, and do the logic to change the attribute processed of Order object.
 
 [source,java]
 ----
@@ -242,6 +242,8 @@ public void process(Exchange exchange) throws Exception {
     exchange.getOut().setBody(order);
 }
 ----
+
+image::./images/lab02-processor.png[]
 
 And in the route, add the process before the first transformation of ActiveMQ books. 
 [source,java]
@@ -258,6 +260,8 @@ from("direct:book-to-file")
             .marshal().jacksonxml()
             .to("file:/tmp/fuse-workshop/activemq?fileName=activemq-${date:now:yyyy-MM-dd-HHmmssSSS}.xml");
 ----
+
+image::./images/lab02-processor2.png[]
 
 Run the integration.
 
@@ -299,3 +303,17 @@ To make this lab works, the following dependencies were added to the project:
         <artifactId>camel-ftp</artifactId>
     </dependency>
 
+[time=1]
+== Summary 
+
+Congratulations you finished the File and FTP lab! 
+
+We see a lot of things during this lab, a quick recap:
+
+* Content base router pattern 
+* XML and JSON transformation 
+* File component 
+* FTP component 
+* Processor (To add some custom logic to your route)
+
+You can now proceed to link:{next-lab-url}[REST and Database].  
