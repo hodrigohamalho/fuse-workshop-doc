@@ -80,8 +80,34 @@ Now we will implement the same path as before "/" bot using the HTTP verb POST.
     .endRest();
 ----
 
-Access the http://localhost:8080/webjars/swagger-ui/index.html?url=/camel/api-doc[Swagger UI] and 
-make a POST request to /orders.
+The entire class should look like this:
+
+[source,java]
+----
+rest("/orders")
+    .get("/")
+        .route()
+        .log("geting all orders entries from database")
+        .endRest()
+    
+    .get("/{id}")
+        .route()
+        .log("geting order with id ${header.id} entry from database")
+        .endRest()
+
+    .post("/").type(Order.class)
+        .route()
+        .log("Order ${body.item} received")
+        .endRest();
+----
+
+image::./images/lab03-rest-definition.png[]
+
+Access the *localhost* remote environment using the routes provided by CodeReady. 
+
+image::./images/lab03-codeready-server.gif[]
+
+If you are doing locally just access: http://localhost:8080 and make a POST request to /orders, using the body bellow.
 
 [source,javascript]
 ----
