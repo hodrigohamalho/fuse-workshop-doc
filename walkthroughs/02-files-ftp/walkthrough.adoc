@@ -17,6 +17,22 @@ Contents covered during this lab
 * FTP component 
 * Processor 
 
+[type=walkthroughResource]
+.CodeReady Workspaces
+****
+* link:{codeready-url}[Console, window="_blank"]
+****
+
+****
+* link:https://developers.redhat.com/products/codeready-workspaces/overview/[Want to know more about Openshift CodeReady Workspace ?, window="_blank"]
+****
+
+[type=walkthroughResource]
+.Openshift Console
+****
+* link:{openshift-url}[Console, window="_blank"]
+****
+
 [time=2]
 == Content-base Router introduction
 

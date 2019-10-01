@@ -22,6 +22,22 @@ Contents covered during this lab
 * Deploy AMQ broker on Openshift
 * AMQ Console
 
+[type=walkthroughResource]
+.CodeReady Workspaces
+****
+* link:{codeready-url}[Console, window="_blank"]
+****
+
+****
+* link:https://developers.redhat.com/products/codeready-workspaces/overview/[Want to know more about Openshift CodeReady Workspace ?, window="_blank"]
+****
+
+[type=walkthroughResource]
+.Openshift Console
+****
+* link:{openshift-url}[Console, window="_blank"]
+****
+
 [time=5]
 == Async router 
 
