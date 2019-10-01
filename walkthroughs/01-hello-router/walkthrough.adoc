@@ -65,6 +65,8 @@ Use *CTLR* + *SPACE* to use the auto complete feature:
 
 image::./images/codeready-autocomplete.gif[]
 
+{empty} +
+
 image::./images/camel-structure.png[]
 
 This is the basis of component usage. The component (some examples: *file, ftp, http*), after we have the component 
