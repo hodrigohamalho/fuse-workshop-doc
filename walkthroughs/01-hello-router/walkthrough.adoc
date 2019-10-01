@@ -99,7 +99,7 @@ A series of Exchange state changes creates a Camel Route.
 
 Take a look in the log that accesses the item attribute inside the Order object, and the Order is the body itself. 
 
-image:/images/camel-pipeline.png[]
+image:./images/camel-pipeline.png[]
 
 Take some time and take a look at https://access.redhat.com/documentation/en-us/red_hat_jboss_fuse/6.3/html/apache_camel_development_guide/basicprinciples[this documentation] to understand better how the camel pipeline works. 
 
