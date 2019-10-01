@@ -192,3 +192,12 @@ During the workshop you will do several changes in the source code, so to redepl
 just hit the *Re-run* button.
 
 image::images/12-che.png[]
+
+[time=1]
+== Summary 
+
+Congratulations you finished the first lab! 
+
+On this lab, you learned how to set up a Fuse on Springboot project using Code Ready Workspace.
+
+You can now proceed to link:{next-lab-url}[Hello Router Lab].
