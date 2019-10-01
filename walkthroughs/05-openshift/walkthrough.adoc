@@ -130,7 +130,36 @@ image::./images/lab05-fuse-console-10.png[]
 
 == Application deploy into Openshift using S2I
 
+Binary deployment is effective when you are doing a lot of changes and do not like to commit to see the results. A very common practice is to deploy the application automatically on each commit. Also s2i is more often used inside CICD pipelines.
 
+Let's deploy the same application but using the S2I strategy.
+
+On the find area *Search Catalog*, look for *jdk* and select *Red Hat OpenJDK 8* in the results.
+
+image::./images/lab05-s2i-1.png[]
+
+
+{empty} +
+
+On the following screen just select *next*.
+
+image::./images/lab05-s2i-2.png[]
+
+{empty} +
+
+Inform `workshop` as the Application Name and *click on advanced options.*
+
+image::./images/lab05-s2i-3.png[]
+
+{empty} +
+
+On the field *Git Repository URL* inform `https://github.com/hodrigohamalho/fuse-workshop.git`
+
+On the field *Git Reference* inform *labs-complete*. 
+
+image::./images/lab05-s2i-4.png[]
+
+Just trigger the application creation and wait for the build and deployment finishes.
 
 [type=verification]
 Did you navigate through the Fuse Console?
