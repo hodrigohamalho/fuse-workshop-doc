@@ -41,7 +41,7 @@ rest("/orders")
         .endRest();
 ----
 
-Run the integration and access the endpoint http://localhost:8080/camel/orders. 
+Run the integration and access the endpoint link:http://localhost:8080/camel/orders[Localhost, window="_blank"]
 
 Every time you hit the HTTP endpoint the message *" getting all orders entries from database"* should appear in the log. It doesn't return anything because nothing was implemented to return. But for now, doesn't worry about it.
 
@@ -63,7 +63,7 @@ Remember to remove the *;* char and move to the final *endRest()*.
     .endRest();
 ----
 
-Run the integration and access the http://localhost:8080/camel/orders/1 endpoint. 
+Run the integration and access the link:http://localhost:8080/camel/orders/1[Localhost, window="_blank"] endpoint. 
 
 [type=verification]
 Do you see the message *"geting order with id ${header.id} entry from database"* in the logs everytime you hit the /came/oders/1 HTTP endpoint?
@@ -76,7 +76,7 @@ Now we will implement the same path as before "/" bot using the HTTP verb POST.
 ----
 .post("/").type(Order.class)
     .route()
-    .log("Order ${body.item} received")
+    .log("Order ${body.description} received")
     .endRest();
 ----
 
@@ -97,7 +97,7 @@ rest("/orders")
 
     .post("/").type(Order.class)
         .route()
-        .log("Order ${body.item} received")
+        .log("Order ${body.description} received")
         .endRest();
 ----
 
@@ -107,7 +107,7 @@ Access the *localhost* remote environment using the routes provided by CodeReady
 
 image::./images/lab03-codeready-server.gif[]
 
-If you are doing locally just access: http://localhost:8080 and make a POST request to /orders, using the body bellow.
+If you are doing locally just access: link:http://localhost:8080[Localhost, window="_blank"] and make a POST request to /orders, using the body bellow.
 
 [source,javascript]
 ----
@@ -119,7 +119,7 @@ If you are doing locally just access: http://localhost:8080 and make a POST requ
 }
 ----
 
-To do this request, use the http://localhost:8080/webjars/swagger-ui/index.html?url=/camel/api-doc[swagger-ui interface]. Details about the API documentation will be covered on the next session.
+To do this request, use the http://localhost:8080/webjars/swagger-ui/index.html?url=/camel/api-doc[swagger-ui interface, window="_blank"]. Details about the API documentation will be covered on the next session.
 
 [type=verification]
 Do you see the message *"Workshop to explore Fuse on springboot"* in the logs everytime you hit the /came/oders HTTP (POST) endpoint?
@@ -271,7 +271,7 @@ The file *schema.sql* was created to populate the database during the startup. O
         .endRest();
 ----
 
-Run the integration and make a POST request to http://localhost:8080/camel/orders with the body:
+Run the integration and make a POST request to `http://localhost:8080/camel/orders` with the body:
 
 [source,javascript]
 ----
