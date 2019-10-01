@@ -1,3 +1,7 @@
+:walkthrough: Setup Codeready workspace with Fuse
+:codeready-url: https://codeready-codeready.{openshift-app-host}
+:next-lab-url: https://tutorial-web-app-webapp.{openshift-app-host}/tutorial/fuse-springboot-workshop.git-walkthroughs-03-rest-database
+
 = Lab 1 - Hello World
 
 Write your first Red Hat Fuse integration route.
@@ -89,7 +93,7 @@ A series of Exchange state changes creates a Camel Route.
 
 Take a look in the log that accesses the item attribute inside the Order object, and the Order is the body itself. 
 
-image::./images/camel-pipeline.png[]
+image:/images/camel-pipeline.png[]
 
 Take some time and take a look at https://access.redhat.com/documentation/en-us/red_hat_jboss_fuse/6.3/html/apache_camel_development_guide/basicprinciples[this documentation] to understand better how the camel pipeline works. 
 
@@ -116,3 +120,14 @@ If your answer was in the body, you are right!
 
 [type=verification]
 Do you see different Orders by the messages on the console?
+
+[time=1]
+== Summary 
+
+Congratulations you finished the Hello Router lab! 
+
+On this lab, you learned about the camel pipelines and how it works. 
+Also to interact with Jave Beans directly from your DSL.
+
+You can now proceed to link:{next-lab-url}[REST and Database].
+
