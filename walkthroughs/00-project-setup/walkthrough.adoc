@@ -1,5 +1,6 @@
 :walkthrough: Setup Codeready workspace with Fuse
 :codeready-url: https://codeready-codeready.{openshift-app-host}
+:openshift-url: {openshift-host}/console
 :next-lab-url: https://tutorial-web-app-webapp.{openshift-app-host}/tutorial/fuse-springboot-workshop.git-walkthroughs-01-hello-router
 :user-password: Abt7MjWMb8v4ECS
 
