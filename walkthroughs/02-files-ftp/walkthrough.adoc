@@ -52,6 +52,17 @@ Add this line to the previous lab:
 
     .to("direct:book-to-file");
 
+It must result in the following code
+
+[source,java]
+----
+from("timer:generate?repeatCount=5&period=1000")
+    .log("Generating Order...")
+    .bean(OrderService.class, "generateOrder")
+    .log("Order ${body.item} generated")
+.to("direct:book-to-file");
+----
+
 Now, let's implement the content base router pattern:
 
 [source,java]
@@ -63,6 +74,8 @@ from("direct:book-to-file")
         .otherwise()
             .log("Processing an activemq book");
 ----
+
+image::./images/lab02-cbr-code.png[]
 
 We compare the *item* attribute of the object Order and print a message.
 
@@ -100,11 +113,13 @@ from("direct:book-to-file")
             .to("file:/tmp/fuse-workshop/activemq");
 ----
 
+lab02-file-code
+
 The line .convertBodyTo(String.class) is just invoking the Order.class to String method. and after we are saving all files in the filesystem.
 
-Run the integration
+Run the integration and check if the files were saved.
 
-image::./images/02-camel-cbr-02.png[]
+image::./images/lab02-file-code.png[]
 
 [type=verification]
 Do you see the files inside the directory camel under your project?
@@ -119,18 +134,18 @@ Camel:
 
 ActiveMQ 
 
-    .to("file:/tmp/fuse-workshop/activemq?fileName=activemq-${date:now:yyyy-MM-dd-HHmmssSSS}.txt");
+    .to("fil    e:/tmp/fuse-workshop/activemq?fileName=activemq-${date:now:yyyy-MM-dd-HHmmssSSS}.txt");
 
 Run the integration
 
 
-image::./images/02-camel-cbr-03.png[]
+image::./images/lab02-file-pretty-names.png[]
 
 [type=verification]
 Do you see the files with the new pattern that was defined?
 
-[time=10]
-== Data Transform
+[time=10]   
+== Data Transformation
 
 https://camel.apache.org/data-format.html
 
@@ -165,7 +180,7 @@ from("direct:book-to-file")
 
 Run the integration
 
-aimage::./images/02-camel-cbr-04.png[]
+image::./images/lab02-file-pretty-names2.png[]
 
 [type=verification]
 Do you see the files with the correct extensions and the content of the files is on the correct format?
