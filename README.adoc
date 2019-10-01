@@ -8,6 +8,14 @@ Those walkthroughs follow the structure to be deployed in the *Red Hat Integreat
 
 == Pre Requirements
 
+=== Remote Environment (CodeReady Workspace)
+
+If you use CodeReady Workspace, you just need a updated browser :) 
+All the labs were tested only with Chrome, feel free to use any other 
+and in case of any issue please https://github.com/hodrigohamalho/fuse-workshop-doc/issues[fill an issue].
+
+== Local environment 
+
 . Notebook (At least 4 GB RAM)
 . JDK 1.8+
 . Git
@@ -65,7 +73,7 @@ Those walkthroughs follow the structure to be deployed in the *Red Hat Integreat
 
 All the labs uses the https://github.com/hodrigohamalho/fuse-workshop[Fuse-workshop project skeleton].
 
-So just to warm up your machine clone this project and do a `mvn package`.
+So just to warm up your machine clone https://github.com/hodrigohamalho/fuse-workshop[the project] and do a `mvn package`.
 
 == Setup in Integreatly Environment 
 
