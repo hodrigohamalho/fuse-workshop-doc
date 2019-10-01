@@ -23,6 +23,8 @@ Contents covered during this lab
 * link:{codeready-url}[Console, window="_blank"]
 ****
 
+[type=walkthroughResource]
+.CodeReady Workspaces
 ****
 * link:https://developers.redhat.com/products/codeready-workspaces/overview/[Want to know more about Openshift CodeReady Workspace ?, window="_blank"]
 ****

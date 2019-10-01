@@ -120,6 +120,12 @@ image::images/02-che.png[initial web page, role="integr8ly-img-responsive"]
 
 image::images/03-che.png[initial web page, role="integr8ly-img-responsive"]
 
+{empty} +
+
+image::images/03-che-2.png[initial web page, role="integr8ly-img-responsive"]
+
+{empty} +
+
 image::images/04-che.png[initial web page, role="integr8ly-img-responsive"]
 
 {empty} +
