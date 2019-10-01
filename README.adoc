@@ -82,7 +82,6 @@ So just to warm up your machine clone https://github.com/hodrigohamalho/fuse-wor
 
     oc patch webapp tutorial-web-app-operator --type=merge -o yaml -p '{ "spec": { "template": { "parameters": { "WALKTHROUGH_LOCATIONS": "https://github.com/integr8ly/tutorial-web-app-walkthroughs.git#master,https://github.com/hodrigohamalho/fuse-springboot-workshop.git#master" }}}}' -n webapp
 
-
 Now, you must see those walkthrough sessions in initial page.
 
 image::./images/walkthrough-catalog.png[Walkthough Catalog]
