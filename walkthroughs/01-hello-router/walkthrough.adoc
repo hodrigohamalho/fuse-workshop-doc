@@ -5,6 +5,22 @@ Write your first Red Hat Fuse integration route.
 Let's explore a simple scenario where we are going to use a timer component to generate Orders automatically.
 
 [type=walkthroughResource]
+.CodeReady Workspaces
+****
+* link:{codeready-url}[Console, window="_blank"]
+****
+
+****
+* link:https://developers.redhat.com/products/codeready-workspaces/overview/[Want to know more about Openshift CodeReady Workspace ?, window="_blank"]
+****
+
+[type=walkthroughResource]
+.Openshift Console
+****
+* link:{openshift-url}[Console, window="_blank"]
+****
+
+[type=walkthroughResource]
 .Camel Components
 ****
 * link:https://github.com/apache/camel/blob/master/components/readme.adoc[Check components list, window="_blank"]
@@ -50,7 +66,7 @@ If you configured your IDE correctly, you should have autocomplete working for i
 
 Now, let's run the project clicking on the *RUN* or *RE-RUN* action that we previously set up and see if it works.
 
-image::images/12-che.png[]
+image::./images/12-che.png[]
 
 If you are doing it locally, you can run as a standard spring-boot application.
 
@@ -63,7 +79,9 @@ Think in camel as a pipeline, that transport things *from* someplace to *another
 
 Camel’s syntax is inspired by the UNIX pipeline.
 
-In UNIX, we might execute something like ps -fe | grep foo. When we run this command, the output of the ps command becomes the input to the grep command. We “pipe” the output of one command into the input of another command.
+In UNIX, we might execute something like `ps -fe | grep foo`. 
+When we run this command, the output of the ps command becomes the input to the grep command. 
+We “pipe” the output of one command into the input of another command.
 
 Camel chains these actions together in an object called an Exchange, which consists of an input message (called the “In” message), some sort of processor (like a component, for instance) and possibly an output or “Out” message if the processor is meant to provide a synchronous response.
 
