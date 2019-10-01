@@ -131,8 +131,6 @@ from("direct:book-to-file")
             .to("file:/tmp/fuse-workshop/activemq");
 ----
 
-lab02-file-code
-
 The line .convertBodyTo(String.class) is just invoking the Order.class to String method. and after we are saving all files in the filesystem.
 
 Run the integration and check if the files were saved.
@@ -152,7 +150,7 @@ Camel:
 
 ActiveMQ 
 
-    .to("fil    e:/tmp/fuse-workshop/activemq?fileName=activemq-${date:now:yyyy-MM-dd-HHmmssSSS}.txt");
+    .to("file:/tmp/fuse-workshop/activemq?fileName=activemq-${date:now:yyyy-MM-dd-HHmmssSSS}.txt");
 
 Run the integration
 
