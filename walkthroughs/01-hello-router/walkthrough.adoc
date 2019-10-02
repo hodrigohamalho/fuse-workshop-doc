@@ -5,7 +5,7 @@
 
 = Lab 1 - Hello World Camel
 
-Write your first Red Hat Fuse integration route.
+Write your first Red Hat Fuse integration route!
 
 Let's explore a simple scenario where we are going to use a timer component to generate Orders automatically.
 
@@ -15,9 +15,7 @@ Let's explore a simple scenario where we are going to use a timer component to g
 * link:{codeready-url}[Console, window="_blank"]
 ****
 
-****
-* link:https://developers.redhat.com/products/codeready-workspaces/overview/[Want to know more about Openshift CodeReady Workspace ?, window="_blank"]
-****
+link:https://developers.redhat.com/products/codeready-workspaces/overview/[Want to know more about CodeReady Workspaces?, window="_blank"]
 
 [type=walkthroughResource]
 .OpenShift Console
@@ -32,37 +30,34 @@ Let's explore a simple scenario where we are going to use a timer component to g
 ****
 
 [time=2]
-== Timer component  
+== Timer component
 
-Using the project *fuse-workshop*, open the class *OrderGenerator.java*. 
-If you are having trouble to find it, look in *src/main/java/com/redhat/fuse/booster/rest/routers/lab01* folder.
+Using the *fuse-workshop* project, open the class `OrderGenerator.java`.
+If you are having trouble finding it, look in `src/main/java/com/redhat/fuse/booster/rest/routers/lab01` folder.
 
-As you can see, this class is a very simple Camel Router already defined for you. A Camel Router is basically a class that extends RouteBuilder and implements the configure method.  
-Let's focus on the code that really matters at the moment.
+As you can see, this is a very simple Camel Router already defined for you. A Camel Router is a class that extends `RouteBuilder` and implements the configure method. Let's focus on the code that really matters at the moment.
 
 [source,java]
 ----
-from("timer:generateOrder")
-    .log("Hello router!");
-----    
+from("timer:generate")
+  .log("Hello router!");
+----
 
 This code is using the timer component, with all default configurations, it will be executed in a forever the message *Hello router!"* in the console in a specific frequency.
 
+Components are the key of Camel. They are flexible and reusable  "libraries" that abstract complex operations making it trivial, boosting developer productivity!
 
-Components are the key of Camel. They are flexible and reusable "libraries" that abstract complex operations making it trivial, boosting the developer productivity!
+https://github.com/apache/camel/blob/master/components/readme.adoc[Take a look at the camel components]
 
-https://github.com/apache/camel/blob/master/components/readme.adoc[Take a look in camel components]
-
-
-Now, let's use some parameters with timer component to repeat *only 5 times* within the *interval of 1 sec*. 
+Now, let's use some parameters with timer component to repeat *only 5 times* within the *interval of 1 sec*.
 
 [source,java]
 ----
-from("timer:generateOrder?repeatCount=5&period=1000")
-    .log("Hello router!"); 
+from("timer:generate?repeatCount=5&period=1000")
+    .log("Hello router!");
 ----
 
-Use *CTLR* + *SPACE* to use the auto complete feature:
+Use *CTLR* + *SPACE* to use the auto complete feature, if it is available.
 
 image::./images/codeready-autocomplete.gif[]
 
@@ -70,10 +65,7 @@ image::./images/codeready-autocomplete.gif[]
 
 image::./images/camel-structure.png[]
 
-This is the basis of component usage. The component (some examples: *file, ftp, http*), after we have the component 
-name (chosen by you) and for last the parameters supported by the documentation. 
-
-If you configured your IDE correctly, you should have autocomplete working for it. 
+This is the basis of how components work.
 
 Now, let's run the project clicking on the *RUN* or *RE-RUN* action that we previously set up and see if it works.
 
@@ -86,30 +78,24 @@ If you are doing it locally, you can run as a standard spring-boot application.
 [type=verification]
 Do you see 5 *Hello router!* messages on the console?
 
-Think in camel as a pipeline, that transport things *from* someplace to *another one*, and this message is in the body. 
+Think of Camel as a pipeline that transports things *from* someplace to *another one*, and this message body flows through the pipes.
 
-Camel’s syntax is inspired by the UNIX pipeline.
+Camel’s syntax is inspired by the UNIX pipeline. In UNIX, we might execute something like `ps -fe | grep foo`. When we run this command, the output of the `ps` command becomes the input to the `grep` command. We “pipe” the output of one command into the input of another command.
 
-In UNIX, we might execute something like `ps -fe | grep foo`. 
-When we run this command, the output of the ps command becomes the input to the grep command. 
-We “pipe” the output of one command into the input of another command.
+Camel chains these actions together in an object called an `Exchange`, which consists of an input message (called the “In” message), some sort of processor (like a component, for instance) and possibly an output or “Out” message if the processor is meant to provide a synchronous response.
 
-Camel chains these actions together in an object called an Exchange, which consists of an input message (called the “In” message), some sort of processor (like a component, for instance) and possibly an output or “Out” message if the processor is meant to provide a synchronous response.
-
-A series of Exchange state changes creates a Camel Route.
-
-Take a look in the log that accesses the item attribute inside the Order object, and the Order is the body itself. 
+A series of `Exchange` state changes creates a Camel Route.
 
 image:./images/camel-pipeline.png[]
 
-Take some time and take a look at https://access.redhat.com/documentation/en-us/red_hat_jboss_fuse/6.3/html/apache_camel_development_guide/basicprinciples[this documentation] to understand better how the camel pipeline works. 
+Take some time and take a look at https://access.redhat.com/documentation/en-us/red_hat_fuse/7.4/html/apache_camel_development_guide/basicprinciples[this documentation] to understand better how the Camel pipeline works.
 
 [time=10]
-== Generating Orders Automatically 
+== Generating Orders Automatically
 
-Now, take a look in the class *OrderService.java*, it generates an *Order.java* object, alternating some values between *Camel* and *ActiveMQ*.
+Now, take a look in the class `OrderService.java`, it generates an `Order.java` object, alternating some values between *Camel* and *ActiveMQ*.
 
-Let's call this method to get a new Order using the *bean* method. 
+Let's call this method to get a new Order using the *bean* method.
 
 [source,java]
 ----
@@ -119,22 +105,20 @@ from("timer:generate?repeatCount=5&period=1000")
     .log("Order ${body.item} generated");
 ----
 
-Now, it is using the OrderService class to generate a new Order, print some information in the console.
+Now, it is using the `OrderService` class to generate a new `Order`, print some information in the console.
 
-And... Where is the Order object? 
+And... Where is the Order object?
 
-If your answer was in the body, you are right! 
+If your answer was in the body, you are right!
 
 [type=verification]
 Do you see different Orders by the messages on the console?
 
 [time=1]
-== Summary 
+== Summary
 
-Congratulations you finished the Hello Router lab! 
+Congratulations you finished the Hello World Camel lab!
 
-On this lab, you learned about the camel pipelines and how it works. 
-Also to interact with Jave Beans directly from your DSL.
+In this lab you learned about Camel pipelines and how they work. You also learned how to interact with Java Beans directly from the Camel DSL.
 
-You can now proceed to link:{next-lab-url}[Working with Files and FTP].  
-
+You can now proceed to link:{next-lab-url}[Working with Files and FTP].

@@ -10,18 +10,13 @@ endif::[]
 
 Workshop structure and environment set up.
 
-Welcome to the Fuse workshop! It's a pleasure to guide you on this hands-on experience. 
+Welcome to the Fuse workshop! It's a pleasure to guide you on this hands-on experience.
 
-This workshop has as target to offer you a pratical experience with Red Hat Fuse, it's not a complete training 
-of Red Hat Fuse, for this purpose we have an amazing https://www.redhat.com/pt-br/services/training/jb421-red-hat-jboss-fuse-camel-development[official training] 
-covery many aspects of Red Hat Fuse in deep.
+This workshop aims to offer you practical experience with Red Hat Fuse. It is not meant to be a complete training of Red Hat Fuse. For this purpose we have an amazing https://www.redhat.com/pt-br/services/training/jb421-red-hat-jboss-fuse-camel-development[official training], covering many aspects of Red Hat Fuse in depth.
 
-As the objective is not cover all details and cover many Fuse aspects during this workshop, 
-we will be using a https://github.com/hodrigohamalho/fuse-workshop.git[project skeleton] during this lab.
+The main objective is to cover as many Fuse aspects during this workshop. We will be using a https://github.com/hodrigohamalho/fuse-workshop.git[project skeleton] during this lab.
 
-This project called *fuse-workshop* project is a Red Hat Fuse (aka Camel) Spring Boot project, 
-with some code already did for you, it will provide help to make you focused in the what really matters 
-instead of boilerplate code.
+This *fuse-workshop* project is a Red Hat Fuse (aka https://camel.apache.org[Apache Camel]) Spring Boot project, with some code already written for you. It will help you focus on what really matters rather than having you write lots of boilerplate code.
 
 [type=walkthroughResource]
 .CodeReady Workspaces
@@ -29,9 +24,7 @@ instead of boilerplate code.
 * link:{codeready-url}[Console, window="_blank"]
 ****
 
-****
-* link:https://developers.redhat.com/products/codeready-workspaces/overview/[Want to know more about Openshift CodeReady Workspaces ?, window="_blank"]
-****
+link:https://developers.redhat.com/products/codeready-workspaces/overview/[Want to know more about CodeReady Workspaces?, window="_blank"]
 
 [type=walkthroughResource]
 .OpenShift Console
@@ -50,36 +43,36 @@ Lab Requirements
 .. Web Browser
 
 . Local machine
-.. Notebook (At least 4 GB RAM)
+.. At least 4 GB RAM
 .. JDK 1.8+
 .. Git
-.. https://www.okd.io/download.html[oc client (Openshift Command Line)]
-.. https://code.visualstudio.com/download[Visual Studio Code]
-... Plugin: https://marketplace.visualstudio.com/items?itemName=redhat.apache-camel-extension-pack[Extension Pack for Apache Camel]
-.. https://filezilla-project.org/download.php?type=client[Filezila (Optional)]
+.. oc client
+... https://access.redhat.com/downloads/content/290[Download from Red Hat]
+... https://www.okd.io/download.html[Download from Community]
+.. https://visualstudio.microsoft.com/downloads/[Visual Studio IDE]
+... Plugin: *Extension Pack for Apache Camel*
+... Plugin: *Language Support for Apache Camel*
+.. https://filezilla-project.org/download.php?type=client[Filezila]
 
-{empty} +
-
-Knowledge Requirements 
+Knowledge Requirements
 
 . Java
 . Maven
-.. Replace your `~/.m2/settings.xml by the fuse-workshop/configuration/settings.xml`
+.. Replace your `~/.m2/settings.xml` by the `fuse-workshop/configuration/settings.xml`
 
-== Setup CodeReady Workspaces
+[time=5]
+== Setup Code Ready Workspace
 
-These walkthrough use CodeReady Workspaces (Eclipse Che). 
-It's an IDE on the cloud, but I recommend you to set up a local environment because it's usually what the most developers use on a daily routine. 
-
-. It's not mandatory  you can use your preferred IDE, like Visual Studio Code or JBoss Developer Studio.
+These walkthrough use CodeReady Workspaces (based on https://www.eclipse.org/che[Eclipse Che]).
+It's an IDE on the cloud based on containers. You can also use a local development environment if you'd prefer (i.e. https://code.visualstudio.com[Visual Studio Code], https://developers.redhat.com/products/codeready-studio/overview[Red Hat CodeReady Studio] (formerly known as JBoss Developer Studio), https://www.jetbrains.com/idea[IntelliJ IDEA], etc).
 
 To build the project in your own environment, you will need:
 
 * JDK 7+
 * Maven 3+
-* Git 
+* Git
 
-If you already have all installed, just clone the git repository and run mvn install
+If you already have all installed, just clone the git repository and run `mvn install`
 
 [source,bash]
 ----
@@ -88,13 +81,11 @@ cd fuse-workshop
 mvn spring-boot:run
 ----
 
-The *fuse-workshop* project is a Camel Spring Boot project, 
-with some boilerplate code already did for you, it will provide help to make you 
-focused in the what really matters instead of boilerplate code.
+The *fuse-workshop* project is a Camel Spring Boot project, with some code already written for you. It will help you focus on what really matters rather than having you write lots of boilerplate code.
 
 {empty} +
 
-.Open link:{codeready-url}[CodeReady Workspaces, window="_blank"]
+.Open link:{codeready-url}/f?url=https://github.com/hodrigohamalho/fuse-workshop[CodeReady Workspaces, window="_blank"]
 
 Credentials:
 
@@ -103,36 +94,7 @@ Your password is: `{user-password}`
 
 {empty} +
 
-.. Create the workspace (Maybe this step happens automatically for you)
-
-image::images/02-che.png[initial web page, role="integr8ly-img-responsive"]
-
-{empty} +
-
-... In the *Stack* options, choose *Red Hat Fuse stack*
-... Change the *RAM* memory to *4 GBs*.
-... Click on *Add or import project*
-... Repository URL: `https://github.com/hodrigohamalho/fuse-workshop.git`
-... Click on *Create*
-... Create the workspace and select the option *Open IDE*
-
-image::images/03-che.png[initial web page, role="integr8ly-img-responsive"]
-
-{empty} +
-
-image::images/03-che-2.png[initial web page, role="integr8ly-img-responsive"]
-
-{empty} +
-
-image::images/04-che.png[initial web page, role="integr8ly-img-responsive"]
-
-{empty} +
-
-As you are executing this for the first time, all dependencies will be downloaded and it takes time, please be patient.
-
-{empty} +
-
-If everything worked fine, you now are seeing an IDE with your project imported.
+If everything worked fine, you should now see an IDE with your project imported.
 
 image::images/05-che.png[eclipse che, role="integr8ly-img-responsive"]
 
@@ -140,64 +102,30 @@ In the next step we are going to configure this project properly.
 
 {empty} +
 
-[time=10]
+[time=5]
 == Setup Project
 
-. Let's inform to Eclipse Che that it is a Maven project.
+Run Project
 
-.. Select the project and on the *top menu*, select *Project > Update Project Configuration*.
+. Right-click on the `fuse-workshop (master)` project & select `Commands -> Run (2) -> Run application locally`
+. You should see the application build and then run
 
-image::images/06-che.png[initial web page, role="integr8ly-img-responsive"]
+image::images/13-che.png[Running Application, role="integr8ly-img-responsive"]
 
-{empty} +
-
-.. In the *Project Configuration* panel, under the menu *Java* select *Maven* as the option and *Save*.
-
-image::images/07-che.png[initial web page, role="integr8ly-img-responsive"]
-
-{empty} +
-
-.. Select Next in the panel that shows maven configuration.
-
-image::images/07-2-che.png[initial web page, role="integr8ly-img-responsive"]
-
-{empty} +
-
-If everything worked fine, you should see a screen similar with this one
-
-image::images/08-che.png[initial web page, role="integr8ly-img-responsive"]
-
-{empty} +
-
-.. Click on the arrow next to the *PLAY* button, and select *Create Run Command*
-... Name: run 
-... Command line:
-
-    mvn spring-boot:run -f ${current.project.path}
-
-... Select apply to *fuse-workshop*
-... Click on the green button *RUN* 
-
-image::images/09-che.png[initial web page, role="integr8ly-img-responsive"]
-
-After run you should see "Hello router" message in the console.
-
-image::images/11-che.png[initial web page, role="integr8ly-img-responsive"]
-
-[time=10]
+[time=5]
 [type=verification]
 Are you seeing a loop hello message in the logs?
 
-During the workshop you will do several changes in the source code, so to redeploy 
+During the workshop you will do several changes in the source code, so to redeploy
 just hit the *Re-run* button.
 
 image::images/12-che.png[initial web page, role="integr8ly-img-responsive"]
 
 [time=1]
-== Summary 
+== Summary
 
-Congratulations you finished the setup of your environment! 
+Congratulations you finished the setup of your environment!
 
-On this lab, you learned how to set up a Fuse on Springboot project using CodeReady Workspaces.
+In this lab, you learned how to set up a Fuse on Spring Boot project using CodeReady Workspaces.
 
 You can now proceed to link:{next-lab-url}[Hello Router Lab].
