@@ -12,7 +12,7 @@ image::./images/lab02-process-diagram.png[]
 
 Contents covered during this lab
 
-* Content base router pattern 
+* Content-Based Router pattern 
 * XML and JSON transformation 
 * File component 
 * FTP component 
@@ -37,9 +37,9 @@ Contents covered during this lab
 ****
 
 [time=2]
-== Content-base Router introduction
+== Content-Based Router introduction
 
-Content-Base Router (CBR) is a pattern from the Enterprise Integration Pattern. You will use CBR when you need 
+Content-Based Router (CBR) is a pattern from the Enterprise Integration Pattern. You will use CBR when you need 
 to filter some result.
 
 The code below is a CBR sample from the Enterprise Integration Pattern website.
@@ -82,7 +82,7 @@ from("timer:generate?repeatCount=5&period=1000")
 .to("direct:book-to-file");
 ----
 
-Now, let's implement the content base router pattern:
+Now, let's implement the Content-Based Router pattern:
 
 [source,java]
 ----
@@ -327,7 +327,7 @@ Congratulations you finished the File and FTP lab!
 
 We see a lot of things during this lab, a quick recap:
 
-* Content base router pattern 
+* Content-Based Router pattern 
 * XML and JSON transformation 
 * File component 
 * FTP component 
