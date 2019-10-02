@@ -16,7 +16,7 @@ For it works, we will need the `oc` client working in our local machine.
 ****
 
 ****
-* link:https://developers.redhat.com/products/codeready-workspaces/overview/[Want to know more about OpenShift CodeReady Workspace ?, window="_blank"]
+* link:https://developers.redhat.com/products/codeready-workspaces/overview/[Want to know more about OpenShift CodeReady Workspaces ?, window="_blank"]
 ****
 
 [type=walkthroughResource]

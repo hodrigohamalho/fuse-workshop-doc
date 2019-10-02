@@ -1,4 +1,4 @@
-:walkthrough: Setup Codeready workspace with Fuse
+:walkthrough: Setup Codeready workspaces with Fuse
 :codeready-url: https://codeready-codeready.{openshift-app-host}
 :openshift-url: {openshift-host}/console
 :next-lab-url: https://tutorial-web-app-webapp.{openshift-app-host}/tutorial/fuse-springboot-workshop.git-walkthroughs-01-hello-router
@@ -30,7 +30,7 @@ instead of boilerplate code.
 ****
 
 ****
-* link:https://developers.redhat.com/products/codeready-workspaces/overview/[Want to know more about Openshift CodeReady Workspace ?, window="_blank"]
+* link:https://developers.redhat.com/products/codeready-workspaces/overview/[Want to know more about Openshift CodeReady Workspaces ?, window="_blank"]
 ****
 
 [type=walkthroughResource]
@@ -66,9 +66,9 @@ Knowledge Requirements
 . Maven
 .. Replace your `~/.m2/settings.xml by the fuse-workshop/configuration/settings.xml`
 
-== Setup Code Ready Workspace
+== Setup CodeReady Workspaces
 
-These walkthrough use Code Ready Workspace (Eclipse Che). 
+These walkthrough use CodeReady Workspaces (Eclipse Che). 
 It's an IDE on the cloud, but I recommend you to set up a local environment because it's usually what the most developers use on a daily routine. 
 
 . It's not mandatory  you can use your preferred IDE, like Visual Studio Code or JBoss Developer Studio.
@@ -198,6 +198,6 @@ image::images/12-che.png[initial web page, role="integr8ly-img-responsive"]
 
 Congratulations you finished the setup of your environment! 
 
-On this lab, you learned how to set up a Fuse on Springboot project using Code Ready Workspace.
+On this lab, you learned how to set up a Fuse on Springboot project using CodeReady Workspaces.
 
 You can now proceed to link:{next-lab-url}[Hello Router Lab].

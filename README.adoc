@@ -8,9 +8,9 @@ Those walkthroughs follow the structure to be deployed in the *Red Hat Integreat
 
 == Pre Requirements
 
-=== Remote Environment (CodeReady Workspace)
+=== Remote Environment (CodeReady Workspaces)
 
-If you use CodeReady Workspace, you just need a updated browser :) 
+If you use CodeReady Workspaces, you just need a updated browser :) 
 All the labs were tested only with Chrome, feel free to use any other 
 and in case of any issue please https://github.com/hodrigohamalho/fuse-workshop-doc/issues[fill an issue].
 
