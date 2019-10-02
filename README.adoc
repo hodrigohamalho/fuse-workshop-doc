@@ -19,11 +19,10 @@ and in case of any issue please https://github.com/hodrigohamalho/fuse-workshop-
 . Notebook (At least 4 GB RAM)
 . JDK 1.8+
 . Git
-. oc client 
-.. https://access.redhat.com/downloads/content/290[Download from Red Hat]
-.. https://www.okd.io/download.html[Download from Community]
-. https://visualstudio.microsoft.com/downloads/[Visual Studio IDE]
-. https://filezilla-project.org/download.php?type=client[Filezilla]
+. https://www.okd.io/download.html[oc client (Openshift Command Line)]
+. https://code.visualstudio.com/download[Visual Studio Code]
+.. Plugin: https://marketplace.visualstudio.com/items?itemName=redhat.apache-camel-extension-pack[Extension Pack for Apache Camel]
+. https://filezilla-project.org/download.php?type=client[Filezila (Optional)]
 
 == Agenda
 

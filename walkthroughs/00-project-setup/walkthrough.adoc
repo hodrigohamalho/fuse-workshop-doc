@@ -54,9 +54,9 @@ Lab Requirements
 .. JDK 1.8+
 .. Git
 .. https://www.okd.io/download.html[oc client (Openshift Command Line)]
-.. https://visualstudio.microsoft.com/downloads/[Visual Studio IDE]
+.. https://code.visualstudio.com/download[Visual Studio Code]
 ... Plugin: https://marketplace.visualstudio.com/items?itemName=redhat.apache-camel-extension-pack[Extension Pack for Apache Camel]
-.. https://filezilla-project.org/download.php?type=client[Filezila]
+.. https://filezilla-project.org/download.php?type=client[Filezila (Optional)]
 
 {empty} +
 
