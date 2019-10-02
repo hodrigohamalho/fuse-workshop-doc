@@ -5,29 +5,23 @@
 
 = Lab 2 - Integration with Files and FTP
 
-Explore the basic concepts of Camel, with a use case with FILE and FTP components doing some 
-basic transformations with POJO, XML and JSON.
+Explore the basic concepts of Camel, with a use case with FILE and FTP components doing some basic transformations with POJO, XML and JSON.
 
 image::./images/lab02-process-diagram.png[]
 
 Contents covered during this lab
 
-* Content-Based Router pattern 
-* XML and JSON transformation 
-* File component 
-* FTP component 
-* Processor 
+* Content-Based Router pattern
+* XML and JSON transformation
+* File component
+* FTP component
+* Processor
 
 [type=walkthroughResource]
 .CodeReady Workspaces
 ****
 * link:{codeready-url}[Console, window="_blank"]
-****
-
-[type=walkthroughResource]
-.CodeReady Workspaces
-****
-* link:https://developers.redhat.com/products/codeready-workspaces/overview/[Want to know more about Openshift CodeReady Workspace ?, window="_blank"]
+* link:https://developers.redhat.com/products/codeready-workspaces/overview/[Want to know more about CodeReady Workspaces?, window="_blank"]
 ****
 
 [type=walkthroughResource]
@@ -39,8 +33,7 @@ Contents covered during this lab
 [time=2]
 == Content-Based Router introduction
 
-Content-Based Router (CBR) is a pattern from the Enterprise Integration Pattern. You will use CBR when you need 
-to filter some result.
+Content-Based Router (CBR) is a pattern from the https://www.enterpriseintegrationpatterns.com[Enterprise Integration Patterns]. You will use CBR when you need to filter some result and send to a different target based in the filter criteria.
 
 The code below is a CBR sample from the Enterprise Integration Pattern website.
 
@@ -56,18 +49,16 @@ from("direct:in")
             .to("direct:other")
 ----
 
-You will use similar code in this lab. 
+You will use similar code in this lab.
 
 [time=5]
-=== Separating different types of Order
+=== Separating different types of Orders
 
-We are continuing to evolve the previous lab. We have five orders being generated automatically by the last lab. 
-In each order generated the item description is different, alternating between *ActiveMQ Book* and *Camel Book*.
+We are continuing to evolve the previous lab. We have five orders being generated automatically by the last lab. In each order generated the item description is different, alternating between *ActiveMQ* and *Camel*.
 
-Let's separate each of these different books with content-based router pattern. But first, let's update the previous router to 
-invoke the one that we will be working on this lab.
+Let's separate each of these different books with content-based router pattern. But first, let's update the previous router to invoke the one that we will be working on this lab.
 
-Add this line to the previous lab: 
+Add this line to the previous lab:
 
     .to("direct:book-to-file");
 
@@ -89,30 +80,30 @@ Now, let's implement the Content-Based Router pattern:
 from("direct:book-to-file")
     .choice()
         .when(simple("${body.item} == 'Camel'"))
-            .log("Processing a camel book")
+            .log("Processing a Camel book")
         .otherwise()
-            .log("Processing an activemq book");
+            .log("Processing an ActiveMQ book");
 ----
 
 image::./images/lab02-cbr-code.png[]
 
 We compare the *item* attribute of the object Order and print a message.
 
-Run the integration. 
+Run the integration.
 
 image::./images/02-camel-cbr-01.png[]
 
 [type=verification]
-Do you see both messages *Processing Camel book* and *Processing ActiveMQ book* in the log?
+Do you see both messages *Processing a Camel book* and *Processing an ActiveMQ book* in the log?
 
 [time=5]
 == Interacting with Files
 
-https://camel.apache.org/file2.html
+https://camel.apache.org/file.html
 
-Let's use a new *File* component to persist this order on the filesystem. *File* component is powerful and enables us to interact with the file system easily. 
+Let's use a new *File* component to persist this order on the filesystem. The *File* component is powerful and enables us to interact with the file system easily.
 
-Adjust the router to persist the camel book in the directory */tmp/fuse-workshop/camel* and the activemq book in  */tmp/fuse-workshop/activemq*
+Adjust the router to persist the Camel book in the directory `/tmp/fuse-workshop/camel` and the ActiveMQ book in  `/tmp/fuse-workshop/activemq`
 
 image::./images/lab02-filesystem.png[]
 
@@ -132,24 +123,24 @@ from("direct:book-to-file")
             .to("file:/tmp/fuse-workshop/activemq");
 ----
 
-The line .convertBodyTo(String.class) is just invoking the Order.class to String method. and after we are saving all files in the filesystem.
+The line `.convertBodyTo(String.class)` is just invoking the `toString` method on the `Order` class. After that we are saving all files to the filesystem.
 
 Run the integration and check if the files were saved.
 
 image::./images/lab02-file-code.png[]
 
 [type=verification]
-Do you see the files inside the directory camel under your project?
+Do you see the files inside the `/tmp/fuse-workshop` directories?
 
-But wait, look at file names is auto-generated and weird. Let's fix these exploring some parameters of the file component. 
+But wait, look at file names! They are auto-generated and weird! Let's fix these exploring some parameters of the file component.
 
 Change the last line as the following:
 
-Camel: 
-    
+Camel:
+
     .to("file:/tmp/fuse-workshop/camel?fileName=camel-${date:now:yyyy-MM-dd-HHmmssSSS}.txt")
 
-ActiveMQ 
+ActiveMQ
 
     .to("file:/tmp/fuse-workshop/activemq?fileName=activemq-${date:now:yyyy-MM-dd-HHmmssSSS}.txt");
 
@@ -159,27 +150,27 @@ Run the integration
 image::./images/lab02-file-pretty-names.png[]
 
 [type=verification]
-Do you see the files with the new pattern that was defined?
+Do you see the files with the new patterns?
 
-[time=10]   
+[time=10]
 == Data Transformation
 
 https://camel.apache.org/data-format.html
 
-Now, let's take the example before and instead of store everything in *.txt* format, let's transform the Java object in camel body (Order.java). 
+Now, let's take the example before and instead of storing everything in *.txt* format, let's transform the Java object in the Camel body (`Order.java`).
 
 Let's transform the Camel type to JSON and the ActiveMQ to XML.
 
 image::./images/lab02-content-base-router.png[]
 
-To work with Data Format, we have two methods: *marshall()* and *unmarshal()*. 
+To work with Data Format, we have two methods: *marshall()* and *unmarshal()*.
 
-* *marshall()* we use to convert a Java Bean in other datatype as XML,JSON,CSV..
-* *unmarshal()* we use to the opposite when we have a datatype as XML, JSON, CSV and would like to transform in a Java Bean. 
+* *marshall()* we use to convert a Java Bean in other datatype as XML, JSON, CSV, etc
+* *unmarshal()* we use to the opposite when we have a datatype as XML, JSON, CSV, etc, and would like to transform into a Java Bean
 
-Let's remove the transformation of the body to String and do a proper transformation. To camel items let's transform to JSON and ActiveMQ items to XML. 
+Let's remove the transformation of the body to `String` and do a proper transformation.
 
-Update the route to the following: 
+Update the route to the following:
 
 [source,java]
 ----
@@ -200,31 +191,31 @@ Run the integration
 image::./images/lab02-file-pretty-names2.png[]
 
 [type=verification]
-Do you see the files with the correct extensions and the content of the files is on the correct format?
+Do you see the files with the correct extensions? Is the content of each file what you would expect?
 
 [time=10]
-== FTP Server 
+== FTP Server
 
-Now, let's do another route to upload those files to an FTP server. 
+Now, let's create another route to upload those files to an FTP server. The FTP server credentials will be provided by the instructor during the class.
 
-The FTP server credentials will be provided by the instructor during the class. 
-
-Implement a route that takes all files on camel directory and publishes it in the FTP server. 
+Implement a route that takes all files in the camel directory and publishes it in the FTP server.
 
 image::./images/lab02-ftp-server-diagram.png[]
 
-The FTP directory must be the */var/fuse-workshop/<your-user>*.  
-For evals01, that path will be */var/fuse-workshop/evals01*.
+* FTP Host: `<FTP HOST>`
+* FTP Username: `{user-username}`
+* FTP Password: `<FTP PASSWORD>`
+* FTP Directory: `/var/fuse-workshop/{user-username}`
 
-Also, remember to configure the component to *delete the files* before consumed.
+Also, remember to configure the component to *delete the files* after being consumed.
 
-The sample for activemq directory it's the following:
+The sample for the camel directory would be:
 
 [source,java]
 ----
-from("file:/tmp/fuse-workshop/activemq?delete=true")
-    .log("uploading activemq orders to ftp")
-    .to("ftp://<ftp-user>@<ftp-host>?password=<ftp-password>");
+from("file:/tmp/fuse-workshop/camel?delete=true")
+    .log("Uploading camel orders to ftp")
+    .to("ftp://{user-username}@<ftp-host>?password=<ftp-password>");
 ----
 
 Do the same with the files on the camel directory.
@@ -234,21 +225,20 @@ Run the integration.
 image::./images/lab02-filezilla-files.png[]
 
 [type=verification]
-Do you see the files uploaded to FTP server and also it removed from the filesystem?
+Do you see the files uploaded to FTP server? Were they also removed from the filesystem?
 
 [time=10]
-=== Processor and Transformation 
+=== Processor and Transformation
 
-But to add some adrenaline to it. Let's change the Order attribute "processed" to true, 
-in the case of ActiveMQ books before uploading to the FTP. 
+Let's add some adrenaline to it! Let's change the `Order` attribute `processed` to `true` for ActiveMQ books prior to doing the upload to the FTP server.
 
 image::./images/lab02-process-diagram.png[]
 
-One way to do it is by using a Processor. On the Processor, you can have total access to the message and headers being transported on the camel pipeline. 
+One way to do it is by using a `Processor`. With a `Processor`, you can have total control with the message and headers being sent through the Camel pipeline.
 
-So let's create a process, capture de object Order on the Camel Body and change the attribute process to *true*.
+Let's create a process, capture `Order` object on the Camel body, and change the attribute `process` to *`true`*.
 
-Open the *OrderProcessor.java* file, and do the logic to change the attribute processed of Order object.
+Open the `OrderProcessor.java` file, and implement the logic to change the attribute `processed` of the `Order` object.
 
 [source,java]
 ----
@@ -262,7 +252,7 @@ public void process(Exchange exchange) throws Exception {
 
 image::./images/lab02-processor.png[]
 
-And in the route, add the process before the first transformation of ActiveMQ books. 
+And in the route, add the process before the first transformation of ActiveMQ books.
 [source,java]
 ----
 from("direct:book-to-file")
@@ -287,8 +277,7 @@ Do you see the last XML files uploaded with the process attribute is true?
 
 *Just as an additional note*
 
-If you would like to consume files from FTP and work as a Java Object, 
-instead to use marshal, you must use *unmarshal()*, example:
+If you would like to consume files from FTP and work with them as Java Objects, you would use the `unmarshal()` method instead of `marshal()`. See an example:
 
 [source,java]
 ----
@@ -299,7 +288,7 @@ instead to use marshal, you must use *unmarshal()*, example:
 [time=2]
 === Boilerplate code
 
-To make this lab works, the following dependencies were added to the project:
+To make this lab work, the following dependencies were added to the project (in `pom.xml`):
 
     <!-- PARSER -->
     <dependency>
@@ -308,29 +297,25 @@ To make this lab works, the following dependencies were added to the project:
     </dependency>
     <dependency>
         <groupId>org.apache.camel</groupId>
-        <artifactId>camel-jacksonxml</artifactId>
-    </dependency>
-    <dependency>
-        <groupId>org.apache.camel</groupId>
         <artifactId>camel-xstream</artifactId>
     </dependency>
-    <!-- FTP --> 
+    <!-- FTP -->
     <dependency>
         <groupId>org.apache.camel</groupId>
         <artifactId>camel-ftp</artifactId>
     </dependency>
 
 [time=1]
-== Summary 
+== Summary
 
-Congratulations you finished the File and FTP lab! 
+Congratulations you finished the File and FTP lab!
 
-We see a lot of things during this lab, a quick recap:
+We covered a lot of things during this lab. Here's a quick recap:
 
-* Content-Based Router pattern 
-* XML and JSON transformation 
-* File component 
-* FTP component 
+* Content-Based Router pattern
+* XML and JSON transformation
+* File component
+* FTP component
 * Processor (To add some custom logic to your route)
 
-You can now proceed to link:{next-lab-url}[REST and Database].  
+You can now proceed to link:{next-lab-url}[REST and Database].
