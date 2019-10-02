@@ -22,9 +22,8 @@ This *fuse-workshop* project is a Red Hat Fuse (aka https://camel.apache.org[Apa
 .CodeReady Workspaces
 ****
 * link:{codeready-url}[Console, window="_blank"]
+* link:https://developers.redhat.com/products/codeready-workspaces/overview/[Want to know more about CodeReady Workspaces?, window="_blank"]
 ****
-
-link:https://developers.redhat.com/products/codeready-workspaces/overview/[Want to know more about CodeReady Workspaces?, window="_blank"]
 
 [type=walkthroughResource]
 .OpenShift Console

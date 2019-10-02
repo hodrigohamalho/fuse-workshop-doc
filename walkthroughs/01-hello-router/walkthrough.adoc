@@ -13,9 +13,8 @@ Let's explore a simple scenario where we are going to use a timer component to g
 .CodeReady Workspaces
 ****
 * link:{codeready-url}[Console, window="_blank"]
+* link:https://developers.redhat.com/products/codeready-workspaces/overview/[Want to know more about CodeReady Workspaces?, window="_blank"]
 ****
-
-link:https://developers.redhat.com/products/codeready-workspaces/overview/[Want to know more about CodeReady Workspaces?, window="_blank"]
 
 [type=walkthroughResource]
 .OpenShift Console
