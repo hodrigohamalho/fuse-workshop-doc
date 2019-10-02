@@ -23,7 +23,7 @@ and in case of any issue please https://github.com/hodrigohamalho/fuse-workshop-
 .. https://access.redhat.com/downloads/content/290[Download from Red Hat]
 .. https://www.okd.io/download.html[Download from Community]
 . https://visualstudio.microsoft.com/downloads/[Visual Studio IDE]
-. https://filezilla-project.org/download.php?type=client[Filezila]
+. https://filezilla-project.org/download.php?type=client[Filezilla]
 
 == Agenda
 
@@ -61,7 +61,7 @@ and in case of any issue please https://github.com/hodrigohamalho/fuse-workshop-
 
     * Messaging
 
-    * Openshift
+    * OpenShift
 
     * Fuse AMQ Online
 
