@@ -47,27 +47,24 @@ instead of boilerplate code.
 Lab Requirements
 
 . Cloud
-.. Browser
+.. Web Browser
 
 . Local machine
 .. Notebook (At least 4 GB RAM)
 .. JDK 1.8+
 .. Git
-.. oc client 
-... https://access.redhat.com/downloads/content/290[Download from Red Hat]
-... https://www.okd.io/download.html[Download from Community]
+.. https://www.okd.io/download.html[oc client (Openshift Command Line)]
 .. https://visualstudio.microsoft.com/downloads/[Visual Studio IDE]
-... Plugin: *Extension Pack for Apache Camel*
-... Plugin: *Language Support for Apache Camel*
+... Plugin: https://marketplace.visualstudio.com/items?itemName=redhat.apache-camel-extension-pack[Extension Pack for Apache Camel]
 .. https://filezilla-project.org/download.php?type=client[Filezila]
 
-+
+{empty} +
 
 Knowledge Requirements 
 
 . Java
 . Maven
-.. Replace your ~/.m2/settings.xml by the fuse-workshop/configuration/settings.xml
+.. Replace your `~/.m2/settings.xml by the fuse-workshop/configuration/settings.xml`
 
 == Setup Code Ready Workspace
 
