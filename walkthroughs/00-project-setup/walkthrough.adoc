@@ -112,7 +112,7 @@ image::images/02-che.png[initial web page, role="integr8ly-img-responsive"]
 
 {empty} +
 
-... In the *Stack* options, choose *"Java" - "Default Java Stack with JDK 8, Maven and Tomcat."*
+... In the *Stack* options, choose *Red Hat Fuse stack*
 ... Change the *RAM* memory to *4 GBs*.
 ... Click on *Add or import project*
 ... Repository URL: `https://github.com/hodrigohamalho/fuse-workshop.git`
@@ -179,15 +179,11 @@ image::images/08-che.png[initial web page, role="integr8ly-img-responsive"]
     mvn spring-boot:run -f ${current.project.path}
 
 ... Select apply to *fuse-workshop*
+... Click on the green button *RUN* 
 
 image::images/09-che.png[initial web page, role="integr8ly-img-responsive"]
 
-image::images/10-che.png[initial web page, role="integr8ly-img-responsive"]
-
-{empty} +
-
-. Run Project
-.. Click on the green button *RUN* 
+After run you should see "Hello router" message in the console.
 
 image::images/11-che.png[initial web page, role="integr8ly-img-responsive"]
 
@@ -198,7 +194,7 @@ Are you seeing a loop hello message in the logs?
 During the workshop you will do several changes in the source code, so to redeploy 
 just hit the *Re-run* button.
 
-image::images/12-che.png[]
+image::images/12-che.png[initial web page, role="integr8ly-img-responsive"]
 
 [time=1]
 == Summary 
