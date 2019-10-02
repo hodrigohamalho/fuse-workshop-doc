@@ -97,10 +97,6 @@ If everything worked fine, you should now see an IDE with your project imported.
 
 image::images/05-che.png[eclipse che, role="integr8ly-img-responsive"]
 
-In the next step we are going to configure this project properly.
-
-{empty} +
-
 [time=5]
 == Setup Project
 
@@ -108,6 +104,10 @@ Run Project
 
 . Right-click on the `fuse-workshop (master)` project & select `Commands -> Run (2) -> Run application locally`
 . You should see the application build and then run
+
+image::images/11-che.png[Running Application, role="integr8ly-img-responsive"]
+
+{empty} +
 
 image::images/13-che.png[Running Application, role="integr8ly-img-responsive"]
 

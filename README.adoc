@@ -16,7 +16,7 @@ and in case of any issue please https://github.com/hodrigohamalho/fuse-workshop-
 
 == Local environment 
 
-. Notebook (At least 4 GB RAM)
+. At least 4 GB RAM
 . JDK 1.8+
 . Git
 . https://www.okd.io/download.html[oc client (Openshift Command Line)]
