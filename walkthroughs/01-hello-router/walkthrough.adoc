@@ -20,7 +20,7 @@ Let's explore a simple scenario where we are going to use a timer component to g
 ****
 
 [type=walkthroughResource]
-.Openshift Console
+.OpenShift Console
 ****
 * link:{openshift-url}[Console, window="_blank"]
 ****

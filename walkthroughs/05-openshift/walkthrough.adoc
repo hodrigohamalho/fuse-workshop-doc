@@ -2,11 +2,11 @@
 :codeready-url: https://codeready-codeready.{openshift-app-host}
 :openshift-url: {openshift-host}/console
 
-= Lab 5 - Publish to Openshift 
+= Lab 5 - Publish to OpenShift 
 
-There are several ways to deploy an application into Openshift. Directly from the git repository using S2I, from the local machine using binary deployment or from a Docker image.
+There are several ways to deploy an application into OpenShift. Directly from the git repository using S2I, from the local machine using binary deployment or from a Docker image.
 
-On this lab, we will use the binary deployment option, uploading the code directly from our machine to Openshift server.
+On this lab, we will use the binary deployment option, uploading the code directly from our machine to OpenShift server.
 For it works, we will need the `oc` client working in our local machine.
 
 [type=walkthroughResource]
@@ -16,11 +16,11 @@ For it works, we will need the `oc` client working in our local machine.
 ****
 
 ****
-* link:https://developers.redhat.com/products/codeready-workspaces/overview/[Want to know more about Openshift CodeReady Workspace ?, window="_blank"]
+* link:https://developers.redhat.com/products/codeready-workspaces/overview/[Want to know more about OpenShift CodeReady Workspace ?, window="_blank"]
 ****
 
 [type=walkthroughResource]
-.Openshift Console
+.OpenShift Console
 ****
 * link:{openshift-url}[Console, window="_blank"]
 ****
@@ -43,9 +43,9 @@ If everything worked, you see a screen like this.
 image::./images/lab05-mysql-03.png[]
 
 [time=15]
-== Application deploy into Openshift using Binary Deployment
+== Application deploy into OpenShift using Binary Deployment
 
-First login into Openshift:
+First login into OpenShift:
 
     oc login {openshift-host} -u evals01@example.com -p Password1
 
@@ -62,7 +62,7 @@ It's important to mention that it uses a binary deployment, but you can use the 
 After fabric8:deploy, take a look in the target field inside the project, to be more specific
 look into: target/docker/fuse-workshop/latest/build.
 
-Look that we are using the Broker on Openshift also the MYSQL database, all of the production data 
+Look that we are using the Broker on OpenShift also the MYSQL database, all of the production data 
 is on the *application-prod.properties* and we are activating this profile with the parameter:
 
     -Popenshift -Dspring.profiles.active=prod

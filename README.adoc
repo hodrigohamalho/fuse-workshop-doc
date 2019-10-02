@@ -77,7 +77,7 @@ So just to warm up your machine clone https://github.com/hodrigohamalho/fuse-wor
 
 == Setup in Integreatly Environment 
 
-. Login as admin in your openshift cluster
+. Login as admin in your OpenShift cluster
 . Add this repository to your walkthrough catalog
 
     oc patch webapp tutorial-web-app-operator --type=merge -o yaml -p '{ "spec": { "template": { "parameters": { "WALKTHROUGH_LOCATIONS": "https://github.com/integr8ly/tutorial-web-app-walkthroughs.git#master,https://github.com/hodrigohamalho/fuse-springboot-workshop.git#master" }}}}' -n webapp

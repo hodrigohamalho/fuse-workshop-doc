@@ -18,9 +18,9 @@ Contents covered during this lab
 
 * ActiveMQ component
 * Producing and Consuming messages to a queue
-* Openshift port forward feature
+* OpenShift port forward feature
 * Use a Local and Remote Broker
-* Deploy AMQ broker on Openshift
+* Deploy AMQ broker on OpenShift
 * AMQ Console
 
 [type=walkthroughResource]
@@ -34,7 +34,7 @@ Contents covered during this lab
 ****
 
 [type=walkthroughResource]
-.Openshift Console
+.OpenShift Console
 ****
 * link:{openshift-url}[Console, window="_blank"]
 ****
@@ -90,7 +90,7 @@ Run the application and test, calling the POST async method accessing the http:/
 
 Check the logs to see the messages exchanged in the queue. As we are using an embedded broker to test our application without the need to deploy in any place, 
 there isn't a web console, so don't worry with it for now. 
-When we deploy it on Openshift, we'll take a look in the AMQ console.
+When we deploy it on OpenShift, we'll take a look in the AMQ console.
 
 image::./images/lab04-messaging-03.png[]
 
@@ -98,7 +98,7 @@ image::./images/lab04-messaging-03.png[]
 Do you see the message  *" processing order async "* in the logs when you create a new Order?
 
 [time=15]
-== Using a AMQ BROKER on Openshift remotely
+== Using a AMQ BROKER on OpenShift remotely
 
 Create the project fuse-<your-user>. Please remember to replace <your-user>. 
 The images examples are using evals02, but *you must* use *your user*.
@@ -139,11 +139,11 @@ image::./images/lab04-messaging-09.png[]
 
 {empty} +
 
-Now that we already have the broker deployed on Openshift let's use a mechanism that enables we open a 
-a TCP tunnel with openshift and work with services as they are in our local machine, it's very useful to 
+Now that we already have the broker deployed on OpenShift let's use a mechanism that enables we open a 
+a TCP tunnel with OpenShift and work with services as they are in our local machine, it's very useful to 
 test resources as database and message broker.
 
-First login at Openshift after choosing the project that you created before and after list the pods of this project.
+First login at OpenShift after choosing the project that you created before and after list the pods of this project.
 
 [source,bash]
 ----
