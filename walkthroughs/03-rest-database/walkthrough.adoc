@@ -5,31 +5,40 @@
 
 = Lab 3 - REST and Database
 
-REST is key when we talk about integration. On this lab, we are going to explore some basic REST constructions with Red Hat Fuse (Camel).
-Interacting with a SQL database. 
+REST is key when we talk about integration. In this lab, we are going to explore some basic REST integrations with Red Hat Fuse (Camel) interacting with a SQL database.
 
 image::./images/lab03-rest-diagram.png[]
 
-We are going to work on 3 REST JSON endpoints: 
+We are going to work on 3 REST JSON endpoints:
 
-* GET - /orders - Retrieve all orders from a database. 
-* GET -/orders/{id} - Retrieve a specific order by id 
-* POST - /orders - CREATE a order in an async way. 
+* `GET /orders`
+** Retrieve all orders from a database
+* `GET /orders/{id}`
+** Retrieve a specific order by id
+* `POST /orders`
+** CREATE a order in an async way
 
-Contents covered during this lab
+Patterns/components covered during this lab
 
-* REST 
+* REST
 * Swagger Generation
 * Database
 * Wiretap (Async process)
 * Messaging
 
+[type=walkthroughResource]
+.CodeReady Workspaces
+****
+* link:{codeready-url}[Console, window="_blank"]
+* link:https://developers.redhat.com/products/codeready-workspaces/overview/[Want to know more about CodeReady Workspaces?, window="_blank"]
+****
+
 [time=10]
 == Creating REST endpoints
 
-Let's create the endpoints needed for this lab. 
+Let's create the endpoints needed for this lab.
 
-Open the *RestRouter.java*. And inside the configure() method, let's declare our first REST endpoint.
+Open `RestRouter.java`. Inside the `configure(`` method, declare our first REST endpoint.
 
 === Get all orders (GET)
 
@@ -38,40 +47,39 @@ Open the *RestRouter.java*. And inside the configure() method, let's declare our
 rest("/orders")
     .get("/")
         .route()
-        .log("geting all orders entries from database")
+        .log("Getting all order entries from database")
         .endRest();
 ----
 
-Run the integration and access the endpoint link:http://localhost:8080/camel/orders[Localhost, window="_blank"]
+Run the integration and access the preview endpoint as shown in your CodeReady Workspaces (append `/camel/orders` to it) terminal (or if running on a local workstation, link:http://localhost:8080/camel/orders[http://localhost:8080/camel/orders, window="_blank"])
 
-Every time you hit the HTTP endpoint the message *" getting all orders entries from database"* should appear in the log. It doesn't return anything because nothing was implemented to return. But for now, doesn't worry about it.
+Every time you hit the HTTP endpoint the message *" getting all orders entries from database"* should appear in the log. It doesn't return anything yet because nothing has implemented to return to the caller. For now, doesn't worry about it.
 
-image::./images/lab03-log01.png[]
+image::./images/lab03-get-orders-url-codeready.png[]
 
 [type=verification]
 Do you see the message *"getting all orders entries from database"* in the logs everytime you hit the /came/oders HTTP endpoint?
 
 === Get order by ID (GET)
 
-Observe how whe declare the path parameter ID on the URL on this new route. 
-Remember to remove the *;* char and move to the final *endRest()*.
+Observe how we declare the path parameter ID on the URL on this new route.
 
 [source,java]
 ----
 .get("/{id}")
     .route()
-    .log("geting order with id ${header.id} entry from database")
+    .log("Getting order with id ${header.id} entry from database")
     .endRest();
 ----
 
-Run the integration and access the link:http://localhost:8080/camel/orders/1[Localhost, window="_blank"] endpoint. 
+Run the integration again and access the page in the browser as before, except use the URI path `/camel/orders/1`.
 
 [type=verification]
-Do you see the message *"geting order with id ${header.id} entry from database"* in the logs everytime you hit the /came/oders/1 HTTP endpoint?
+Do you see the message *"Getting order with id 1 entry from database"* in the logs everytime you hit the /camel/orders/1 endpoint?
 
 === Create a new order (POST)
 
-Now we will implement the same path as before "/" bot using the HTTP verb POST. 
+Now we will implement the same path as before (`/`) but using the HTTP verb POST.
 
 [source,java]
 ----
@@ -90,7 +98,7 @@ rest("/orders")
         .route()
         .log("geting all orders entries from database")
         .endRest()
-    
+
     .get("/{id}")
         .route()
         .log("geting order with id ${header.id} entry from database")
@@ -104,11 +112,14 @@ rest("/orders")
 
 image::./images/lab03-rest-definition.png[]
 
-Access the *localhost* remote environment using the routes provided by CodeReady. 
+Access the the URL again, this time without the `/camel/orders` URI.
 
 image::./images/lab03-codeready-server.gif[]
 
-If you are doing locally just access: link:http://localhost:8080[Localhost, window="_blank"] and make a POST request to /orders, using the body bellow.
+. Click on the *API Swagger page*
+. Expand the *POST /orders/* section
+. Click *Try it out*
+. In the body, paste in the following JSON & click *Execute*
 
 [source,javascript]
 ----
@@ -120,19 +131,17 @@ If you are doing locally just access: link:http://localhost:8080[Localhost, wind
 }
 ----
 
-To do this request, use the http://localhost:8080/webjars/swagger-ui/index.html?url=/camel/api-doc[swagger-ui interface, window="_blank"]. Details about the API documentation will be covered on the next session.
-
 [type=verification]
-Do you see the message *"Workshop to explore Fuse on springboot"* in the logs everytime you hit the /came/oders HTTP (POST) endpoint?
+Do you see the message *"Order Workshop to explore Fuse on springboot received"* in the logs everytime you hit the `/camel/orders` HTTP (POST) endpoint?
 
 [time=5]
 == Rest Documentation
 
-The Open API Specification (aka Swagger) is being auto-generated. Take a look in http://localhost:8080/camel/api-doc. 
+The Open API Specification (aka Swagger) is being auto-generated. Open the browser to the `/camel/api-doc` endpoint.
 
 image::./images/lab03-api-doc.png[]
 
-If you prefer to see it in a human-readable way, check through the swagger-UI interface http://localhost:8080/webjars/swagger-ui/index.html?url=/camel/api-doc 
+If you prefer to see it in a human-readable way, check through the swagger-UI interface with the `/webjars/swagger-ui/index.html?url=/camel/api-doc` endpoint.
 
 image::./images/lab03-swagger.png[]
 
@@ -143,11 +152,11 @@ You could enrich the documentation adding some descriptions in your code, let's 
 rest("/orders").description("Orders CRUD REST endpoint")
     .get("/").description("Get all orders")
         .route().routeId("all-orders")
-        .log("geting all orders entries from database")
+        .log("Getting all order entries from database")
         .endRest()
     .get("/{id}").description("Get orders by id")
         .route().routeId("find-by-id")
-        .log("geting order with id ${header.id} entry from database")
+        .log("Getting order with id ${header.id} entry from database")
         .endRest()
     .post("/").type(Order.class).description("Create a new order")
         .route().routeId("create order")
@@ -158,12 +167,12 @@ rest("/orders").description("Orders CRUD REST endpoint")
 image::./images/lab03-swagger-documented.png[]
 
 [type=verification]
-Have you been able to access an interface from swagger ui?
+Have you been able to access an interface from swagger ui? Do you see the updated documentation?
 
 [time=5]
 == Boilerplate code
 
-RestSetup.java. Using the restConfiguration() method you specify everything about your REST server and swagger doc, take a look:
+In `RestSetup.java` we use the `restConfiguration()` method to specify everything about the REST server and swagger doc:
 
 [source,java]
 ----
@@ -180,7 +189,7 @@ restConfiguration()
 .bindingMode(RestBindingMode.json);
 ----
 
-Also, some dependencies are needed:
+Also, some dependencies are needed in `pom.xml`:
 
 [source,xml]
 ----
@@ -190,7 +199,7 @@ Also, some dependencies are needed:
     <artifactId>swagger-ui</artifactId>
     <version>3.13.0</version>
 </dependency>
-<!-- REST --> 
+<!-- REST -->
 <dependency>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-web</artifactId>
@@ -211,23 +220,17 @@ Also, some dependencies are needed:
 [time=15]
 == Database
 
-Ok, we have the REST endpoints but it doesn't nothing until now. Let's work on interact with Orders database 
-to retrieve relevant order information. 
+Now we have the REST endpoints but it doesn't do anything until we tie it into some kind of back-end data store. Let's work on interaction with the orders database to retrieve relevant order information. For this we will use the https://camel.apache.org/sql.html[camel-SQL] component to do it.
 
-On this case we will use the camel-SQL component to do it. 
+Interacting with a database is a common need, so it's important to see how simple it is with Camel.
 
-Interacting with a database is a common need, so it's important to see how simple camel handle it.
-
-To achieve it, we will keep working with REST resources but interacting with database to get the orders available
-and create new ones.
+We will continue working with the same REST resources but adding database interactions to get the orders available and create new ones.
 
 === Interacting with database
 
-There are three strings *selectAll*, *selectById*, *insertOrder* already made for retrieve/register  properly information from database 
-use it on the REST DSL to interact with database. 
+There are three strings (*selectAll*, *selectById*, *insertOrder*) already defined in the `RestRouter` class to retrieve/create information from a database that we will use on the REST DSL to interact with database.
 
-All the maven dependencies are already included by you and on the develop environment you will be using a embedded database, 
-so don't worry with any installation process.
+All the maven dependencies are already included for in `pom.xml`. In this lab you will be using an embedded database, so don't worry with any installation process.
 
 === GET all and by ID
 
@@ -235,13 +238,13 @@ so don't worry with any installation process.
 ----
 .get("/").description("Get all orders")
     .route().routeId("all-orders")
-    .log("geting all orders entries from database")
+    .log("Getting all order entries from database")
     .to(this.selectAll)
     .endRest()
 
 .get("/{id}").description("Get orders by id")
     .route().routeId("find-by-id")
-    .log("geting order with id ${header.id} entry from database")
+    .log("Getting order with id ${header.id} entry from database")
     .to(this.selectById)
     .endRest()
 ----
@@ -249,17 +252,17 @@ so don't worry with any installation process.
 
 Run the integration and invoke the REST endpoints using the swagger-ui interface:
 
-. http://localhost:8080/camel/orders
-. http://localhost:8080/camel/orders/1
+. `/camel/orders`
+. `/camel/orders/1`
 
-The response should be like this:
+The response should look like this:
 
 image::./images/lab03-orders-from-database01.png[]
 
 [type=verification]
 Are you seeing the Orders from the database now?
 
-The file *schema.sql* was created to populate the database during the startup. Open it and take a look. 
+The file `src/main/resources/schema.sql` was created to populate the database during the startup. Open it and take a look.
 
 === Create a new Order (POST)
 
@@ -272,7 +275,7 @@ The file *schema.sql* was created to populate the database during the startup. O
         .endRest();
 ----
 
-Run the integration and make a POST request to `http://localhost:8080/camel/orders` with the body:
+Run the integration and make a POST request to `/camel/orders` with the following body:
 
 [source,javascript]
 ----
@@ -285,12 +288,12 @@ Run the integration and make a POST request to `http://localhost:8080/camel/orde
 ----
 
 [type=verification]
-Execute the get all Orders, could you see the new order that you just created?
+Execute the get all Orders again. Do you see the new order that you just created?
 
 [time=3]
 == Boilerplate code
 
-To make it works, the following dependencies were added to the project:
+To make it all work, the following dependencies were added to the project's `pom.xml`:
 
     <dependency>
         <groupId>org.hsqldb</groupId>
@@ -302,16 +305,10 @@ To make it works, the following dependencies were added to the project:
         <artifactId>camel-sql-starter</artifactId>
     </dependency>
 
-For every different base, you should add the equivalent dependency, as an example if you need to interact with MYSQL 
-you must add:
+For every different database you want to support, you need to add the equivalent driver dependency. For example, if you need to interact with MySQL, you must add:
 
     <dependency>
         <groupId>mysql</groupId>
         <artifactId>mysql-connector-java</artifactId>
         <scope>runtime</scope>
     </dependency>
-
-The file *schema.sql* was created to populate the database during the startup. Open it and take a look. 
-
-[type=verification]
-Do you see a list with many orders?
