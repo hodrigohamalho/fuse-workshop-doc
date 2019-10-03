@@ -180,7 +180,7 @@ Choose the *Management Console* option:
 
 image::./images/lab04-messaging-10.png[]
 
-Use `admin` as the username & password
+Use `redhat` as the username & password
 
 image::./images/lab04-messaging-12.png[]
 
