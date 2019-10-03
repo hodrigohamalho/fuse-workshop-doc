@@ -9,14 +9,14 @@ Write your first Red Hat Fuse integration route!
 
 Let's explore a simple scenario where we are going to use a timer component to generate Orders automatically.
 
-[type=walkthroughResource]
+[type=walkthroughResource,serviceName=codeready]
 .CodeReady Workspaces
 ****
 * link:{codeready-url}[Console, window="_blank"]
 * link:https://developers.redhat.com/products/codeready-workspaces/overview/[Want to know more about CodeReady Workspaces?, window="_blank"]
 ****
 
-[type=walkthroughResource]
+[type=walkthroughResource,serviceName=openshift]
 .OpenShift Console
 ****
 * link:{openshift-url}[Console, window="_blank"]
@@ -25,7 +25,7 @@ Let's explore a simple scenario where we are going to use a timer component to g
 [type=walkthroughResource]
 .Camel Components
 ****
-* link:https://github.com/apache/camel/blob/master/components/readme.adoc[Check components list, window="_blank"]
+* link:https://github.com/apache/camel/blob/master/components/readme.adoc[Camel components list, window="_blank"]
 ****
 
 [time=2]

@@ -17,14 +17,14 @@ Contents covered during this lab
 * FTP component
 * Processor
 
-[type=walkthroughResource]
+[type=walkthroughResource,serviceName=codeready]
 .CodeReady Workspaces
 ****
 * link:{codeready-url}[Console, window="_blank"]
 * link:https://developers.redhat.com/products/codeready-workspaces/overview/[Want to know more about CodeReady Workspaces?, window="_blank"]
 ****
 
-[type=walkthroughResource]
+[type=walkthroughResource,serviceName=openshift]
 .OpenShift Console
 ****
 * link:{openshift-url}[Console, window="_blank"]
@@ -33,7 +33,7 @@ Contents covered during this lab
 [time=2]
 == Content-Based Router introduction
 
-Content-Based Router (CBR) is a pattern from the https://www.enterpriseintegrationpatterns.com[Enterprise Integration Patterns]. You will use CBR when you need to filter some result and send to a different target based in the filter criteria.
+Content-Based Router (CBR) is a pattern from the link:https://www.enterpriseintegrationpatterns.com[Enterprise Integration Patterns, window="_blank"]. You will use CBR when you need to filter some result and send to a different target based in the filter criteria.
 
 The code below is a CBR sample from the Enterprise Integration Pattern website.
 
@@ -99,11 +99,11 @@ Do you see both messages *Processing a Camel book* and *Processing an ActiveMQ b
 [time=5]
 == Interacting with Files
 
-https://camel.apache.org/file.html
+https://camel.apache.org/file.html[window="_blank"]
 
 Let's use a new *File* component to persist this order on the filesystem. The *File* component is powerful and enables us to interact with the file system easily.
 
-Adjust the router to persist the Camel book in the directory `/tmp/fuse-workshop/camel` and the ActiveMQ book in  `/tmp/fuse-workshop/activemq`
+Adjust the route to persist the Camel book in the directory `/tmp/fuse-workshop/camel` and the ActiveMQ book in  `/tmp/fuse-workshop/activemq`
 
 image::./images/lab02-filesystem.png[]
 
@@ -211,11 +211,11 @@ Also, remember to configure the component to *delete the files* after being cons
 
 The sample for the camel directory would be:
 
-[source,java]
+[source,java,subs="attributes"]
 ----
 from("file:/tmp/fuse-workshop/camel?delete=true")
     .log("Uploading camel orders to ftp")
-    .to("ftp://{user-username}@<ftp-host>?password=<ftp-password>");
+    .to("ftp://{user-username}@##ftp-host##?password=##ftp-password##");
 ----
 
 Do the same with the files on the camel directory.
