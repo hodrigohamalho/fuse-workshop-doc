@@ -1,165 +1,143 @@
-:walkthrough: Publish to Openshift 
-:codeready-url: https://codeready-codeready.{openshift-app-host}
-:openshift-url: {openshift-host}/console
+:walkthrough: Publish to Openshift
+:codeready-url: {che-url}
+:openshift-url: {openshift-host}
 
-= Lab 5 - Publish to OpenShift 
+= Lab 5 - Publish to OpenShift
 
-There are several ways to deploy an application into OpenShift. Directly from the git repository using S2I, from the local machine using binary deployment or from a Docker image.
+There are several ways to deploy an application into OpenShift
 
-On this lab, we will use the binary deployment option, uploading the code directly from our machine to OpenShift server.
-For it works, we will need the `oc` client working in our local machine.
+. Directly from the git repository using S2I
+. From the local machine using binary deployment
+. From a Docker image
 
-[type=walkthroughResource]
+For this lab we will use the binary deployment option (#2 above), uploading the code directly from our machine to OpenShift. For it to work, we will need the `oc` client working in our local machine.
+
+[type=walkthroughResource,serviceName=codeready]
 .CodeReady Workspaces
 ****
 * link:{codeready-url}[Console, window="_blank"]
+* link:https://developers.redhat.com/products/codeready-workspaces/overview[Want to know more about CodeReady Workspaces?, window="_blank"]
 ****
 
-****
-* link:https://developers.redhat.com/products/codeready-workspaces/overview/[Want to know more about OpenShift CodeReady Workspaces ?, window="_blank"]
-****
-
-[type=walkthroughResource]
+[type=walkthroughResource,serviceName=openshift]
 .OpenShift Console
 ****
 * link:{openshift-url}[Console, window="_blank"]
 ****
 
+[type=walkthroughResource]
+.Fabric8 Maven Plugin
+****
+* link:https://maven.fabric8.io[Fabric8 Maven Plugin, window="_blank"]
+****
+
 [time=5]
-== Database MYSQL provision
+== MySQL Database provisioning
 
-First, to work with the MYSQL database in production, we have to deploy it. 
+First, to work with the MySQL database in production, we have to deploy/provision it.
 
-Find for MYSQL in the catalog:
+. Go to the link:{openshift-host}/console[OpenShift Console, window="_blank"]
+. In the *Search Catalog* box at the top, search for *mysql* & select the *MySQL (Ephemeral)* option
 
 image::./images/lab05-mysql-01.png[]
 
-Fill *user, password and admin-password* as *redhat*
+Fill *MySQL Connection Username, MySQL Connection Password, & MySQL root user Password* as *redhat* and click *Next*, followed by *Create* on the binding screen
 
 image::./images/lab05-mysql-02.png[]
 
-If everything worked, you see a screen like this.
+If everything provisioned correctly, you will see a screen like this
 
 image::./images/lab05-mysql-03.png[]
 
 [time=15]
-== Application deploy into OpenShift using Binary Deployment
+== Application deployment onto OpenShift using Binary Deployment
 
-First login into OpenShift:
+First login into OpenShift (if you aren't already):
 
-    oc login {openshift-host} -u evals01@example.com -p Password1
+    oc login {openshift-url} -u {user-username} -p {user-password}
 
-Once that we are logged in, and in the specific project, let's do the deploy.
+Once logged in, right click on the `fuse-workshop` project & choose *Commands -> Deploy (1) -> Deploy to Openshift*. It may take a few minutes depending on your network performance.
 
-    mvn fabric8:deploy -Popenshift -Dspring.profiles.active=prod
+The `fabric8:deploy` maven goal uses the oc client authentication under the hood. It also uses a binary deployment, meaning it builds your application binary locally and sends that to OpenShift to "wrap" in a container image & deploy.
 
-It can take a while, depending on your network performance. 
+After `fabric8:deploy`, take a look in the target folder inside the project. More specifically, look at `target/docker/fuse-workshop/latest/build`. This shows the source of the container that was built.
 
-The *fabric8:deploy* uses the oc client authentication under the hood. So it explains all the dark magic during this process. 
-
-It's important to mention that it uses a binary deployment, but you can use the strategy that you want. 
-
-After fabric8:deploy, take a look in the target field inside the project, to be more specific
-look into: target/docker/fuse-workshop/latest/build.
-
-Look that we are using the Broker on OpenShift also the MYSQL database, all of the production data 
-is on the *application-prod.properties* and we are activating this profile with the parameter:
-
-    -Popenshift -Dspring.profiles.active=prod
-
-
-Open the Java Console, and check the metrics available. 
-Also, take a look at the Diagram.
-
-Another point is the feature of fabric8 that could manipulate Kubernetes file, take a look 
-of *deployment.yaml* file. 
-
-Fabric8 will inject this content inside of the final DeploymentConfig of Openshift. 
+After the deployment completes you will see that the application is using both the AMQ Broker & the MySQL database deployed on OpenShift. All of the production data is in the `src/main/resources/application-prod.properties` file and we are activating this profile during the deployment within in `src/main/fabric8/deployment.yml` config file. Fabric8 will inject this content inside of the final DeploymentConfig when deploying to Openshift.
 
 [time=10]
-== Fuse Java Console 
+== Fuse Java Console
 
-Fuse has a web console, that enables us to see some data flowing trough the route, 
-threads, messaging and also some debug. 
-
-The console is based on the open-source project Hawtio, and explore all the JMX exposed metrics 
+Fuse has a web console that enables us to see some data flowing trough the routes, threads, messaging and also to do some debugging. The console is based on the open-source project Hawtio, and explore all the JMX exposed metrics
 of Red Hat Fuse.
 
-Click on the blue circle to access the pod of the integration, after click on *Open Java Console*.
+. In the *Search Catalog* box at the top, search for *fuse console* & select the *Red Hat Fuse 7.4 Console* (*NOT* the one that has the *(cluser)* appendix) option
++
+image::./images/lab05-fuse-console-new-02.png[]
+. Select all the defaults, clicking *Next* through all the sections & finally clicking *Create*
+. Wait for provisioning to finish
+. When provisioning has finished, you should see (the URL will be different for you)
++
+image::./images/lab05-fuse-console-new-01.png[]
+. Click the link. This will open up the fuse console.
+. If prompted, log in with username {user-username} & password {user-password}
+. Once logged in you will see the homepage. You should also see your application registered
++
+image::./images/lab05-fuse-console-new-03.png[]
+. Click the *Connect* button to connect the console to your running application
++
+image::./images/lab05-fuse-console-new-04.png[]
+. Select `Routes` on the side menu and look for the statistics changing. If you would like to generate some data, capture the URL of list all orders as an example and do the following script in your terminal:
 
-image::./images/lab05-fuse-console-01.png[]
+    while(true); do curl http://fuse-workshop-{user-username}-fuse.{openshift-app-host}/camel/orders; sleep 1; done
 
-Select Routers on the side menu and look for the statistics changing. If you would like to generate 
-some data, capture the URL of list all orders as an example and do the following script 
-in your shell:
+. It will make one request per second, so you have some data to see on the console. You should see the *Completed* number on the *all-orders* route increase.
++
+image::./images/lab05-fuse-console-new-05.png[]
 
-    while(true); do curl...; sleep 1; done
+. Now, click on *Route Diagram*. You will see the route in a more human-readable way, and the count of requests flowing through the routes.
++
+image::./images/lab05-fuse-console-new-06.png[]
 
-It will do one request per sec, so you have some data to see on the console.
+. Click the *Source* tab. This will show the route source code as XML:
++
+image::./images/lab05-fuse-console-new-07.png[]
 
-image::./images/lab05-fuse-console-02.png[]
+. Let's try to do some debugging
+.. Select the `all-orders` route on the side menu
+.. Click on the *Debug* tab
 
-Now, click on *Route Diagram* feature:
++
+image::./images/lab05-fuse-console-new-08.png[]
+.. Click on *Start debugging*
+.. Double-click on the `Log` step. A breakpoint should appear on the box.
 
-You will see the route in a more human-readable way, and the count of requests flowing by the routes. 
++
+image::./images/lab05-fuse-console-new-09.png[]
 
-image::./images/lab05-fuse-console-03.png[]
+Make another request to get all the orders. You should see a window appear with all the header & body information of the message within the exchange. Now, let's close the debug by clicking *Stop debugging* in the upper-right corner. Otherwise, it will stay stuck until a timeout in every request.
 
-The source code as XML:
-
-image::./images/lab05-fuse-console-04.png[]
-
-Let's try to do some debug, select the *all-orders* on the side menu and click on 
-*Start debugging*.
-
-image::./images/lab05-fuse-console-05.png[]
-
-Now, a double click on Log step. A breakpoint should appear on the box. 
-
-image::./images/lab05-fuse-console-07.png[]
-
-Make a request to get all the orders. Could be using the Swagger UI.
-
-Now, let's close the debug. Otherwise, it will stay stuck until a timeout in every request. 
-
-If you are using an embedded broker, as we are using on the beginning of the labs, 
-here you can see some metrics of this local broker. 
-
-image::./images/lab05-fuse-console-10.png[]
-
-
-== Application deploy into Openshift using S2I
+== Application deployment on OpenShift using S2I
 
 Binary deployment is effective when you are doing a lot of changes and do not like to commit to see the results. A very common practice is to deploy the application automatically on each commit. Also s2i is more often used inside CICD pipelines.
 
 Let's deploy the same application but using the S2I strategy.
 
-On the find area *Search Catalog*, look for *jdk* and select *Red Hat OpenJDK 8* in the results.
-
+. In the *Search Catalog* box at the top, search for *jdk* and select *Red Hat OpenJDK 8* in the results.
++
 image::./images/lab05-s2i-1.png[]
-
-
-{empty} +
-
-On the following screen just select *next*.
-
+. On the following screen just select *next*.
++
 image::./images/lab05-s2i-2.png[]
-
-{empty} +
-
-Inform `workshop` as the Application Name and *click on advanced options.*
-
+. Input `workshop` as the Application Name and *click on advanced options.*
++
 image::./images/lab05-s2i-3.png[]
-
-{empty} +
-
-On the field *Git Repository URL* inform `https://github.com/hodrigohamalho/fuse-workshop.git`
-
-On the field *Git Reference* inform *labs-complete*. 
-
+. On the field *Git Repository URL* input `https://github.com/hodrigohamalho/fuse-workshop.git`
+. On the field *Git Reference*, input *labs-complete*.
++
 image::./images/lab05-s2i-4.png[]
-
-Just trigger the application creation and wait for the build and deployment finishes.
-
-[type=verification]
-Did you navigate through the Fuse Console?
+. Leave all the other defaults & click *Create* at the bottom of the screen
+. Wait for the build and deployment to complete
+.. This will instruct OpenShift to pull the `labs-complete` branch, build it, create a container image, & deploy that image to OpenShift
+... When everything is complete you should be able to see it running in the link:{openshift-url}[OpenShift Console, window="_blank"].
++
+image::./images/lab05-s2i-5.png[]

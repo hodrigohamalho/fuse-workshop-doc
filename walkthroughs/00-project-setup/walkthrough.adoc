@@ -18,14 +18,14 @@ The main objective is to cover as many Fuse aspects during this workshop. We wil
 
 This *fuse-workshop* project is a Red Hat Fuse (aka https://camel.apache.org[Apache Camel]) Spring Boot project, with some code already written for you. It will help you focus on what really matters rather than having you write lots of boilerplate code.
 
-[type=walkthroughResource]
+[type=walkthroughResource,serviceName=codeready]
 .CodeReady Workspaces
 ****
 * link:{codeready-url}[Console, window="_blank"]
 * link:https://developers.redhat.com/products/codeready-workspaces/overview/[Want to know more about CodeReady Workspaces?, window="_blank"]
 ****
 
-[type=walkthroughResource]
+[type=walkthroughResource,serviceName=openshift]
 .OpenShift Console
 ****
 * link:{openshift-url}[Console, window="_blank"]
@@ -62,7 +62,7 @@ Knowledge Requirements
 [time=5]
 == Setup Code Ready Workspace
 
-These walkthrough use CodeReady Workspaces (based on https://www.eclipse.org/che[Eclipse Che]).
+These walkthroughs use link:https://developers.redhat.com/products/codeready-workspaces/overview[CodeReady Workspaces, window="_blank"] (based on https://www.eclipse.org/che[Eclipse Che]).
 It's an IDE on the cloud based on containers. You can also use a local development environment if you'd prefer (i.e. https://code.visualstudio.com[Visual Studio Code], https://developers.redhat.com/products/codeready-studio/overview[Red Hat CodeReady Studio] (formerly known as JBoss Developer Studio), https://www.jetbrains.com/idea[IntelliJ IDEA], etc).
 
 To build the project in your own environment, you will need:
@@ -87,13 +87,10 @@ The *fuse-workshop* project is a Camel Spring Boot project, with some code alrea
 .Open link:{codeready-url}/f?url=https://github.com/hodrigohamalho/fuse-workshop[CodeReady Workspaces, window="_blank"]
 
 Credentials:
+* Username: `{user-username}`
+* Password: `{user-password}`
 
-Your username is: `{user-username}` +
-Your password is: `{user-password}`
-
-{empty} +
-
-If everything worked fine, you should now see an IDE with your project imported.
+It may take a few minutes for everything to start up. If everything worked fine, you should now see an IDE with your project imported.
 
 image::images/05-che.png[eclipse che, role="integr8ly-img-responsive"]
 

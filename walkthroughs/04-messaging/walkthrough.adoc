@@ -1,16 +1,14 @@
 :walkthrough: Messaging
-:codeready-url: https://codeready-codeready.{openshift-app-host}
-:openshift-url: {openshift-host}/console
+:codeready-url: {che-url}
+:openshift-url: {openshift-host}
+:user-password: Abt7MjWMb8v4ECS
 :next-lab-url: https://tutorial-web-app-webapp.{openshift-app-host}/tutorial/fuse-springboot-workshop.git-walkthroughs-05-openshift/
 
 = Lab 4 - Messaging
 
-Messaging makes applications loosely coupled by communicating asynchronously.
+Asynchronous messaging helps to de-couple applications. Messaging makes the messaging system responsible for transferring data from one application to another, so the apps can focus on what data they need to share but not worry so much about how to share it.
 
-Messaging makes the messaging system responsible for transferring data from one application to another, so the apps can focus on what data they need to share but not worry so much about how to share it.
-
-Let's create a post and answer a quick response to the user and do all processing in the background.
-For it, we are going to use the wiretap component to make a copy of the message on the Camel pipeline and post it in a JMS queue. After we recover from the queue and make the order insert, for last notify the user by email.
+Let's create a RESTful endpoint that returns a quick response to the user, but do all the processing in the background. We are going to use the http://camel.apache.org/wiretap.html[wiretap] component to make a copy of the message in the Camel pipeline and post it in a JMS queue. After we recover from the queue and insert the order into the database, then notify the user by email.
 
 image::./images/lab04-messaging-architecture.png[]
 
@@ -23,24 +21,21 @@ Contents covered during this lab
 * Deploy AMQ broker on OpenShift
 * AMQ Console
 
-[type=walkthroughResource]
+[type=walkthroughResource,serviceName=codeready]
 .CodeReady Workspaces
 ****
 * link:{codeready-url}[Console, window="_blank"]
+* link:https://developers.redhat.com/products/codeready-workspaces/overview[Want to know more about CodeReady Workspaces?, window="_blank"]
 ****
 
-****
-* link:https://developers.redhat.com/products/codeready-workspaces/overview/[Want to know more about Openshift CodeReady Workspace ?, window="_blank"]
-****
-
-[type=walkthroughResource]
+[type=walkthroughResource,serviceName=openshift]
 .OpenShift Console
 ****
 * link:{openshift-url}[Console, window="_blank"]
 ****
 
 [time=5]
-== Async router 
+== Async router
 
 First set a simple text message to return in the body.
 
@@ -48,17 +43,26 @@ First set a simple text message to return in the body.
 ----
 .post("/async").type(Order.class).description("Create a new order")
     .route().routeId("create-order-async")
-    .log("Order received")
-    .setBody().simple("We received your request, as soon we process your request we will notify you by email.")
+    .log("Async Order received")
+    .setBody().simple("We received your request. As soon we process your request we will notify you by email.")
     .endRest();
 ----
 
-Run the application and test, calling the POST async method accessing the http://localhost:8080/webjars/swagger-ui/index.html?url=/camel/api-doc[Swagger UI] page.
+Run the application and test, calling the POST async method accessing the Swagger UI page. Use the following body:
+
+[source,javascript]
+----
+{
+  "item": "Red Hat Integration",
+  "amount": 10,
+  "description": "Middleware Integration Portfolio",
+  "processed": true
+}
+----
 
 image::./images/lab04-messaging-01.png[]
-image::./images/lab04-messaging-02.png[]
 
-Now, let's tap the body to work with the body async in the background. 
+Now, let's wiretap the body to work with the body async in the background.
 
 [source,java]
 ----
@@ -66,18 +70,18 @@ Now, let's tap the body to work with the body async in the background.
         .route().routeId("create-order-async")
         .log("Order received")
         .wireTap("direct:create-order")
-        .setBody().simple("We received your request, as soon we process your request we will notify you by email.")
+        .setBody().simple("We received your request. As soon we process your request we will notify you by email.")
         .endRest();
 
     from("direct:create-order")
         .log("processing order async");
 ----
 
-Run again and check the log to see if the new message *" processing order async "* appeared. 
+Run again and check the log to see if the new message *" processing order async "* appeared.
 
 image::./images/lab04-post-async.png[]
 
-Now, instead of calling the SQL directly, let's send the order to a message broker. 
+Now, instead of calling the SQL directly, let's send the order to a message broker.
 
 [source,java]
 ----
@@ -86,90 +90,65 @@ from("direct:create-order")
     .to("activemq:queue:orders");
 ----
 
-Run the application and test, calling the POST async method accessing the http://localhost:8080/webjars/swagger-ui/index.html?url=/camel/api-doc[Swagger UI] page.
+Run the application and test, calling the POST async method accessing the Swagger UI page.
 
-Check the logs to see the messages exchanged in the queue. As we are using an embedded broker to test our application without the need to deploy in any place, 
-there isn't a web console, so don't worry with it for now. 
-When we deploy it on OpenShift, we'll take a look in the AMQ console.
+Check the logs to see the messages exchanged in the queue. As we are using an embedded broker to test our application without the need to deploy in any place, there isn't a web console, so don't worry with it for now. When we deploy it on OpenShift, we'll take a look in the AMQ console.
 
 image::./images/lab04-messaging-03.png[]
 
 [type=verification]
-Do you see the message  *" processing order async "* in the logs when you create a new Order?
+Do you see the message  *"processing order async"* in the logs when you create a new Order?
 
 [time=15]
-== Using a AMQ BROKER on OpenShift remotely
+== Using an AMQ broker on OpenShift remotely
 
-Create the project fuse-<your-user>. Please remember to replace <your-user>. 
-The images examples are using evals02, but *you must* use *your user*.
+Create the project `{user-username}-fuse`. The images examples are using `evals02`, but *you must* use `{user-username}`.
 
-Click on create project button:
-
-image::./images/lab04-messaging-04.png[]
-
-{empty} +
-
-image::./images/lab04-messaging-05.png[] 
-
-{empty} +
-
-Select the project previously created
-
-{empty} +
-
+. Go to the link:{openshift-host}/console[OpenShift Console, window="_blank"]
+. Click on create project button & enter `{user-username}-fuse` as the project name, then click *Create*
++
+image::./images/lab04-messaging-05.png[]
+. Select the project to enter it
++
 image::./images/lab04-messaging-06.png[]
-
-{empty} +
-
-Find  for *AMQ BROKER 7.3*
-
+. In the *Search Catalog* box at the top, search for *AMQ Broker 7.4* & select the *Red Hat AMQ Broker 7.4 (Ephemeral, no SSL)* option
++
 image::./images/lab04-messaging-07.png[]
-
-{empty} +
-
-Fill the fields *AMQ username* and *AMQ Password* with the value *redhat*.
-
+. Fill the fields *AMQ Username* & *AMQ Password* with the value *redhat*, then click *Create* at the bottom of the screen, then *Create* again at the binding screen
++
 image::./images/lab04-messaging-08.png[]
-
-{empty} +
-
-If your project was provisioned correctly, you would see a screen like this:
-
+. If your project was provisioned correctly, you would see a screen like this:
++
 image::./images/lab04-messaging-09.png[]
 
-{empty} +
+Now that the broker is deployed on OpenShift, we can use a mechanism that enables us to open a connection with OpenShift. This will enable us to consume services deployed on OpenShift from our local machine/CodeReady workspace. This is useful for resources like databases & message brokers.
 
-Now that we already have the broker deployed on OpenShift let's use a mechanism that enables we open a 
-a TCP tunnel with OpenShift and work with services as they are in our local machine, it's very useful to 
-test resources as database and message broker.
+Login to OpenShift on the terminal, choose our `{user-username}-fuse` project, & list the pods. *NOTE: The actual name of the pods that show up will be different than what is shown here.*
 
-First login at OpenShift after choosing the project that you created before and after list the pods of this project.
-
-[source,bash]
+[source,bash,subs="attributes"]
 ----
-oc login https://master.latam-19fb.openshiftworkshop.com -u evals01@example.com
-oc project fuse-evals01
-oc get pods    
+oc login {openshift-url} -u {user-username} -p {user-password}
+oc project {user-username}-fuse
+oc get pods
 
 NAME                 READY     STATUS    RESTARTS   AGE
 broker-amq-1-ck9mc   1/1       Running   0          6m
 ----
 
-Now, that you have the exact name of the pod running AMQ Broker, let's execute the port-forward command
+Now you have the exact name of the pod running AMQ Broker. Let's execute the port-forward command. This will forward port `61616` (the port the broker listens on) to the local machine at the same port. *Make sure you use the name from the output of your command, not the name shown here!*
 
-[source, bash]
+[source,bash]
 ----
     oc port-forward broker-amq-1-ck9mc 61616:61616
 ----
 
-The output should be like this:
+The output should look like this:
 
 image::./images/lab04-messaging-17.png[]
 
 {empty} +
 
-Now, update your application.properties to use the local broker instead of the embedded one. 
-Open the file *application.properties* and uncomment the line below:
+Now, update your `src/main/resources/application.properties` file to use the local broker (which is just forwarded to the actual broker running on OpenShift) instead of the embedded one. Open the `src/main/resources/application.properties` file and uncomment the line below:
 
 [source, bash]
 ----
@@ -179,7 +158,7 @@ activemq.broker.url=tcp://localhost:61616
 
 ----
 
-And comment on this:
+And comment out this line:
 
 [source, bash]
 ----
@@ -189,7 +168,7 @@ And comment on this:
 
 ----
 
-Run your integration and create an order using the /order/async HTTP POST method.
+Run your integration again, creating an order using the `/order/async` HTTP POST method.
 
 Click on the AMQ console URL:
 
@@ -197,9 +176,12 @@ image::./images/lab04-messaging-09.png[]
 
 {empty} +
 
-Choose *AMQ Console* option:
+Choose the *Management Console* option:
 
 image::./images/lab04-messaging-10.png[]
+
+Use `admin` as the username & password
+
 image::./images/lab04-messaging-12.png[]
 
 {empty} +
@@ -210,7 +192,7 @@ image::./images/lab04-messaging-13.png[]
 
 {empty} +
 
-Now that you see the message metrics. Create many (like 10) new orders, using the /order/async HTTP POST method.
+Now that you see the message metrics. Create many (like 10) new orders, using the `/order/async` HTTP POST method.
 
 Look to the metrics again, you should se some messages on the Message Count column.
 
@@ -218,9 +200,7 @@ image::./images/lab04-messaging-15.png[]
 
 {empty} +
 
-Everything should work fine, to simulate the entire flow, let's now do another route to consume and persist this information. 
-This second router could be another system consuming this message. Remember that this kind of architecture aims decouple. 
-It could do retries in case of failures, scale independent of the consumer/producer, etc.
+Everything should be working fine. To simulate the entire flow, let's create another route to consume from the queue and persist this information in the database. This second route could be another system consuming this message. Remember that this kind of architecture aims to decouple applications from one another. It could even perform retries in case of failures, scale independently of the consumer/producer, etc.
 
 [source,java]
 ----
@@ -231,6 +211,4 @@ from("activemq:queue:orders")
     .to("mock:notify-by-email");
 ----
 
-Rerun the integration and look to the messages on the console after the startup
-
-image::./images/lab04-messaging-14.png[]
+Re-run the integration and look to the messages on the console after the startup. The message count from the AMQ7 dashboard should alternate quickly between `0` & `1`.
