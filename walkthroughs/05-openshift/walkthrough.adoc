@@ -1,6 +1,7 @@
 :walkthrough: Publish to Openshift
 :codeready-url: {che-url}
 :openshift-url: {openshift-host}
+:user-password: Abt7MjWMb8v4ECS
 
 = Lab 5 - Publish to OpenShift
 
@@ -54,7 +55,10 @@ image::./images/lab05-mysql-03.png[]
 
 First login into OpenShift (if you aren't already):
 
-    oc login {openshift-url} -u {user-username} -p {user-password}
+[source,bash,subs="attributes+"]
+----
+oc login {openshift-url} -u {user-username} -p {user-password}
+----
 
 Once logged in, right click on the `fuse-workshop` project & choose *Commands -> Deploy (1) -> Deploy to Openshift*. It may take a few minutes depending on your network performance.
 
@@ -62,7 +66,7 @@ The `fabric8:deploy` maven goal uses the oc client authentication under the hood
 
 After `fabric8:deploy`, take a look in the target folder inside the project. More specifically, look at `target/docker/fuse-workshop/latest/build`. This shows the source of the container that was built.
 
-After the deployment completes you will see that the application is using both the AMQ Broker & the MySQL database deployed on OpenShift. All of the production data is in the `src/main/resources/application-prod.properties` file and we are activating this profile during the deployment within in `src/main/fabric8/deployment.yml` config file. Fabric8 will inject this content inside of the final DeploymentConfig when deploying to Openshift.
+After the deployment completes you will see that the application is using both the AMQ Broker & the MySQL database deployed on OpenShift. All of the production configuration data is in the `src/main/resources/application-prod.properties` file and we are activating this profile during the deployment within in `src/main/fabric8/deployment.yml` config file. Fabric8 will inject this content inside of the final DeploymentConfig when deploying to Openshift.
 
 [time=10]
 == Fuse Java Console
@@ -70,7 +74,7 @@ After the deployment completes you will see that the application is using both t
 Fuse has a web console that enables us to see some data flowing trough the routes, threads, messaging and also to do some debugging. The console is based on the open-source project Hawtio, and explore all the JMX exposed metrics
 of Red Hat Fuse.
 
-. In the *Search Catalog* box at the top, search for *fuse console* & select the *Red Hat Fuse 7.4 Console* (*NOT* the one that has the *(cluser)* appendix) option
+. In the *Search Catalog* box at the top, search for *fuse console* & select the *Red Hat Fuse 7.4 Console* (*NOT* the one that has the *(cluster)* appendix) option
 +
 image::./images/lab05-fuse-console-new-02.png[]
 . Select all the defaults, clicking *Next* through all the sections & finally clicking *Create*
@@ -79,7 +83,7 @@ image::./images/lab05-fuse-console-new-02.png[]
 +
 image::./images/lab05-fuse-console-new-01.png[]
 . Click the link. This will open up the fuse console.
-. If prompted, log in with username {user-username} & password {user-password}
+. If prompted, log in with username `{user-username}` & password `{user-password}`
 . Once logged in you will see the homepage. You should also see your application registered
 +
 image::./images/lab05-fuse-console-new-03.png[]
@@ -88,7 +92,10 @@ image::./images/lab05-fuse-console-new-03.png[]
 image::./images/lab05-fuse-console-new-04.png[]
 . Select `Routes` on the side menu and look for the statistics changing. If you would like to generate some data, capture the URL of list all orders as an example and do the following script in your terminal:
 
-    while(true); do curl http://fuse-workshop-{user-username}-fuse.{openshift-app-host}/camel/orders; sleep 1; done
+[source,bash,subs="attributes+"]
+----
+while(true); do curl http://fuse-workshop-{user-username}-fuse.{openshift-app-host}/camel/orders; sleep 1; done
+----
 
 . It will make one request per second, so you have some data to see on the console. You should see the *Completed* number on the *all-orders* route increase.
 +

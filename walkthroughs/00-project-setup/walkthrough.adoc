@@ -87,6 +87,7 @@ The *fuse-workshop* project is a Camel Spring Boot project, with some code alrea
 .Open link:{codeready-url}/f?url=https://github.com/hodrigohamalho/fuse-workshop[CodeReady Workspaces, window="_blank"]
 
 Credentials:
+
 * Username: `{user-username}`
 * Password: `{user-password}`
 
