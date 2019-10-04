@@ -38,7 +38,7 @@ Patterns/components covered during this lab
 
 Let's create the endpoints needed for this lab.
 
-Open `RestRouter.java`. Inside the `configure(`` method, declare our first REST endpoint.
+Open `RestRouter.java`. Inside the `configure()` method, declare our first REST endpoint.
 
 === Get all orders (GET)
 
@@ -58,7 +58,7 @@ Every time you hit the HTTP endpoint the message *" getting all orders entries f
 image::./images/lab03-get-orders-url-codeready.png[]
 
 [type=verification]
-Do you see the message *"getting all orders entries from database"* in the logs everytime you hit the /came/oders HTTP endpoint?
+Do you see the message *"Getting all order entries from database"* in the logs everytime you hit the `/camel/orders` HTTP endpoint?
 
 === Get order by ID (GET)
 
@@ -75,7 +75,7 @@ Observe how we declare the path parameter ID on the URL on this new route.
 Run the integration again and access the page in the browser as before, except use the URI path `/camel/orders/1`.
 
 [type=verification]
-Do you see the message *"Getting order with id 1 entry from database"* in the logs everytime you hit the /camel/orders/1 endpoint?
+Do you see the message *"Getting order with id 1 entry from database"* in the logs everytime you hit the `/camel/orders/1` endpoint?
 
 === Create a new order (POST)
 
@@ -116,7 +116,7 @@ Access the the URL again, this time without the `/camel/orders` URI.
 
 image::./images/lab03-codeready-server.gif[]
 
-. Click on the *API Swagger page*
+. Click on the *API Swagger page* button
 . Expand the *POST /orders/* section
 . Click *Try it out*
 . In the body, paste in the following JSON & click *Execute*
@@ -220,7 +220,7 @@ Also, some dependencies are needed in `pom.xml`:
 [time=15]
 == Database
 
-Now we have the REST endpoints but it doesn't do anything until we tie it into some kind of back-end data store. Let's work on interaction with the orders database to retrieve relevant order information. For this we will use the https://camel.apache.org/sql.html[camel-SQL] component to do it.
+Now we have the REST endpoints but it doesn't do anything until we tie it into some kind of back-end data store. Let's work on interaction with the orders database to retrieve relevant order information. For this we will use the link:https://camel.apache.org/sql.html[camel-SQL, window="_blank"] component to do it.
 
 Interacting with a database is a common need, so it's important to see how simple it is with Camel.
 
@@ -230,7 +230,7 @@ We will continue working with the same REST resources but adding database intera
 
 There are three strings (*selectAll*, *selectById*, *insertOrder*) already defined in the `RestRouter` class to retrieve/create information from a database that we will use on the REST DSL to interact with database.
 
-All the maven dependencies are already included for in `pom.xml`. In this lab you will be using an embedded database, so don't worry with any installation process.
+All the maven dependencies are already included for in `pom.xml`. In this lab you will be using an embedded database, so don't worry about any installation process.
 
 === GET all and by ID
 

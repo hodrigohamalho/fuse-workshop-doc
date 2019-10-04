@@ -46,7 +46,7 @@ This code is using the timer component, with all default configurations, it will
 
 Components are the key of Camel. They are flexible and reusable  "libraries" that abstract complex operations making it trivial, boosting developer productivity!
 
-https://github.com/apache/camel/blob/master/components/readme.adoc[Take a look at the camel components]
+https://github.com/apache/camel/blob/master/components/readme.adoc[Take a look at the camel components, window="_blank"]
 
 Now, let's use some parameters with timer component to repeat *only 5 times* within the *interval of 1 sec*.
 
@@ -56,7 +56,7 @@ from("timer:generate?repeatCount=5&period=1000")
     .log("Hello router!");
 ----
 
-Use *CTLR* + *SPACE* to use the auto complete feature, if it is available.
+Use *CTRL* + *SPACE* to use the auto complete feature, if it is available.
 
 image::./images/codeready-autocomplete.gif[]
 
