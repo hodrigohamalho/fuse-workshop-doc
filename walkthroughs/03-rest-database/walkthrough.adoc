@@ -38,7 +38,7 @@ Patterns/components covered during this lab
 
 Let's create the endpoints needed for this lab.
 
-Open `RestRouter.java`. Inside the `configure(`` method, declare our first REST endpoint.
+Open `RestRouter.java`. Inside the `configure` method, declare our first REST endpoint.
 
 === Get all orders (GET)
 
