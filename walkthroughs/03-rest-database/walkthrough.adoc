@@ -117,6 +117,7 @@ Access the the URL again, this time without the `/camel/orders` URI.
 image::./images/lab03-codeready-server.gif[]
 
 . Click on the *API Swagger page* button
+. In case you are doing it locally change the Schema to *HTTP*.
 . Expand the *POST /orders/* section
 . Click *Try it out*
 . In the body, paste in the following JSON & click *Execute*
