@@ -62,6 +62,8 @@ oc login {openshift-url} -u {user-username} -p {user-password}
 
 Once logged in, right click on the `fuse-workshop` project & choose *Commands -> Deploy (1) -> Deploy to Openshift*. It may take a few minutes depending on your network performance.
 
+image::./images/lab05-deploy-ocp.png[]
+
 The `fabric8:deploy` maven goal uses the oc client authentication under the hood. It also uses a binary deployment, meaning it builds your application binary locally and sends that to OpenShift to "wrap" in a container image & deploy.
 
 After `fabric8:deploy`, take a look in the target folder inside the project. More specifically, look at `target/docker/fuse-workshop/latest/build`. This shows the source of the container that was built.
