@@ -53,7 +53,7 @@ rest("/orders")
 
 Run the integration and access the preview endpoint as shown in your CodeReady Workspaces (append `/camel/orders` to it) terminal (or if running on a local workstation, link:http://localhost:8080/camel/orders[http://localhost:8080/camel/orders, window="_blank"])
 
-Every time you hit the HTTP endpoint the message *" getting all orders entries from database"* should appear in the log. It doesn't return anything yet because nothing has implemented to return to the caller. For now, doesn't worry about it.
+Every time you hit the HTTP endpoint the message *"getting all orders entries from database"* should appear in the log. It doesn't return anything yet because nothing has implemented to return to the caller. For now, don't worry about it.
 
 image::./images/lab03-get-orders-url-codeready.png[]
 
