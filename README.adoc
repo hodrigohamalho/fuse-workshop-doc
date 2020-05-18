@@ -29,14 +29,9 @@ and in case of any issue please https://github.com/hodrigohamalho/fuse-workshop-
 |===
 | Time | Activity
 
-| 8:00-9:00
-| Registration and breakfast
-
-| 9:00-10:00
-| An introduction to agile integration concepts, use cases, and roadmap 
 
 | 10:00-11:00
-| Hands on demo
+| Fuse presentation and demos
 
 | 11:00-11:15
 | Break
@@ -62,7 +57,7 @@ and in case of any issue please https://github.com/hodrigohamalho/fuse-workshop-
 
     * OpenShift
 
-    * Fuse AMQ Online
+    * Fuse Bonus Lab
 
 | 16:30-17:00
 | Recap and summary
