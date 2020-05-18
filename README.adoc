@@ -6,6 +6,8 @@ This is focused on the Fuse with Spring Boot. But also have a few labs with Came
 
 Those walkthroughs follow the structure to be deployed in the *Red Hat Integreatly* environment.
 
+https://docs.google.com/presentation/d/1EtypdwfEHpc2X1emJXIZDKKZPwWVIn5TzcCaElY04v4[Workshop Presentation Deck]
+
 == Pre Requirements
 
 === Remote Environment (CodeReady Workspaces)
@@ -29,9 +31,8 @@ and in case of any issue please https://github.com/hodrigohamalho/fuse-workshop-
 |===
 | Time | Activity
 
-
 | 10:00-11:00
-| Fuse presentation and demos
+| https://docs.google.com/presentation/d/1EtypdwfEHpc2X1emJXIZDKKZPwWVIn5TzcCaElY04v4[Fuse presentation and demos]
 
 | 11:00-11:15
 | Break
@@ -62,6 +63,8 @@ and in case of any issue please https://github.com/hodrigohamalho/fuse-workshop-
 | 16:30-17:00
 | Recap and summary
 |===
+
+Usualy by 15:00 all the participants should be already finished all the labs.
 
 == Lab structure 
 
