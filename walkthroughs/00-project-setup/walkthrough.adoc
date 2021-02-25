@@ -93,21 +93,34 @@ Credentials:
 
 It may take a few minutes for everything to start up. If everything worked fine, you should now see an IDE with your project imported.
 
-image::images/05-che.png[eclipse che, role="integr8ly-img-responsive"]
+image::images/01-factory.png[Importing project, role="integr8ly-img-responsive"]
+
+When the setup is ready you should see a screen like this
+
+image::images/2-che-workspace-created.png[Workspace created, role="integr8ly-img-responsive"]
 
 [time=5]
-== Setup Project
 
-Run Project
+== Project Setup
 
-. Right-click on the `fuse-workshop (master)` project & select `Commands -> Run (2) -> Run application locally`
+Take a while exploring the project structure.
+
+image::images/3-che-side-menu.png[Side Menu - Project Structure, role="integr8ly-img-responsive"]
+
+Run the project
+
+. On the left menu, click on the cube icon and under the tools menu structure click on `Run application locally`
 . You should see the application build and then run
 
-image::images/11-che.png[Running Application, role="integr8ly-img-responsive"]
+image::images/4-che-run-locally.png[Running Application, role="integr8ly-img-responsive"]
 
-{empty} +
+As this project is a web app (we are going to explore it in future labs) codeready workspaces will suggest to you to open a link, click on `Open Link`. 
 
-image::images/13-che.png[Running Application, role="integr8ly-img-responsive"]
+image::images/5-open-web-app.png[Running Application, role="integr8ly-img-responsive"]
+
+In the end you should see a web app on the side menu, and a `hello message` in the logs. 
+
+image::images/6-lab-final.png[Running Application, role="integr8ly-img-responsive"]
 
 [time=5]
 [type=verification]
