@@ -78,6 +78,8 @@ Credentials:
 * Username: `{user-username}`
 * Password: `{user-password}`
 
+{empty} +
+
 It may take a few minutes for everything to start up. If everything worked fine, you should now see an IDE with your project imported.
 
 image::images/01-factory.png[Importing project, role="integr8ly-img-responsive"]
@@ -90,7 +92,7 @@ image::images/2-workspace-created.png[Importing project, role="integr8ly-img-res
 
 {empty} +
 
-Now, that you succesfully created the workspace take a while exploring the project structure.
+Now, that you succesfully created the workspace take a while exploring the project structure using the `left menu`. 
 
 image::images/3-che-side-menu.png[Side Menu - Project Structure, role="integr8ly-img-responsive"]
 
@@ -114,6 +116,8 @@ image::images/5-open-web-app.png[Running Application, role="integr8ly-img-respon
 In the end you should see a web app on the side menu, and a `hello router ` message in the logs. 
 
 image::images/6-lab-final.png[Running Application, role="integr8ly-img-responsive"]
+
+{empty} +
 
 To stop the application use `Ctrl+C` in the terminal.
 
