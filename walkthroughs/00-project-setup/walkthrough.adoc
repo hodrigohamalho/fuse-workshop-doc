@@ -38,20 +38,20 @@ This *fuse-workshop* project is a Red Hat Fuse (aka https://camel.apache.org[Apa
 
 Lab Requirements
 
-.Cloud
-..Web Browser
+. Cloud
+.. Web Browser
 
-.Local machine
-..At least 4 GB RAM
-..JDK 1.8+
-..Git
-..oc client
-...https://access.redhat.com/downloads/content/290[Download from Red Hat]
-...https://www.okd.io/download.html[Download from Community]
-..https://visualstudio.microsoft.com/downloads/[Visual Studio IDE]
-...Plugin: *Extension Pack for Apache Camel*
-...Plugin: *Language Support for Apache Camel*
-..https://filezilla-project.org/download.php?type=client[Filezila]
+. Local machine
+.. At least 4 GB RAM
+.. JDK 1.8+
+.. Git
+.. oc client
+... https://access.redhat.com/downloads/content/290[Download from Red Hat]
+... https://www.okd.io/download.html[Download from Community]
+.. https://visualstudio.microsoft.com/downloads/[Visual Studio IDE]
+... Plugin: *Extension Pack for Apache Camel*
+... Plugin: *Language Support for Apache Camel*
+.. https://filezilla-project.org/download.php?type=client[Filezila]
 
 Knowledge Requirements
 
@@ -121,11 +121,15 @@ To stop the application use `Ctrl+C` in the terminal.
 [type=verification]
 Are you seeing a loop hello message in the logs?
 
+== Running the labs in your local environment
+
 If you are looking to build the project in your own environment (local machine), you will need:
 
 * JDK 7+
 * Git
 * Maven 3+
+
+{empty} +
 
 Replace your `~/.m2/settings.xml` by the `fuse-workshop/configuration/settings.xml`
 
