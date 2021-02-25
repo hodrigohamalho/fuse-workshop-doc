@@ -65,11 +65,13 @@ Knowledge Requirements
 These walkthroughs use link:https://developers.redhat.com/products/codeready-workspaces/overview[CodeReady Workspaces, window="_blank"] (based on https://www.eclipse.org/che[Eclipse Che]).
 It's an IDE on the cloud based on containers. You can also use a local development environment if you'd prefer (i.e. https://code.visualstudio.com[Visual Studio Code], https://developers.redhat.com/products/codeready-studio/overview[Red Hat CodeReady Studio] (formerly known as JBoss Developer Studio), https://www.jetbrains.com/idea[IntelliJ IDEA], etc).
 
-The *fuse-workshop* project is a Camel Spring Boot project, with some code already written for you. It will help you focus on what really matters rather than having you write lots of boilerplate code.
-
 {empty} +
 
+The *fuse-workshop* project is a Camel Spring Boot project, with some code already written for you. It will help you focus on what really matters rather than having you write lots of boilerplate code.
+
 .Open link:{codeready-url}/f?url=https://github.com/hodrigohamalho/fuse-workshop[CodeReady Workspaces, window="_blank"]
+
+{empty} +
 
 Credentials:
 
@@ -80,15 +82,11 @@ It may take a few minutes for everything to start up. If everything worked fine,
 
 image::images/01-factory.png[Importing project, role="integr8ly-img-responsive"]
 
-When the setup is ready you should see a screen like this
+When the setup is ready you should see a screen like this:
 
-image::images/2-che-workspace-created.png[Workspace created, role="integr8ly-img-responsive"]
+image::images/2-che-workspace-created.png[Importing project, role="integr8ly-img-responsive"]
 
-[time=5]
-
-== Project Setup
-
-Take a while exploring the project structure.
+Now, that you succesfully created the workspace take a while exploring the project structure.
 
 image::images/3-che-side-menu.png[Side Menu - Project Structure, role="integr8ly-img-responsive"]
 
