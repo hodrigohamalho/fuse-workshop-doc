@@ -1,7 +1,7 @@
 :walkthrough: Hello World Camel
 :codeready-url: https://codeready-codeready.{openshift-app-host}
 :openshift-url: {openshift-host}/console
-:next-lab-url: https://tutorial-web-app-webapp.{openshift-app-host}/tutorial/fuse-springboot-workshop.git-walkthroughs-02-files-ftp
+:next-lab-url: https://tutorial-web-app-webapp.{openshift-app-host}/tutorial/fuse-workshop-doc.git-walkthroughs-02-files-ftp/
 
 = Lab 1 - Hello World Camel
 
