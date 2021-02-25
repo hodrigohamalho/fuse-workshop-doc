@@ -71,7 +71,7 @@ image::./images/camel-structure.png[]
 
 This is the basis of how components work.
 
-Now, `Run` the project, if it's already running stop it closing the terminal tab and click on `Run`.
+Now, Run the project, if it's already running stop it closing the terminal tab and click on `Run`.
 
 If you are doing it locally, you can run as a standard spring-boot application.
 
@@ -108,6 +108,8 @@ from("timer:generate?repeatCount=5&period=1000")
 ----
 
 Now, it is using the `OrderService` class to generate a new `Order`, print some information in the console.
+
+image:./images/output-logs.png[]
 
 And... Where is the Order object?
 
