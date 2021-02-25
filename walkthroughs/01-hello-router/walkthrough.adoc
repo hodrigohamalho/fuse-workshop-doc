@@ -31,10 +31,15 @@ Let's explore a simple scenario where we are going to use a timer component to g
 [time=2]
 == Timer component
 
-Using the *fuse-workshop* project, open the class `OrderGenerator.java`.
+Using the *fuse-workshop* project, open the class `OrderGenerator.java`. You can use the project navigation to it, or use the short key `CTRL + P` or `CMD + P` and type `OrderGenerator`.
 If you are having trouble finding it, look in `src/main/java/com/redhat/fuse/booster/rest/routers/lab01` folder.
 
+image::./images/open-class.gif[]
+
+{empty} +
+
 As you can see, this is a very simple Camel Router already defined for you. A Camel Router is a class that extends `RouteBuilder` and implements the configure method. Let's focus on the code that really matters at the moment.
+
 
 [source,java]
 ----
@@ -46,7 +51,7 @@ This code is using the timer component, with all default configurations, it will
 
 Components are the key of Camel. They are flexible and reusable  "libraries" that abstract complex operations making it trivial, boosting developer productivity!
 
-https://github.com/apache/camel/blob/master/components/readme.adoc[Take a look at the camel components, window="_blank"]
+https://camel.apache.org/components/latest[Take a look at the camel components, window="_blank"]
 
 Now, let's use some parameters with timer component to repeat *only 5 times* within the *interval of 1 sec*.
 
@@ -66,9 +71,7 @@ image::./images/camel-structure.png[]
 
 This is the basis of how components work.
 
-Now, let's run the project clicking on the *RUN* or *RE-RUN* action that we previously set up and see if it works.
-
-image::./images/12-che.png[]
+Now, `Run` the project, if it's already running stop it `Ctrl+C` / `CMD + c`, also you can close the terminal tab and click on `Run`.
 
 If you are doing it locally, you can run as a standard spring-boot application.
 
