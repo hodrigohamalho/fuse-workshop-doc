@@ -124,6 +124,7 @@ To stop the application use `Ctrl+C` in the terminal.
 [type=verification]
 Are you seeing a loop hello message in the logs?
 
+[time=5]
 == Running the labs in your local environment
 
 If you are looking to build the project in your own environment (local machine), you will need:
@@ -145,6 +146,7 @@ cd fuse-workshop
 mvn spring-boot:run
 ----
 
+[time=1]
 == Summary
 
 Congratulations you finished the setup of your environment!
