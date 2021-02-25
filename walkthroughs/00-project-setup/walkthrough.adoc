@@ -82,13 +82,19 @@ It may take a few minutes for everything to start up. If everything worked fine,
 
 image::images/01-factory.png[Importing project, role="integr8ly-img-responsive"]
 
+{empty} +
+
 When the setup is ready you should see a screen like this:
 
 image::images/2-workspace-created.png[Importing project, role="integr8ly-img-responsive"]
 
+{empty} +
+
 Now, that you succesfully created the workspace take a while exploring the project structure.
 
 image::images/3-che-side-menu.png[Side Menu - Project Structure, role="integr8ly-img-responsive"]
+
+{empty} +
 
 Run the project
 
@@ -105,7 +111,7 @@ image::images/5-open-web-app.png[Running Application, role="integr8ly-img-respon
 
 {empty} +
 
-In the end you should see a web app on the side menu, and a `hello message` in the logs. 
+In the end you should see a web app on the side menu, and a `hello router ` message in the logs. 
 
 image::images/6-lab-final.png[Running Application, role="integr8ly-img-responsive"]
 
@@ -115,10 +121,7 @@ To stop the application use `Ctrl+C` in the terminal.
 [type=verification]
 Are you seeing a loop hello message in the logs?
 
-[time=5]
-== Local (own machine) setup
-
-To build the project in your own environment, you will need:
+If you are looking to build the project in your own environment (local machine), you will need:
 
 * JDK 7+
 * Git
@@ -135,7 +138,6 @@ cd fuse-workshop
 mvn spring-boot:run
 ----
 
-[time=1]
 == Summary
 
 Congratulations you finished the setup of your environment!
