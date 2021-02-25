@@ -84,7 +84,7 @@ image::images/01-factory.png[Importing project, role="integr8ly-img-responsive"]
 
 When the setup is ready you should see a screen like this:
 
-image::images/2-che-workspace-created.png[Importing project, role="integr8ly-img-responsive"]
+image::images/2-workspace-created.png[Importing project, role="integr8ly-img-responsive"]
 
 Now, that you succesfully created the workspace take a while exploring the project structure.
 
@@ -97,22 +97,23 @@ Run the project
 
 image::images/4-che-run-locally.png[Running Application, role="integr8ly-img-responsive"]
 
+{empty} +
+
 As this project is a web app (we are going to explore it in future labs) codeready workspaces will suggest to you to open a link, click on `Open Link`. 
 
 image::images/5-open-web-app.png[Running Application, role="integr8ly-img-responsive"]
+
+{empty} +
 
 In the end you should see a web app on the side menu, and a `hello message` in the logs. 
 
 image::images/6-lab-final.png[Running Application, role="integr8ly-img-responsive"]
 
+To stop the application use `Ctrl+C` in the terminal.
+
 [time=5]
 [type=verification]
 Are you seeing a loop hello message in the logs?
-
-During the workshop you will do several changes in the source code, so to redeploy
-just hit the *Re-run* button.
-
-image::images/12-che.png[initial web page, role="integr8ly-img-responsive"]
 
 [time=5]
 == Local (own machine) setup
