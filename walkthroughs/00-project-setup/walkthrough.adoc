@@ -38,47 +38,32 @@ This *fuse-workshop* project is a Red Hat Fuse (aka https://camel.apache.org[Apa
 
 Lab Requirements
 
-. Cloud
-.. Web Browser
+.Cloud
+..Web Browser
 
-. Local machine
-.. At least 4 GB RAM
-.. JDK 1.8+
-.. Git
-.. oc client
-... https://access.redhat.com/downloads/content/290[Download from Red Hat]
-... https://www.okd.io/download.html[Download from Community]
-.. https://visualstudio.microsoft.com/downloads/[Visual Studio IDE]
-... Plugin: *Extension Pack for Apache Camel*
-... Plugin: *Language Support for Apache Camel*
-.. https://filezilla-project.org/download.php?type=client[Filezila]
+.Local machine
+..At least 4 GB RAM
+..JDK 1.8+
+..Git
+..oc client
+...https://access.redhat.com/downloads/content/290[Download from Red Hat]
+...https://www.okd.io/download.html[Download from Community]
+..https://visualstudio.microsoft.com/downloads/[Visual Studio IDE]
+...Plugin: *Extension Pack for Apache Camel*
+...Plugin: *Language Support for Apache Camel*
+..https://filezilla-project.org/download.php?type=client[Filezila]
 
 Knowledge Requirements
 
-. Java
-. Maven
-.. Replace your `~/.m2/settings.xml` by the `fuse-workshop/configuration/settings.xml`
+.Java
+.Maven
+..Replace your `~/.m2/settings.xml` by the `fuse-workshop/configuration/settings.xml`
 
 [time=5]
 == Setup Code Ready Workspace
 
 These walkthroughs use link:https://developers.redhat.com/products/codeready-workspaces/overview[CodeReady Workspaces, window="_blank"] (based on https://www.eclipse.org/che[Eclipse Che]).
 It's an IDE on the cloud based on containers. You can also use a local development environment if you'd prefer (i.e. https://code.visualstudio.com[Visual Studio Code], https://developers.redhat.com/products/codeready-studio/overview[Red Hat CodeReady Studio] (formerly known as JBoss Developer Studio), https://www.jetbrains.com/idea[IntelliJ IDEA], etc).
-
-To build the project in your own environment, you will need:
-
-* JDK 7+
-* Maven 3+
-* Git
-
-If you already have all installed, just clone the git repository and run `mvn install`
-
-[source,bash]
-----
-git clone https://github.com/hodrigohamalho/fuse-workshop.git
-cd fuse-workshop
-mvn spring-boot:run
-----
 
 The *fuse-workshop* project is a Camel Spring Boot project, with some code already written for you. It will help you focus on what really matters rather than having you write lots of boilerplate code.
 
@@ -130,6 +115,26 @@ During the workshop you will do several changes in the source code, so to redepl
 just hit the *Re-run* button.
 
 image::images/12-che.png[initial web page, role="integr8ly-img-responsive"]
+
+[time=5]
+== Local (own machine) setup
+
+To build the project in your own environment, you will need:
+
+* JDK 7+
+* Git
+* Maven 3+
+
+Replace your `~/.m2/settings.xml` by the `fuse-workshop/configuration/settings.xml`
+
+If you already have all installed, just clone the git repository and run `mvn install`
+
+[source,bash]
+----
+git clone https://github.com/hodrigohamalho/fuse-workshop.git
+cd fuse-workshop
+mvn spring-boot:run
+----
 
 [time=1]
 == Summary
