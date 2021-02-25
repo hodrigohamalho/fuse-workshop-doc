@@ -71,7 +71,7 @@ image::./images/camel-structure.png[]
 
 This is the basis of how components work.
 
-Now, `Run` the project, if it's already running stop it `Ctrl+C` / `CMD + c`, also you can close the terminal tab and click on `Run`.
+Now, `Run` the project, if it's already running stop it closing the terminal tab and click on `Run`.
 
 If you are doing it locally, you can run as a standard spring-boot application.
 
