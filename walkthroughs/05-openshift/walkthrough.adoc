@@ -38,11 +38,27 @@ For this lab we will use the binary deployment option (#2 above), uploading the 
 First, to work with the MySQL database in production, we have to deploy/provision it.
 
 . Go to the link:{openshift-host}/console[OpenShift Console, window="_blank"]
-. In the *Search Catalog* box at the top, search for *mysql* & select the *MySQL (Ephemeral)* option
+. Click on *Add*  on the left menu. And click on *Select from Catalog*, then look for *mysql* & select the *MySQL (Ephemeral)* option
 
-image::./images/lab05-mysql-01.png[]
+image::./images/01.png[]
+
+{empty} +
+
+image::./images/02.png[]
+
+{empty} +
+
+image::./images/03.png[]
+
+{empty} +
+
+image::./images/04.png[]
 
 Fill *MySQL Connection Username, MySQL Connection Password, & MySQL root user Password* as *redhat* and click *Next*, followed by *Create* on the binding screen
+
+{empty} +
+
+image::./images/05.png[]
 
 image::./images/lab05-mysql-02.png[]
 
