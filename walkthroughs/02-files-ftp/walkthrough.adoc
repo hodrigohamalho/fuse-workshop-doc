@@ -1,7 +1,7 @@
 :walkthrough: Integration with Files and FTP
 :codeready-url: https://codeready-codeready.{openshift-app-host}
 :openshift-url: {openshift-host}/console
-:next-lab-url: https://tutorial-web-app-webapp.{openshift-app-host}/tutorial/fuse-workshop-doc.git-walkthroughs-02-files-ftp/
+:next-lab-url: https://tutorial-web-app-webapp.{openshift-app-host}/tutorial/fuse-workshop-doc.git-walkthroughs-03-rest-database/
 
 = Lab 2 - Integration with Files and FTP
 
