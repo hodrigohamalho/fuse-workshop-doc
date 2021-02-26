@@ -53,9 +53,13 @@ rest("/orders")
 
 Run the integration and access the preview endpoint as shown in your CodeReady Workspaces (append `/camel/orders` to it) terminal (or if running on a local workstation, link:http://localhost:8080/camel/orders[http://localhost:8080/camel/orders, window="_blank"])
 
-Every time you hit the HTTP endpoint the message *"getting all orders entries from database"* should appear in the log. It doesn't return anything yet because nothing has implemented to return to the caller. For now, don't worry about it.
+Every time you hit the HTTP endpoint the message *"getting all orders entries from database"* should appear in the log. It doesn't return anything yet because nothing has implemented to return to the caller. For now, don't worry about it. Open the web page using the following button on the right menu.
 
-image::./images/lab03-get-orders-url-codeready.png[]
+image::./images/open-web.png[]
+
+Or, using the Preview tool.
+
+image::./images/open-preview.png[]
 
 [type=verification]
 Do you see the message *"Getting all order entries from database"* in the logs everytime you hit the `/camel/orders` HTTP endpoint?
@@ -114,7 +118,13 @@ image::./images/lab03-rest-definition.png[]
 
 Access the the URL again, this time without the `/camel/orders` URI.
 
-image::./images/lab03-codeready-server.gif[]
+image::./images/web-page.png[]s
+
+{empty} +
+
+image::./images/web-page-swaggerui.png[]
+
+{empty} +
 
 . Click on the *API Swagger page* button
 . In case you are doing it locally change the Schema to *HTTP*.
@@ -142,9 +152,13 @@ The Open API Specification (aka Swagger) is being auto-generated. Open the brows
 
 image::./images/lab03-api-doc.png[]
 
+{empty} +
+
 If you prefer to see it in a human-readable way, check through the swagger-UI interface with the `/webjars/swagger-ui/index.html?url=/camel/api-doc` endpoint.
 
 image::./images/lab03-swagger.png[]
+
+{empty} +
 
 You could enrich the documentation adding some descriptions in your code, let's do it:
 
@@ -231,7 +245,10 @@ We will continue working with the same REST resources but adding database intera
 
 There are three strings (*selectAll*, *selectById*, *insertOrder*) already defined in the `RestRouter` class to retrieve/create information from a database that we will use on the REST DSL to interact with database.
 
-All the maven dependencies are already included for in `pom.xml`. In this lab you will be using an embedded database, so don't worry about any installation process.
+Before starting, include the databases libs necessary in the `pom.xml` file. 
+You can do it uncommenting the `database session`. In this lab you will be using an embedded database, so don't worry about any installation process.
+
+image::./images/database-session-pom.png[]
 
 === GET all and by ID
 
