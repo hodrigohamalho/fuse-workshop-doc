@@ -60,13 +60,20 @@ Fill *MySQL Connection Username, MySQL Connection Password, & MySQL root user Pa
 
 image::./images/05.png[]
 
-image::./images/lab05-mysql-02.png[]
-
-If everything provisioned correctly, you will see a screen like this
-
-image::./images/lab05-mysql-03.png[]
-
 == AMQ provisioning 
+
+Let's provisioning an AMQ Broker on this step. As on the previous step, click on *Add* on the left side menu.
+Select *Operator Backed* option.
+
+Filter by the *AMQ Broker* option and select *AMQ Broker* option.
+
+image::./images/07.png[]
+
+{empty} +
+
+image::./images/08.png[]
+
+On the configuration select *Yaml view*  and paste the following content:
 
 [source,yaml]
 ----
@@ -92,6 +99,8 @@ spec:
   console:
     expose: true
 ----
+
+image::./images/09.png[]
 
 [time=15]
 == Application deployment onto OpenShift using Binary Deployment
