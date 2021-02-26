@@ -336,8 +336,6 @@ For every different database you want to support, you need to add the equivalent
 
 Congratulations you finished the REST and Databases lab.
 
-{empty} +
-
 We covered a lot of things during this lab. Here's a quick recap:
 
 * Defining REST endpoints

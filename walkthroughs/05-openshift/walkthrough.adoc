@@ -1,7 +1,7 @@
 :walkthrough: Publish to Openshift
-:codeready-url: {che-url}
-:openshift-url: {openshift-host}
-:user-password: Abt7MjWMb8v4ECS
+:codeready-url: https://codeready-codeready.{openshift-app-host}
+:openshift-url: {openshift-host}/console
+:user-password: openshift
 
 = Lab 5 - Publish to OpenShift
 
@@ -50,14 +50,32 @@ If everything provisioned correctly, you will see a screen like this
 
 image::./images/lab05-mysql-03.png[]
 
+== AMQ provisioning 
+
+asdasdasd
+
 [time=15]
 == Application deployment onto OpenShift using Binary Deployment
 
-First login into OpenShift (if you aren't already):
+Let's setup the `oc` plugin
+
+[source,bash]
+----
+./oc-setup.sh
+----
+
+Login into OpenShift (if you aren't already):
 
 [source,bash,subs="attributes+"]
 ----
-oc login {openshift-url} -u {user-username} -p {user-password}
+oc login -u {user-username} -p {user-password} https://$KUBERNETES_SERVICE_HOST:$KUBERNETES_SERVICE_PORT --insecure-skip-tls-verify=true
+----
+
+Enter in your project
+
+[source,bash,subs="attributes+"]
+----
+oc project {user-username}
 ----
 
 Once logged in, right click on the `fuse-workshop` project & choose *Commands -> Deploy (1) -> Deploy to Openshift*. It may take a few minutes depending on your network performance.

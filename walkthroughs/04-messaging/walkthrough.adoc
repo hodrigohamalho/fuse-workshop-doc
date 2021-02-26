@@ -1,8 +1,8 @@
 :walkthrough: Messaging
 :codeready-url: https://codeready-codeready.{openshift-app-host}
 :openshift-url: {openshift-host}/console
-:user-password: Abt7MjWMb8v4ECS
-:next-lab-url: https://tutorial-web-app-webapp.{openshift-app-host}/tutorial/fuse-springboot-workshop.git-walkthroughs-05-openshift/
+:user-password: openshift
+:next-lab-url: https://tutorial-web-app-webapp.{openshift-app-host}/tutorial/fuse-workshop-doc.git-walkthroughs-05-openshift
 
 = Lab 4 - Messaging
 
@@ -123,8 +123,6 @@ On the next session we are going to deploy the integration into Openshift and we
 == Summary
 
 Congratulations you finished the Messaging lab.
-
-{empty} +
 
 We covered a lot of things during this lab. Here's a quick recap:
 
