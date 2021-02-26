@@ -16,10 +16,7 @@ Contents covered during this lab
 
 * ActiveMQ component
 * Producing and Consuming messages to a queue
-* OpenShift port forward feature
-* Use a Local and Remote Broker
-* Deploy AMQ broker on OpenShift
-* AMQ Console
+* Use an embedded broker in the local environment
 
 [type=walkthroughResource,serviceName=codeready]
 .CodeReady Workspaces
