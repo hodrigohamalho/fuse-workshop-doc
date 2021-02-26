@@ -2,7 +2,7 @@
 :codeready-url: https://codeready-codeready.{openshift-app-host}
 :openshift-url: {openshift-host}/console
 :user-password: openshift
-:next-lab-url: https://tutorial-web-app-webapp.{openshift-app-host}/tutorial/fuse-workshop-doc.git-walkthroughs-05-openshift
+:next-lab-url: https://tutorial-web-app-webapp.{openshift-app-host}/tutorial/fuse-workshop-doc.git-walkthroughs-05-openshift/
 
 = Lab 4 - Messaging
 
@@ -131,4 +131,4 @@ We covered a lot of things during this lab. Here's a quick recap:
 * Working **asynchronously** with the **wireTap** Enterprise Integration Pattern
 * Producing and Consuming messages
 
-You can now proceed to link:{next-lab-url}[Messaging].
+You can now proceed to link:{next-lab-url}[Openshift].

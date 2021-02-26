@@ -102,6 +102,54 @@ spec:
 
 image::./images/09.png[]
 
+If everything worked fine, you should see a screen like that:
+
+image::./images/10.png[]
+
+Now, let's open the Management Console of the AMQ Broker.
+
+image::./images/11.png[]
+
+{empty} +
+
+image::./images/12.png[]
+
+{empty} +
+
+image::./images/13.png[]
+
+{empty} +
+
+image::./images/14.png[]
+
+{empty} +
+
+image::./images/15.png[]
+
+{empty} +
+
+image::./images/16.png[]
+
+{empty} +
+
+image::./images/17.png[]
+
+{empty} +
+
+image::./images/18.png[]
+
+{empty} +
+
+image::./images/19.png[]
+
+{empty} +
+
+image::./images/20.png[]
+
+{empty} +
+
+image::./images/21.png[]
+
 [time=15]
 == Application deployment onto OpenShift using Binary Deployment
 
