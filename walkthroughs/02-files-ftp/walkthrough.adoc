@@ -1,7 +1,7 @@
 :walkthrough: Integration with Files and FTP
 :codeready-url: https://codeready-codeready.{openshift-app-host}
 :openshift-url: {openshift-host}/console
-:next-lab-url: https://tutorial-web-app-webapp.{openshift-app-host}/tutorial/fuse-springboot-workshop.git-walkthroughs-03-rest-database
+:next-lab-url: https://tutorial-web-app-webapp.{openshift-app-host}/tutorial/fuse-workshop-doc.git-walkthroughs-02-files-ftp/
 
 = Lab 2 - Integration with Files and FTP
 
@@ -125,9 +125,22 @@ from("direct:book-to-file")
 
 The line `.convertBodyTo(String.class)` is just invoking the `toString` method on the `Order` class. After that we are saving all files to the filesystem.
 
-Run the integration and check if the files were saved.
+Run the integration and check if the files were saved. 
+To check if the file was save, we are going to list the files of the `/tmp/fuse-workshop` directory.
 
-image::./images/lab02-file-code.png[]
+{empty} +
+
+To open the terminal, click on `Terminal` on the top menu, then `Open terminal in a specific Container` and select `tools`.
+
+image::./images/lab02-file-code-01.png[]
+
+{empty} +
+
+image::./images/lab02-file-code-02.png[]
+
+{empty} +
+
+image::./images/lab02-file-code-03.png[]
 
 [type=verification]
 Do you see the files inside the `/tmp/fuse-workshop` directories?
@@ -188,44 +201,10 @@ from("direct:book-to-file")
 
 Run the integration
 
-image::./images/lab02-file-pretty-names2.png[]
+image::./images/lab02-file-pretty-names-2.png[]
 
 [type=verification]
 Do you see the files with the correct extensions? Is the content of each file what you would expect?
-
-[time=10]
-== FTP Server
-
-Now, let's create another route to upload those files to an FTP server. The FTP server credentials will be provided by the instructor during the class.
-
-Implement a route that takes all files in the camel directory and publishes it in the FTP server.
-
-image::./images/lab02-ftp-server-diagram.png[]
-
-* FTP Host: `<FTP HOST>`
-* FTP Username: `{user-username}`
-* FTP Password: `<FTP PASSWORD>`
-* FTP Directory: `/var/fuse-workshop/{user-username}`
-
-Also, remember to configure the component to *delete the files* after being consumed.
-
-The sample for the camel directory would be:
-
-[source,java,subs="attributes"]
-----
-from("file:/tmp/fuse-workshop/camel?delete=true")
-    .log("Uploading camel orders to ftp")
-    .to("ftp://{user-username}@##ftp-host##?password=##ftp-password##");
-----
-
-Do the same with the files on the camel directory.
-
-Run the integration.
-
-image::./images/lab02-filezilla-files.png[]
-
-[type=verification]
-Do you see the files uploaded to FTP server? Were they also removed from the filesystem?
 
 [time=10]
 === Processor and Transformation
@@ -273,7 +252,41 @@ image::./images/lab02-processor2.png[]
 Run the integration.
 
 [type=verification]
-Do you see the last XML files uploaded with the process attribute is true?
+Do you see the last XML files generated with the process attribute is true?
+
+[time=10]
+== FTP Server (SKIP THIS LAB - CURRENTLY NOT WORKING)
+
+Now, let's create another route to upload those files to an FTP server. The FTP server credentials will be provided by the instructor during the class.
+
+Implement a route that takes all files in the camel directory and publishes it in the FTP server.
+
+image::./images/lab02-ftp-server-diagram.png[]
+
+* FTP Host: `<FTP HOST>`
+* FTP Username: `{user-username}`
+* FTP Password: `<FTP PASSWORD>`
+* FTP Directory: `/var/fuse-workshop/{user-username}`
+
+Also, remember to configure the component to *delete the files* after being consumed.
+
+The sample for the camel directory would be:
+
+[source,java,subs="attributes"]
+----
+from("file:/tmp/fuse-workshop/camel?delete=true")
+    .log("Uploading camel orders to ftp")
+    .to("ftp://{user-username}@##ftp-host##?password=##ftp-password##");
+----
+
+Do the same with the files on the camel directory.
+
+Run the integration.
+
+image::./images/lab02-filezilla-files.png[]
+
+[type=verification]
+Do you see the files uploaded to FTP server? Were they also removed from the filesystem?
 
 *Just as an additional note*
 
