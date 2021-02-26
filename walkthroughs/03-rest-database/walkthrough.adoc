@@ -1,7 +1,7 @@
 :walkthrough: REST and Database
 :codeready-url: https://codeready-codeready.{openshift-app-host}
 :openshift-url: {openshift-host}/console
-:next-lab-url: https://tutorial-web-app-webapp.{openshift-app-host}/tutorial/fuse-springboot-workshop.git-walkthroughs-04-messaging
+:next-lab-url: https://tutorial-web-app-webapp.{openshift-app-host}tutorial/fuse-workshop-doc.git-walkthroughs-04-messaging/
 
 = Lab 3 - REST and Database
 
@@ -330,3 +330,18 @@ For every different database you want to support, you need to add the equivalent
         <artifactId>mysql-connector-java</artifactId>
         <scope>runtime</scope>
     </dependency>
+
+[time=1]
+== Summary
+
+Congratulations you finished the REST and Databases lab.
+
+{empty} +
+
+We covered a lot of things during this lab. Here's a quick recap:
+
+* Defining REST endpoints
+* Interacting with a database using the SQL component
+* Auto generating API docs (Swagger)
+
+You can now proceed to link:{next-lab-url}[Messaging].

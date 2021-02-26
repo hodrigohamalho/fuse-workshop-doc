@@ -1,0 +1,100 @@
+[time=15]
+== Using an AMQ broker on OpenShift remotely
+
+Create the project `{user-username}-fuse`. The images examples are using `evals02`, but *you must* use `{user-username}`.
+
+. Go to the link:{openshift-host}/console[OpenShift Console, window="_blank"]
+. Click on create project button & enter `{user-username}-fuse` as the project name, then click *Create*
++
+image::./images/lab04-messaging-05.png[]
+. Select the project to enter it
++
+image::./images/lab04-messaging-06.png[]
+. In the *Search Catalog* box at the top, search for *AMQ Broker 7.4* & select the *Red Hat AMQ Broker 7.4 (Ephemeral, no SSL)* option
++
+image::./images/lab04-messaging-07.png[]
+. Fill the fields *AMQ Username* & *AMQ Password* with the value *redhat*, then click *Create* at the bottom of the screen, then *Create* again at the binding screen
++
+image::./images/lab04-messaging-08.png[]
+. If your project was provisioned correctly, you would see a screen like this:
++
+image::./images/lab04-messaging-09.png[]
+
+Now that the broker is deployed on OpenShift, we can use a mechanism that enables us to open a connection with OpenShift. This will enable us to consume services deployed on OpenShift from our local machine/CodeReady workspace. This is useful for resources like databases & message brokers.
+
+Login to OpenShift on the terminal, choose our `{user-username}-fuse` project, & list the pods. *NOTE: The actual name of the pods that show up will be different than what is shown here.*
+
+[source,bash,subs="attributes"]
+----
+oc login {openshift-url} -u {user-username} -p {user-password}
+oc project {user-username}-fuse
+oc get pods
+
+NAME                 READY     STATUS    RESTARTS   AGE
+broker-amq-1-ck9mc   1/1       Running   0          6m
+----
+
+Now you have the exact name of the pod running AMQ Broker. Let's execute the port-forward command. This will forward port `61616` (the port the broker listens on) to the local machine at the same port. *Make sure you use the name from the output of your command, not the name shown here!*
+
+[source,bash]
+----
+    oc port-forward broker-amq-1-ck9mc 61616:61616
+----
+
+The output should look like this:
+
+image::./images/lab04-messaging-17.png[]
+
+{empty} +
+
+Now, update your `src/main/resources/application.properties` file to use the local broker (which is just forwarded to the actual broker running on OpenShift) instead of the embedded one. Open the `src/main/resources/application.properties` file and uncomment the line below:
+
+[source, bash]
+----
+
+# PORT-FORWARD BROKER
+activemq.broker.url=tcp://localhost:61616
+
+----
+
+And comment out this line:
+
+[source, bash]
+----
+
+# EMBEDDED BROKER
+# activemq.broker.url=vm://localhost
+
+----
+
+Run your integration again, creating an order using the `/order/async` HTTP POST method.
+
+Click on the AMQ console URL:
+
+image::./images/lab04-messaging-09.png[]
+
+{empty} +
+
+Choose the *Management Console* option:
+
+image::./images/lab04-messaging-10.png[]
+
+Use `redhat` as the username & password
+
+image::./images/lab04-messaging-12.png[]
+
+{empty} +
+
+On the *Artemis* item on horizontal Menu, select *Addresses*
+
+image::./images/lab04-messaging-13.png[]
+
+{empty} +
+
+Now that you see the message metrics. Create many (like 10) new orders, using the `/order/async` HTTP POST method.
+
+Look to the metrics again, you should se some messages on the Message Count column.
+
+image::./images/lab04-messaging-15.png[]
+
+{empty} +
