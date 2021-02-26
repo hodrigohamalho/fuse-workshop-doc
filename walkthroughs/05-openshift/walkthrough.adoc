@@ -52,7 +52,30 @@ image::./images/lab05-mysql-03.png[]
 
 == AMQ provisioning 
 
-asdasdasd
+[source,yaml]
+----
+apiVersion: broker.amq.io/v2alpha4
+kind: ActiveMQArtemis
+metadata:
+  name: amq-broker
+  application: amq-broker
+  namespace: user1
+spec:
+  deploymentPlan:
+    size: 1
+    image: >-
+      registry.redhat.io/amq7/amq-broker@sha256:a6a2fd548f4e89151a8e7d4bacb7380d0076bbd1b1f5bc5555f2e95e19e1441f
+    requireLogin: false
+    persistenceEnabled: false
+    journalType: nio
+    messageMigration: false
+    jolokiaAgentEnabled: false
+    managementRBACEnabled: true
+  adminUser: redhat
+  adminPassword: redhat
+  console:
+    expose: true
+----
 
 [time=15]
 == Application deployment onto OpenShift using Binary Deployment

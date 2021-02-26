@@ -2,7 +2,7 @@
 :codeready-url: http://codeready-che.{openshift-app-host}/
 :openshift-url: {openshift-host}/console
 :next-lab-url: https://tutorial-web-app-webapp.{openshift-app-host}/tutorial/fuse-workshop-doc.git-walkthroughs-01-hello-router/
-:user-password: Abt7MjWMb8v4ECS
+:user-password: openshift
 endif::[]
 
 = Lab 0 - Workshop Introduction
